@@ -1,6 +1,7 @@
 {{- $root := . }}
 {{- $syncPolicy := dict  }}
 {{- range $chartName, $chart := .Values.charts }}
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
