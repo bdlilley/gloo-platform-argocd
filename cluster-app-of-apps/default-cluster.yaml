@@ -2,6 +2,11 @@ istio:
   version: 1.15.2
 
 charts:
+
+  aws-iam:
+    path: charts/aws-identity-webhook
+    namespace: pod-identity-webhook
+    
   cert-manager:
     repo: https://charts.jetstack.io
     revision: v1.9.1
