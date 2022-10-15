@@ -9,8 +9,16 @@ metadata:
 spec:
   project: default
   source:
+    {{- if ($chart).repo }}
+    repoURL: {{ $chart.repo }}
+    {{- else }}
     repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
+    {{- end }}
+    {{- if ($chart).revision }}
+    targetRevision: {{ $chart.revision }}
+    {{- else }}
     targetRevision: HEAD
+    {{- end }}
     path: {{ $chart.path }}
     helm:
       values: | 
