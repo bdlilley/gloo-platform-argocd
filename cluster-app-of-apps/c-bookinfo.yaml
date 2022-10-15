@@ -1,0 +1,8 @@
+
+charts:
+
+  bookinfo:
+    path: charts/bookinfo
+    namespace: bookinfo
+    # syncPolicy:
+    #   syncOptions: []

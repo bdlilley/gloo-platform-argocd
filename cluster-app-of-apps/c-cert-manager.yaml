@@ -1,12 +1,6 @@
-istio:
-  version: 1.15.2
 
 charts:
 
-  aws-iam:
-    path: charts/aws-identity-webhook
-    namespace: pod-identity-webhook
-    
   selfsigned:
     path: charts/cluster-issuer
     namespace: kube-system
@@ -20,9 +14,3 @@ charts:
     namespace: cert-manager
     values:
       installCRDs: true
-
-  bookinfo:
-    path: charts/bookinfo
-    namespace: bookinfo
-    # syncPolicy:
-    #   syncOptions: []
