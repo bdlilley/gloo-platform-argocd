@@ -2,11 +2,11 @@ istio:
   version: 1.15.2
 
 charts:
-  # cert-manager:
-  #   repo: https://charts.jetstack.io
-  #   revision: v1.9.1
-  #   chart: cert-manager
-  #   # namespace: cert-manager
+  cert-manager:
+    repo: https://charts.jetstack.io
+    revision: v1.9.1
+    chart: cert-manager
+    namespace: cert-manager
 
   bookinfo:
     path: charts/bookinfo
