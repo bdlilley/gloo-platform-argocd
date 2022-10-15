@@ -5,3 +5,5 @@ charts:
   sample-apps:
     path: charts/sample-apps
     namespace: sample-apps
+    # syncPolicy:
+    #   syncOptions: []
