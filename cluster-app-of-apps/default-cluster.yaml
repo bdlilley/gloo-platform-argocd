@@ -3,9 +3,9 @@ istio:
 
 charts:
 
-  # aws-iam:
-  #   path: charts/aws-identity-webhook
-  #   namespace: pod-identity-webhook
+  aws-iam:
+    path: charts/aws-identity-webhook
+    namespace: pod-identity-webhook
     
   selfsigned:
     path: charts/cluster-issuer
