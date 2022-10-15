@@ -2,8 +2,9 @@ istio:
   version: 1.15.2
 
 charts:
-  sample-apps:
-    path: charts/sample-apps
-    namespace: sample-apps
+
+  bookinfo:
+    path: charts/bookinfo
+    namespace: bookinfo
     # syncPolicy:
     #   syncOptions: []
