@@ -15,7 +15,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ $chart.namespace }}
-  syncPolicy:  {{ toJson(merge $root.Values.defaults.syncPolicy lookup($chart, "syncPolicy", {})) }}
+  syncPolicy:  {{ toJson merge $root.Values.defaults.syncPolicy lookup($chart, "syncPolicy", {}) }}
   helm:
     values: | 
       istio:
