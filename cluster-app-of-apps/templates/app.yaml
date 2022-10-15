@@ -15,11 +15,19 @@ spec:
     repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
     {{- end }}
     {{- if ($chart).revision }}
+    # branch for git-hosted, chart version for helm registry-hosted
     targetRevision: {{ $chart.revision }}
     {{- else }}
     targetRevision: HEAD
     {{- end }}
+    {{- if ($chart).path }}
+    # only used for git-hosted charts
     path: {{ $chart.path }}
+    {{- end }}
+    {{- if ($chart).chart }}
+    # only used for registry-hosted charts
+    chart: {{ $chart.chart }}
+    {{- end }}
     helm:
       values: | 
         istio:
