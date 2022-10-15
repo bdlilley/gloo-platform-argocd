@@ -35,6 +35,9 @@ spec:
       values: | 
         istio:
           version: {{ $root.Values.istio.version }}
+{{- if ($chart).values }}
+{{ toYaml $chart.values | indent 8 }}
+{{- end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ $chart.namespace }}

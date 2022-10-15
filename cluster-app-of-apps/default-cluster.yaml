@@ -12,6 +12,8 @@ charts:
     revision: v1.9.1
     chart: cert-manager
     namespace: cert-manager
+    values:
+      installCRDs: true
 
   bookinfo:
     path: charts/bookinfo
