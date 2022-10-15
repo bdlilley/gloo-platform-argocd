@@ -3,17 +3,17 @@ istio:
 
 charts:
 
-  aws-iam:
-    path: charts/aws-identity-webhook
-    namespace: pod-identity-webhook
+  # aws-iam:
+  #   path: charts/aws-identity-webhook
+  #   namespace: pod-identity-webhook
     
-  cert-manager:
-    repo: https://charts.jetstack.io
-    revision: v1.9.1
-    chart: cert-manager
-    namespace: cert-manager
-    values:
-      installCRDs: true
+  # cert-manager:
+  #   repo: https://charts.jetstack.io
+  #   revision: v1.9.1
+  #   chart: cert-manager
+  #   namespace: cert-manager
+  #   values:
+  #     installCRDs: true
 
   bookinfo:
     path: charts/bookinfo
