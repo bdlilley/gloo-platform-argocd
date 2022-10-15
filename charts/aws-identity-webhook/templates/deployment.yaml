@@ -54,8 +54,8 @@ spec:
   - "pod-identity-webhook.pod-identity-webhook.svc"
   - "pod-identity-webhook.pod-identity-webhook.svc.local"
   isCA: true
-  duration: 2160h # 90d
-  renewBefore: 360h # 15d
+  duration: 2160h0m0s # 90d
+  renewBefore: 360h0m0s # 15d
   issuerRef:
     name: {{ .Values.issuerName }}
     kind: ClusterIssuer
