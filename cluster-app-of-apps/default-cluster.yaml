@@ -1,0 +1,7 @@
+istio:
+  version: 1.15.2
+
+charts:
+  sample-apps:
+    path: charts/sample-apps
+    namespace: sample-apps

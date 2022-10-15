@@ -1,0 +1,10 @@
+istio:
+  version: 1.15.2
+
+defaults:
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
