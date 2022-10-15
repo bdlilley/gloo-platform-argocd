@@ -12,12 +12,12 @@ spec:
     repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
     targetRevision: HEAD
     path: {{ $chart.path }}
+    helm:
+      values: | 
+        istio:
+          version: {{ $root.Values.istio.version }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ $chart.namespace }}
   syncPolicy:  {{ include "app.syncPolicy" $chart }}
-  helm:
-    values: | 
-      istio:
-        version: {{ $root.Values.istio.version }}
 {{- end }} 
