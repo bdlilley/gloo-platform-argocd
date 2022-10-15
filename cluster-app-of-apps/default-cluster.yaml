@@ -7,6 +7,12 @@ charts:
   #   path: charts/aws-identity-webhook
   #   namespace: pod-identity-webhook
     
+  selfsigned:
+    path: charts/cluster-issuer
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    
   cert-manager:
     repo: https://charts.jetstack.io
     revision: v1.9.1
