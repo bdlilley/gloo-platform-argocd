@@ -30,6 +30,9 @@ spec:
     {{- if ($chart).chart }}
     # only used for registry-hosted charts
     chart: {{ $chart.chart }}
+    {{-  if and $chart.chart == "gloo-mesh-enterprise" (not ($chart).revision) }}
+    targetRevision: {{ $root.Values.gloo.version }}
+    {{- end }}
     {{- end }}
     helm:
       values: |
