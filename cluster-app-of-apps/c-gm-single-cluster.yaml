@@ -32,3 +32,9 @@ charts:
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
     # revision is taken from .Values.gloo.version
+
+  register:
+    path: charts/register-cluster
+    namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespac
