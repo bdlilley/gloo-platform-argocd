@@ -33,8 +33,9 @@ spec:
     {{- end }}
     helm:
       values: 
-{{- $rootValues := deepCopy $root.Values }}
-{{- unset $rootValues "charts" }}
+{{ $rootValues := deepCopy $root.Values }}
+{{- $rootValues = unset $rootValues "charts" }}
+{{- $rootValues = unset $rootValues "defaults" }}
 {{ toYaml $rootValues | indent 8 }}
 {{- if ($chart).values }}
 {{ toYaml $chart.values | indent 8 }}
