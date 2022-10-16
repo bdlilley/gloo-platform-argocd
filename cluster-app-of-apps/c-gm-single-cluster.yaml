@@ -26,3 +26,8 @@ charts:
   bookinfo:
     path: charts/bookinfo
     namespace: bookinfo
+
+  gloo-mgmt:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
+    namespace: gloo-mesh
