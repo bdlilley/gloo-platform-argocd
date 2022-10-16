@@ -32,9 +32,10 @@ spec:
     chart: {{ $chart.chart }}
     {{- end }}
     helm:
-      values: | 
-        istio:
-          version: {{ $root.Values.istio.version }}
+      values: 
+{{- $rootValues := deepCopy $root.Values }}
+{{- unset $rootValues "charts" }}
+{{ toYaml $rootValues | indent 8 }}
 {{- if ($chart).values }}
 {{ toYaml $chart.values | indent 8 }}
 {{- end }}
