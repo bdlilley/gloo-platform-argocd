@@ -5,6 +5,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
+    # revision is taken from .Values.gloo.version
 
 
       
