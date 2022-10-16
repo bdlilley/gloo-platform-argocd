@@ -27,11 +27,12 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
 
-  gloo-mgmt:
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    namespace: gloo-mesh
-    # revision is taken from .Values.gloo.version
+  # gloo-mgmt:
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+  #   chart: gloo-mesh-enterprise
+  #   namespace: gloo-mesh
+  #   # revision is taken from .Values.gloo.version
+  #   # manually running meshctl cluster register --kubecontext="default" --remote-context="default" --version "${GLOO_VERSION}" cluster1 after this step
 
   # register:
   #   path: charts/register-cluster
