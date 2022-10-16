@@ -32,7 +32,7 @@ spec:
     chart: {{ $chart.chart }}
     {{- end }}
     helm:
-      values: 
+      values: |
 {{ $rootValues := deepCopy $root.Values }}
 {{- $rootValues = unset $rootValues "charts" }}
 {{- $rootValues = unset $rootValues "defaults" }}
