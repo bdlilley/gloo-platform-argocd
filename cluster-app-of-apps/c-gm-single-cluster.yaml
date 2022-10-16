@@ -27,6 +27,12 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
 
+  # use meschctl's generated output to set up cluster
+  # this could be moved to a argocd plugin
+  meshctl:
+    path: charts/meshctl
+    namespace: gloo-mesh
+
   # gloo-mgmt:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
   #   chart: gloo-mesh-enterprise
