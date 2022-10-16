@@ -1,0 +1,11 @@
+
+charts:
+
+  gloo-mgmt:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    revision: 2.1.0-rc2
+    chart: gloo-mesh-enterprise
+    namespace: gloo-mesh
+
+
+      
