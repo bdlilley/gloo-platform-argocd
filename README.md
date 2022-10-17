@@ -31,8 +31,10 @@ spec:
         glooGatewayLicenseKey: "${GLOO_GATEWAY_LICENSE_KEY}"
         glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
         istio:
+          repo: "${ISTIO_REPO}"
           version: "${ISTIO}"
           tag: "${ISTIO_TAG}"
+          revision: "${ISTIO_MINOR}"
         gloo:
           version: "${GLOO_VERSION}"
   syncPolicy:
