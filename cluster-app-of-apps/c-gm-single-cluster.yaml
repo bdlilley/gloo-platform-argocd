@@ -27,9 +27,9 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
 
-  meshctl:
-    namespace: gloo-mesh
-    plugin: meshctl
+  # meshctl:
+  #   namespace: gloo-mesh
+  #   plugin: meshctl
 
   # gloo-mgmt:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
