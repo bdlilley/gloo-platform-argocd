@@ -42,7 +42,7 @@ spec:
     # only used for registry-hosted charts
     chart: {{ $chart.chart }}
     {{- end }} #nd if chart.chart
-{{- $theValues := deepCopy ($chart).values }}
+{{- $theValues := dict }}
 {{- if and (not ($chart).plugin) ($chart).values }}
     helm:
       values: |
