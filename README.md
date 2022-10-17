@@ -4,6 +4,8 @@ Repo will contain different use cases deployable with single argocd values file-
 
 Only requirement is a cluster without argocd installed.  Some lightweight magic happens in cluster-app-of-apps/templates/app.yaml to avoid duplicating configurations; the magic detects GME or istio charts and injects some of the required version values from the argocd app value inputs.
 
+Currently the only use case create is GME with self-managed istio.
+
 ```bash
 export ISTIO_MINOR="1-15"
 export ISTIO_VERSION="1.15.1"
@@ -41,6 +43,7 @@ spec:
         istioVersion: "${ISTIO_VERSION}"
         istioVersionLabel: "${ISTIO_MINOR}"
         istioTag: "${ISTIO_TAG}"
+        istioRepo: "${ISTIO_REPO}"
   syncPolicy:
     automated:
       prune: true
