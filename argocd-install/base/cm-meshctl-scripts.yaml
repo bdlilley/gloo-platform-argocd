@@ -21,18 +21,18 @@ data:
       - meshctl.yaml
     EOF
 
-    mkdir -p overlay
+    mkdir -p overlays/meshctl
 
-    cat <<EOF > overlay/kustomization.yaml
+    cat <<EOF > overlays/meshctl/meshctl/kustomization.yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
     kind: Kustomization
     bases:
-    - ../base
+    - ../../base
     patchesStrategicMerge:
     - set-license.yaml
     EOF
 
-    cat <<EOF > overlay/set-license.yaml
+    cat <<EOF > overlays/meshctl/set-license.yaml
     apiVersion: v1
     kind: Secret
     metadata:
@@ -45,7 +45,7 @@ data:
       gloo-trial-license-key: "${LIC}"
     EOF
 
-    kustomize build ./overlay
+    kustomize build ./overlays/meshctl
 
   install-meshctl.sh: |
     #!/bin/bash
