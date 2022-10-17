@@ -9,10 +9,7 @@ metadata:
 data:
   configManagementPlugins: |
     - name: meshctl
-      # init:                          # Optional command to initialize application source directory
-      #   command: ["sample command"]
-      #   args: ["sample args"]
       generate:                      # Command to generate manifests YAML
         command: ["meshctl"]
-        args: ["install", "--namespace", "gloo-mesh", "--license", "$(cat /var/run/gloo-license/gloo-mesh-license-key | tr '\n' ' ')", "--chart-values-file", "/var/run/meshctl-values.yaml", "--dry-run"]
+        args: ["install", "--namespace", "gloo-mesh", "--license", "", "--chart-values-file", "", "--dry-run"]
       lockRepo: true                 # Defaults to false. See below.

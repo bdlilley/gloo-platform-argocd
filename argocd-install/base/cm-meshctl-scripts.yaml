@@ -4,6 +4,49 @@ kind: ConfigMap
 metadata:
   name: gloo-scripts
 data:
+  meshctl-wrapper.sh: |
+    #!/bin/bash
+
+    theDir=$(mktemp -d)
+    cd $theDir
+
+    mkdir -p base
+    LIC=$(cat /var/run/gloo-license/gloo-mesh-license-key | tr '\n' ' ')
+    meshctl install --namespace gloo-mesh --license "${LIC}" --chart-values-file /var/run/meshctl-values.yaml --dry-run > base/meshctl.yaml
+
+    cat <<EOF > base/kustomization.yaml
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    kind: Kustomization
+    resources:
+      - meshctl.yaml
+    EOF
+
+    mkdir -p overlay
+
+    cat <<EOF > overlay/kustomization.yaml
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    kind: Kustomization
+    bases:
+    - ../base
+    patchesStrategicMerge:
+    - set-license.yaml
+    EOF
+
+    cat <<EOF > overlay/set-license.yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: license-keys
+      namespace: gloo-mesh
+    data:
+      gloo-mesh-license-key: "${LIC}"
+      gloo-network-license-key: "${LIC}"
+      gloo-gateway-license-key: "${LIC}"
+      gloo-trial-license-key: "${LIC}"
+    EOF
+
+    kustomize build ./overlay/set-license.yaml
+
   install-meshctl.sh: |
     #!/bin/bash
 
