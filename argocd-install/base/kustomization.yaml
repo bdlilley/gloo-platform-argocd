@@ -4,3 +4,4 @@ resources:
   - cm-install-meshctl.yaml
   - argocd-repo-server.yaml
   - argocd-core.yaml
+  - argocd-cm.yaml
