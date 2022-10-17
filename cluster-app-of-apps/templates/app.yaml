@@ -50,7 +50,6 @@ spec:
 {{ $rootValues := deepCopy $root.Values }}
 {{- $rootValues = unset $rootValues "charts" }}
 {{- $rootValues = unset $rootValues "defaults" }}
-{{ toYaml $rootValues | indent 8 }}
 {{- if ($chart).values }}
 {{ toYaml $chart.values | indent 8 }}
 {{- end }} # end if chart.values
@@ -58,7 +57,11 @@ spec:
         name: {{ $chartName }}-{{ $root.Values.istio.revision }}
         labels:
           revision: {{ $root.Values.istio.revision }}
-{{- end }} # end if chart.repo eq istio
+{{- end }}
+{{- if not ($chart.repo) }}
+# only inject all the original root values for our local charts usage
+{{ toYaml $rootValues | indent 8 }}
+{{- end }} # end if not chart.repo
 {{- end }}
   destination:
     server: https://kubernetes.default.svc
