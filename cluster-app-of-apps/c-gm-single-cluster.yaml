@@ -54,6 +54,12 @@ charts:
       relay:
         serverAddress: "10.0.20.10:9900"
 
+  istio-base:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    namespace: istio-system
+    # revision is taken from .Values.istio.version
+
   #   values:
   #     cluster: cluster1
   #     managedInstallations:
