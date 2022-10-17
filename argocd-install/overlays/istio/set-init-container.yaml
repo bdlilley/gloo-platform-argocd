@@ -12,6 +12,8 @@ spec:
         - mountPath: /usr/local/bin/meshctl
           name: custom-tools
           subPath: meshctl
+        - mountPath: /var/run/gloo-scripts
+          name: gloo-scripts
         - mountPath: /var/run/meshctl-values.yaml
           name: meshctl-values
           subPath: meshctl-values.yaml

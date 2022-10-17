@@ -10,6 +10,6 @@ data:
   configManagementPlugins: |
     - name: meshctl
       generate:                      # Command to generate manifests YAML
-        command: ["meshctl"]
-        args: ["install", "--namespace", "gloo-mesh", "--license", "", "--chart-values-file", "", "--dry-run"]
+        command: ["/var/run/gloo-scripts/meshctl-wrapper.sh"]
+        args: []
       lockRepo: true                 # Defaults to false. See below.
