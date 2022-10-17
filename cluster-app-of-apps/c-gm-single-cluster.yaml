@@ -38,7 +38,8 @@ charts:
     path: charts/register-cluster
     namespace: gloo-mesh
     values:
-      clusterName: cluster1
+      istio:
+        clusterName: cluster1
     syncPolicy:
       syncOptions: [] # dont create namespace
 
