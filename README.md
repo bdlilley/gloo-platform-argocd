@@ -6,7 +6,7 @@ export GLOO_MESH_VERSION="2.1.0-rc2"
 
 envsubst < ./argocd-install/templates/set-gloo-version.yaml > ./argocd-install/overlays/istio/set-gloo-version.yaml
 kubectl create ns argocd
-kubectl create secret generic gloo-license --from-literal=token="${GLOO_MESH_LICENSE_KEY}"
+kubectl create secret generic gloo-license --from-literal=gloo-mesh-license-key="${GLOO_MESH_LICENSE_KEY}" --from-literal=gloo-gateway-license-key="${GLOO_GATEWAY_LICENSE_KEY}"
 kubectl apply -k ./argocd-install/overlays/istio -n argocd
 
 cat <<EOF | kubectl apply -f -
