@@ -31,7 +31,7 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
     values:
-      <<: *istioRevision
+      revision: 1.15.1
 
   gloo-mgmt:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
