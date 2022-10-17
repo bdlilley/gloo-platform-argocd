@@ -40,7 +40,7 @@ spec:
     {{-  if and (or (eq $chart.chart "gloo-mesh-enterprise") (eq $chart.chart "gloo-mesh-agent")) (not ($chart).revision) }}
     targetRevision: {{ $root.Values.gloo.version }}
     {{- end }} # end if GME chart without revision
-    {{-  if and (or (eq $chart.chart "base") (eq $chart.chart "istiod")) (not ($chart).revision) }}
+    {{-  if and (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") (not ($chart).revision) }}
     targetRevision: {{ $root.Values.istio.version }}
     {{- end }} # end if GME chart without revision
     {{- end }} #nd if chart.chart
@@ -53,7 +53,12 @@ spec:
 {{ toYaml $rootValues | indent 8 }}
 {{- if ($chart).values }}
 {{ toYaml $chart.values | indent 8 }}
-{{- end }} # end if not chart.plugin
+{{- end }} # end if chart.values
+{{- if eq $chart.repo "https://istio-release.storage.googleapis.com/charts" }}
+      name: {{ $chartName }}-{{ .Values.istio.revision }}
+      labels:
+        revision: {{ .Values.istio.revision }}
+{{- end }} # end if chart.repo eq istio
 {{- end }}
   destination:
     server: https://kubernetes.default.svc

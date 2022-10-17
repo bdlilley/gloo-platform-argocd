@@ -1,7 +1,0 @@
-
-charts:
-
-  aws-iam:
-    path: charts/aws-identity-webhook
-    namespace: pod-identity-webhook
-    

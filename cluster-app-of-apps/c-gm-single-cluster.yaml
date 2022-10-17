@@ -81,15 +81,21 @@ charts:
           PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
           AUTO_RELOAD_PLUGIN_CERTS: "true"
 
-  #   values:
-  #     cluster: cluster1
-  #     managedInstallations:
-  #       cluster: cluster1
-  #     relay:
-  #       serverAddress: "10.0.20.10:9900"
-
-  # istio-lcm:
-  #   path: charts/istio-lcm
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  istio-ingressgateway:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: gateway
+    values:
+      # name and labels.revision are set from .Values.istio
+      labels:
+        istio: ingressgateway
+      service:
+        type: LoadBalancer
+        ports:
+        # main http ingress port
+        - port: 80
+          targetPort: 8080
+          name: http2
+        # main https ingress port
+        - port: 443
+          targetPort: 8443
+          name: https
