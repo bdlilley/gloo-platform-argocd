@@ -47,11 +47,6 @@ spec:
 {{- if not ($chart).plugin }}
     helm:
       values: |
-{{- if eq $chart.repo "https://istio-release.storage.googleapis.com/charts" }}
-        name: {{ $chartName }}-{{ $root.Values.istio.revision }}
-        labels:
-          revision: {{ $root.Values.istio.revision }}
-{{- end }} # end if chart.repo eq istio
 {{ $rootValues := deepCopy $root.Values }}
 {{- $rootValues = unset $rootValues "charts" }}
 {{- $rootValues = unset $rootValues "defaults" }}

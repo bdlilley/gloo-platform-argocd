@@ -81,13 +81,15 @@ charts:
           PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
           AUTO_RELOAD_PLUGIN_CERTS: "true"
 
-  istio-ingressgateway:
+  istio-ingressgateway-1-15:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
     values:
       # name and labels.revision are set from .Values.istio
+      name: istio-ingressgateway-1-15
       labels:
         istio: ingressgateway
+        revision: 1-15
       service:
         type: LoadBalancer
         ports:
