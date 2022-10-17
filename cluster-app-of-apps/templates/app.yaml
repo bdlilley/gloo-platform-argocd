@@ -27,7 +27,7 @@ spec:
     # only used for git-hosted charts
     path: {{ $chart.path }}
     {{- end }}
-    {{- if $(chart).plugin }}
+    {{- if ($chart).plugin }}
     plugin:
       name: {{ $chart.plugin }}
     {{- if not ($chart).path }}
