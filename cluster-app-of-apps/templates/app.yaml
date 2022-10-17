@@ -27,13 +27,20 @@ spec:
     # only used for git-hosted charts
     path: {{ $chart.path }}
     {{- end }}
+    {{- if $(chart).plugin }}
+    plugin:
+      name: {{ $chart.plugin }}
+    {{- if not ($chart).path }}
+    path: "/"
+    {{- end }}
+    {{- end }}
     {{- if ($chart).chart }}
     # only used for registry-hosted charts
     chart: {{ $chart.chart }}
     {{-  if and (eq $chart.chart "gloo-mesh-enterprise") (not ($chart).revision) }}
     targetRevision: {{ $root.Values.gloo.version }}
-    {{- end }}
-    {{- end }}
+    {{- end }} # end if GME chart without revision
+    {{- end }} #nd if chart.chart
     helm:
       values: |
 {{ $rootValues := deepCopy $root.Values }}
