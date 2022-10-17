@@ -40,7 +40,7 @@ spec:
     {{-  if and (or (eq $chart.chart "gloo-mesh-enterprise") (eq $chart.chart "gloo-mesh-agent")) (not ($chart).revision) }}
     targetRevision: {{ $root.Values.gloo.version }}
     {{- end }} # end if GME chart without revision
-    {{-  if and (eq $chart.chart "base") (not ($chart).revision) }}
+    {{-  if and (or (eq $chart.chart "base") (eq $chart.chart "istiod")) (not ($chart).revision) }}
     targetRevision: {{ $root.Values.istio.version }}
     {{- end }} # end if GME chart without revision
     {{- end }} #nd if chart.chart

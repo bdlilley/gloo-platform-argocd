@@ -60,6 +60,27 @@ charts:
     namespace: istio-system
     # revision is taken from .Values.istio.version
 
+  istiod:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    namespace: istio-system
+    # revision is taken from .Values.istio.version
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      meshConfig:
+        trustDomain: cluster1
+        accessLogFile: /dev/stdout
+        defaultConfig:
+          holdApplicationUntilProxyStarts: true
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: "true"
+            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+      pilot:
+        env:
+          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+          AUTO_RELOAD_PLUGIN_CERTS: "true"
+
   #   values:
   #     cluster: cluster1
   #     managedInstallations:
