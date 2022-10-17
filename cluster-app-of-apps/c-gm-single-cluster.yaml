@@ -85,6 +85,7 @@ charts:
   istio-ingressgateway-1-15:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
+    revision: "1.15.1"
     values:
       # name and labels.revision are set from .Values.istio
       name: istio-ingressgateway-1-15
