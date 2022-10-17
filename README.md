@@ -29,7 +29,7 @@ spec:
     path: cluster-app-of-apps
     helm:
       valueFiles:
-      - gm-single-2.1.0-rc2-istio-1.15.1.yaml
+      - gm-single.yaml
       values: |
         glooGatewayLicenseKey: "${GLOO_GATEWAY_LICENSE_KEY}"
         glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
