@@ -27,6 +27,14 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
 
+  register-cluster:
+    path: charts/register-cluster
+    namespace: gloo-mesh
+    values:
+      clusterName: cluster1
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+      
   # gloo-mgmt:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
   #   chart: gloo-mesh-enterprise
@@ -48,8 +56,8 @@ charts:
   #     relay:
   #       serverAddress: "10.0.20.10:9900"
 
-  istio-lcm:
-    path: charts/istio-lcm
-    namespace: gloo-mesh
-    syncPolicy:
-      syncOptions: [] # dont create namespace
+  # istio-lcm:
+  #   path: charts/istio-lcm
+  #   namespace: gloo-mesh
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace

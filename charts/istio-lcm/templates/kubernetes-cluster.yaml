@@ -1,6 +1,6 @@
 apiVersion: admin.gloo.solo.io/v2
 kind: KubernetesCluster
 metadata:
-  name: cluster-1
+  name: cluster1
 spec:
   clusterDomain: cluster.local
