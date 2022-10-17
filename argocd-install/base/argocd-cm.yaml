@@ -14,5 +14,5 @@ data:
       #   args: ["sample args"]
       generate:                      # Command to generate manifests YAML
         command: ["meshctl"]
-        args: ["install", "--namespace", "gloo-mesh", "--license", "$(cat /var/run/gloo-license/token | tr '\n' ' ')", "--chart-values-file", "/var/run/meshctl-values.yaml", "--dry-run"]
+        args: ["install", "--namespace", "gloo-mesh", "--license", "$(cat /var/run/gloo-license/gloo-mesh-license-key | tr '\n' ' ')", "--chart-values-file", "/var/run/meshctl-values.yaml", "--dry-run"]
       lockRepo: true                 # Defaults to false. See below.
