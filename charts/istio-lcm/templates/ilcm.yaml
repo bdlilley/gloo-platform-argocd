@@ -5,7 +5,7 @@ metadata:
 spec:
   installations:
       # The revision for this installation, such as 1-14
-    - revision: {{ .Values.istio.revision }}
+    - revision: "{{ .Values.istio.revision }}"
       # List all workload clusters to install Istio into
       clusters:
       - name: cluster1
