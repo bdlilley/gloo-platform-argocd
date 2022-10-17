@@ -35,6 +35,7 @@ spec:
         glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
         glooVersion: "${GLOO_MESH_VERSION}"
         istioVersion: "${ISTIO_VERSION}"
+        istioVersionLabel: "${ISTIO_MINOR}"
         istioTag: "${ISTIO_TAG}"
   syncPolicy:
     automated:
