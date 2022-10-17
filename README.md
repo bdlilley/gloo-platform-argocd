@@ -1,0 +1,43 @@
+export ISTIO="1.15.1"
+export ISTIO_TAG="1.15.1-solo"
+export GLOO_MESH_VERSION="2.1.0-rc2"
+
+envsubst < ./argocd-install/templates/set-gloo-version.yaml > ./argocd-install/overlays/istio/set-gloo-version.yaml
+kubectl create ns argocd
+kubectl apply -k ./argocd-install/overlays/istio -n argocd
+
+
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
+    targetRevision: HEAD
+    path: cluster-app-of-apps
+    helm:
+      valueFiles:
+      - c-gm-single-cluster.yaml
+      values: |
+        glooGatewayLicenseKey: "${GLOO_GATEWAY_LICENSE_KEY}"
+        glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
+        istio:
+          version: "${ISTIO}"
+          tag: "${ISTIO_TAG}"
+        gloo:
+          version: "${GLOO_VERSION}"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+EOF

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gloo-scripts
+data:
+  install-meshctl.sh: |
+    #!/bin/bash
+
+    curl -sL https://run.solo.io/meshctl/install | sh -
+
+    chmod a+rwx $HOME/.gloo-mesh/bin/meshctl
+    cp $HOME/.gloo-mesh/bin/meshctl /var/run/custom-tools/meshctl
+
+    $HOME/.gloo-mesh/bin/meshctl version

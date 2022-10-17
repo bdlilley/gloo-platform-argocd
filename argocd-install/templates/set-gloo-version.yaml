@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: custom-tools
+        env:
+        - name: "GLOO_MESH_VERSION"
+          value: "v${GLOO_MESH_VERSION}"

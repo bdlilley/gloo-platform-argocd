@@ -1,0 +1,25 @@
+# Name of the management cluster
+global:
+  cluster: cluster1
+# Install the Gloo agent alongside the management server,
+# such as to run the management cluster also as a workload cluster in a single-cluster setup
+registerMgmtPlane:
+  enabled: true
+  # Configuration for managed Istio control plane and gateway installations by using the Istio Lifecycle Manager
+  managedInstallations:
+    controlPlane:
+      enabled: true
+      overrides: {}
+    defaultRevision: true
+    enabled: true
+    images:
+      # Solo.io Istio distribution repository; required for Gloo Istio.
+      # You get the repo key from your Solo Account Representative.
+      hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+      # The Solo.io Gloo Istio version
+      tag: 1.15.1-solo
+    northSouthGateways:
+    - enabled: true
+      name: istio-ingressgateway
+      overrides: {}
+    revision: 1-15

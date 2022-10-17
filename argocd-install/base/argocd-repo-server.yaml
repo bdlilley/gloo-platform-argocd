@@ -1,19 +1,4 @@
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: gloo-scripts
-data:
-  install-meshctl.sh: |
-    #!/bin/bash
-
-    curl -sL https://run.solo.io/meshctl/install | sh -
-    mv $HOME/.gloo-mesh/bin/meshctl /var/run/argocd/meshctl
-
-    chmod a+rwx /var/run/argocd/meshctl
-
-    meshctl version
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
