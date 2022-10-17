@@ -12,6 +12,12 @@ spec:
         - mountPath: /usr/local/bin/meshctl
           name: custom-tools
           subPath: meshctl
+        - mountPath: /var/run/meshctl-values.yaml
+          name: meshctl-values
+          subPath: meshctl-values.yaml
+        - mountPath: /var/run/gloo-license
+          name: gloo-license
+          readOnly: true
       initContainers:
       - name: custom-tools
         image: python:3.9.15-buster
@@ -26,7 +32,13 @@ spec:
       volumes:
       - emptyDir: {}
         name: custom-tools
+      - name: gloo-license
+        secret:
+          secretName: gloo-license
       - configMap:
           name: gloo-scripts
           defaultMode: 0777
         name: gloo-scripts
+      - configMap:
+          name: meshctl-values
+        name: meshctl-values

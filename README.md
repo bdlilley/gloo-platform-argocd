@@ -1,11 +1,13 @@
+export ISTIO_MINOR="1.15"
 export ISTIO="1.15.1"
 export ISTIO_TAG="1.15.1-solo"
+export ISTIO_REPO="us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8"
 export GLOO_MESH_VERSION="2.1.0-rc2"
 
 envsubst < ./argocd-install/templates/set-gloo-version.yaml > ./argocd-install/overlays/istio/set-gloo-version.yaml
 kubectl create ns argocd
+kubectl create secret generic gloo-license --from-literal=token="${GLOO_MESH_LICENSE_KEY}"
 kubectl apply -k ./argocd-install/overlays/istio -n argocd
-
 
 cat <<EOF | kubectl apply -f -
 ---

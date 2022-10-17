@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,3 +11,35 @@ spec:
         env:
         - name: "GLOO_MESH_VERSION"
           value: "v${GLOO_MESH_VERSION}"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: meshctl-values
+data:
+  meshctl-values.yaml: |
+    # Name of the management cluster
+    global:
+      cluster: cluster1
+    # Install the Gloo agent alongside the management server,
+    # such as to run the management cluster also as a workload cluster in a single-cluster setup
+    registerMgmtPlane:
+      enabled: true
+      # Configuration for managed Istio control plane and gateway installations by using the Istio Lifecycle Manager
+      managedInstallations:
+        controlPlane:
+          enabled: true
+          overrides: {}
+        defaultRevision: true
+        enabled: true
+        images:
+          # Solo.io Istio distribution repository; required for Gloo Istio.
+          # You get the repo key from your Solo Account Representative.
+          hub: ${ISTIO_REPO}
+          # The Solo.io Gloo Istio version
+          tag: ${ISTIO_TAG}
+        northSouthGateways:
+        - enabled: true
+          name: istio-ingressgateway
+          overrides: {}
+        revision: ${ISTIO_MINOR}

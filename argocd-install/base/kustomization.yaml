@@ -1,7 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cm-install-meshctl.yaml
+  - cm-meshctl-values.yaml
+  - cm-meshctl-scripts.yaml
   - argocd-repo-server.yaml
   - argocd-core.yaml
   - argocd-cm.yaml
