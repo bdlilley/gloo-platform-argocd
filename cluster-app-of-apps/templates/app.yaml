@@ -42,6 +42,12 @@ spec:
     helm:
       values: |
 {{ toYaml $chart.values | indent 8 }}
+{{- if ($chart).repo }}
+{{- if eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise" }}
+        glooGatewayLicenseKey: {{ $root.Values.glooGatewayLicenseKey }}
+        glooMeshLicenseKey: {{ $root.Values.glooMeshLicenseKey }}
+{{- end }}
+{{- end }}
 {{- end }}
   destination:
     server: https://kubernetes.default.svc
