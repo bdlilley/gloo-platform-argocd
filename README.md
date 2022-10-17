@@ -1,4 +1,4 @@
-export ISTIO_MINOR="1.15"
+export ISTIO_MINOR="1-15"
 export ISTIO="1.15.1"
 export ISTIO_TAG="1.15.1-solo"
 export ISTIO_REPO="us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8"
