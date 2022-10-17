@@ -57,8 +57,8 @@ charts:
       relay:
         serverAddress: "10.0.20.10:9900"
 
-  # istio-lcm:
-  #   path: charts/istio-lcm
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  istio-lcm:
+    path: charts/istio-lcm
+    namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespace
