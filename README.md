@@ -1,4 +1,8 @@
-# 
+# gloo-platform-argocd
+
+Repo will contain different use cases deployable with single argocd values file-per-usecase.
+
+Only requirement is a cluster without argocd installed.  Some lightweight magic happens in cluster-app-of-apps/templates/app.yaml to avoid duplicating configurations; the magic detects GME or istio charts and injects some of the required version values from the argocd app value inputs.
 
 ```bash
 export ISTIO_MINOR="1-15"
