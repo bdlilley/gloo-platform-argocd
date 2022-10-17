@@ -31,7 +31,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
-    # revision is taken from .Values.gloo.version
+    revision: 2.1.0-rc2
 
   register-cluster:
     path: charts/register-cluster
@@ -46,7 +46,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     chart: gloo-mesh-agent
     namespace: gloo-mesh
-    # revision is taken from .Values.gloo.version
+    revision: 2.1.0-rc2
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
