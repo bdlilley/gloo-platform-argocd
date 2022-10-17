@@ -45,7 +45,7 @@ data:
       gloo-trial-license-key: "${LIC}"
     EOF
 
-    kustomize build ./overlay/set-license.yaml
+    kustomize build ./overlay
 
   install-meshctl.sh: |
     #!/bin/bash
