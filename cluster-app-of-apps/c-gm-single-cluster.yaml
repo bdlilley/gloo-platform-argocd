@@ -1,3 +1,6 @@
+glooRevision: &glooRevision
+  revision: v2.1.0-rc2
+
 # charts - each key is a helm chart install
 charts:
 
@@ -34,7 +37,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
-    revision: v2.1.0-rc2
+    <<: *glooRevision
 
   register-cluster:
     path: charts/register-cluster
@@ -49,7 +52,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     chart: gloo-mesh-agent
     namespace: gloo-mesh
-    revision: 2.1.0-rc2
+    <<: *glooRevision
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
