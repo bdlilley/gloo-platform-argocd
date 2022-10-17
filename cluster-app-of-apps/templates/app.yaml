@@ -43,6 +43,9 @@ spec:
     chart: {{ $chart.chart }}
     {{- end }} #nd if chart.chart
 {{- $theValues := dict }}
+{{- if ($chart).values }}
+{{- $theValues = deepCopy ($chart).values }}
+{{- end }}
 {{- if and (not ($chart).plugin) ($chart).values }}
     helm:
       values: |
