@@ -31,7 +31,7 @@ spec:
     plugin:
       name: {{ $chart.plugin }}
     {{- if not ($chart).path }}
-    path: "/"
+    path: "."
     {{- end }}
     {{- end }}
     {{- if ($chart).chart }}
