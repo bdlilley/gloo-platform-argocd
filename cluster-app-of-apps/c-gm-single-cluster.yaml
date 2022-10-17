@@ -42,13 +42,18 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
 
-  # gloo-agent:
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-  #   chart: gloo-mesh-agent
-  #   namespace: gloo-mesh
-  #   # revision is taken from .Values.gloo.version
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  gloo-agent:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    chart: gloo-mesh-agent
+    namespace: gloo-mesh
+    # revision is taken from .Values.gloo.version
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      cluster: cluster1
+      relay:
+        serverAddress: "10.0.20.10:9900"
+
   #   values:
   #     cluster: cluster1
   #     managedInstallations:
