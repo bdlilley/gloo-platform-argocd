@@ -1,14 +1,17 @@
+# 
+
+```bash
 export ISTIO_MINOR="1-15"
 export ISTIO_VERSION="1.15.1"
 export ISTIO_TAG="1.15.1-solo"
 export ISTIO_REPO="us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8"
 export GLOO_MESH_VERSION="2.1.0-rc2"
 
-envsubst < ./argocd-install/templates/set-gloo-version.yaml > ./argocd-install/overlays/istio/set-gloo-version.yaml
+# install argocd core only
 kubectl create ns argocd
-kubectl create secret generic gloo-license -n argocd --from-literal=gloo-mesh-license-key="${GLOO_MESH_LICENSE_KEY}" --from-literal=gloo-gateway-license-key="${GLOO_GATEWAY_LICENSE_KEY}"
-kubectl apply -k ./argocd-install/overlays/istio -n argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/core-install.yaml
 
+# create an app of apps to install specific verisons of products
 cat <<EOF | kubectl apply -f -
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -41,3 +44,13 @@ spec:
     server: https://kubernetes.default.svc
     namespace: argocd
 EOF
+
+argocd admin dashboard &
+open http://localhost:8080
+
+# # not in use yet - this pattern allows using meshctl inside argocd as a plugin
+# envsubst < ./argocd-install/templates/set-gloo-version.yaml > ./argocd-install/overlays/istio/set-gloo-version.yaml
+# kubectl create ns argocd
+# kubectl create secret generic gloo-license -n argocd --from-literal=gloo-mesh-license-key="${GLOO_MESH_LICENSE_KEY}" --from-literal=gloo-gateway-license-key="${GLOO_GATEWAY_LICENSE_KEY}"
+# kubectl apply -k ./argocd-install/overlays/istio -n argocd
+```
