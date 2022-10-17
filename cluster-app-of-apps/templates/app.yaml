@@ -58,7 +58,7 @@ spec:
         labels:
           revision: {{ $root.Values.istio.revision }}
 {{- end }}
-{{- if not ($chart.repo) }}
+{{- if not ($chart).repo }}
 # only inject all the original root values for our local charts usage
 {{ toYaml $rootValues | indent 8 }}
 {{- end }} # end if not chart.repo
