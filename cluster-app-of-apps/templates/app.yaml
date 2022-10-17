@@ -55,9 +55,9 @@ spec:
 {{ toYaml $chart.values | indent 8 }}
 {{- end }} # end if chart.values
 {{- if eq $chart.repo "https://istio-release.storage.googleapis.com/charts" }}
-      name: {{ $chartName }}-{{ $root.Values.istio.revision }}
-      labels:
-        revision: {{ $root.Values.istio.revision }}
+        name: {{ $chartName }}-{{ $root.Values.istio.revision }}
+        labels:
+          revision: {{ $root.Values.istio.revision }}
 {{- end }} # end if chart.repo eq istio
 {{- end }}
   destination:
