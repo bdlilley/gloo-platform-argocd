@@ -38,6 +38,20 @@ charts:
     # revision is taken from .Values.gloo.version
   #   # manually running meshctl cluster register --kubecontext="default" --remote-context="default" --version "${GLOO_VERSION}" cluster1 after this step
 
+  gloo-agent:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    chart: gloo-mesh-agent
+    namespace: gloo-mesh
+    # revision is taken from .Values.gloo.version
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      cluster: cluster1
+      relay:
+        clientTlsSecret:
+          name: gloo-mesh-agent-cluster1-tls-cert
+        serverAddress: "10.0.20.10:9900"
+
   istio-lcm:
     path: charts/istio-lcm
     namespace: gloo-mesh
