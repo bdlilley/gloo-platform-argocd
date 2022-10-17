@@ -63,6 +63,7 @@ charts:
   istiod:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: istiod
+    revision: "1.15.1"
     namespace: istio-system
     # revision is taken from .Values.istio.version
     syncPolicy:
