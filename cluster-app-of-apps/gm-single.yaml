@@ -88,6 +88,7 @@ charts:
   istio-ingressgateway:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
+    namespace: istio-ingress
     # revision set by ./cluster-app-of-apps/templates/app.yaml
     values:
       # name and labels.revision are set from .Values.istio
