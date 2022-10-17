@@ -21,7 +21,11 @@ spec:
     # branch for git-hosted, chart version for helm registry-hosted
     targetRevision: {{ $chart.revision }}
     {{- else }}
-    targetRevision: HEAD
+    {{- if and ($chart).repo (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") }}
+    targetRevision: {{ $root.Values.istioVersion }}
+    {{- else if and ($chart).repo (hasPrefix $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise") }}
+    targetRevision: {{ $root.Values.glooVersion }}
+    {{- end }}
     {{- end }}
     {{- if ($chart).path }}
     # only used for git-hosted charts

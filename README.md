@@ -1,5 +1,5 @@
 export ISTIO_MINOR="1-15"
-export ISTIO="1.15.1"
+export ISTIO_VERSION="1.15.1"
 export ISTIO_TAG="1.15.1-solo"
 export ISTIO_REPO="us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8"
 export GLOO_MESH_VERSION="2.1.0-rc2"
@@ -30,6 +30,9 @@ spec:
       values: |
         glooGatewayLicenseKey: "${GLOO_GATEWAY_LICENSE_KEY}"
         glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
+        glooVersion: "${GLOO_MESH_VERSION}"
+        istioVersion: "${ISTIO_VERSION}"
+        istioTag: "${ISTIO_TAG}"
   syncPolicy:
     automated:
       prune: true

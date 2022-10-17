@@ -1,8 +1,4 @@
 anchors:
-  glooRevision: &glooRevision
-    revision: v2.1.0-rc2
-  istioRevision: &istioRevision
-    revision: "1.15.1"
   istioRevisionLabel: &istioRevisionLabel
     revision: "1-15"
 
@@ -41,7 +37,19 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
-    <<: *glooRevision
+    # revision set by ./cluster-app-of-apps/templates/app.yaml
+
+  gloo-agent:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    chart: gloo-mesh-agent
+    namespace: gloo-mesh
+    # revision set by ./cluster-app-of-apps/templates/app.yaml
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      cluster: cluster1
+      relay:
+        serverAddress: "10.0.20.10:9900"
 
   register-cluster:
     path: charts/register-cluster
@@ -52,28 +60,16 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
 
-  gloo-agent:
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
-    namespace: gloo-mesh
-    <<: *glooRevision
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      cluster: cluster1
-      relay:
-        serverAddress: "10.0.20.10:9900"
-
   istio-base:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: base
     namespace: istio-system
-    <<: *istioRevision
+    # revision set by ./cluster-app-of-apps/templates/app.yaml
 
   istiod:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: istiod
-    <<: *istioRevision
+    # revision set by ./cluster-app-of-apps/templates/app.yaml
     namespace: istio-system
     syncPolicy:
       syncOptions: [] # dont create namespace
@@ -94,7 +90,7 @@ charts:
   istio-ingressgateway:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
-    <<: *istioRevision
+    # revision set by ./cluster-app-of-apps/templates/app.yaml
     values:
       # name and labels.revision are set from .Values.istio
       name: istio-ingressgateway
