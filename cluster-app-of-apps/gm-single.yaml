@@ -1,7 +1,3 @@
-anchors:
-  istioRevisionLabel: &istioRevisionLabel
-    revision: "1-15"
-
 # charts - each key is a helm chart install
 charts:
 
@@ -95,7 +91,6 @@ charts:
       name: istio-ingressgateway
       labels:
         istio: ingressgateway
-        <<: *istioRevisionLabel
       service:
         type: LoadBalancer
         ports:

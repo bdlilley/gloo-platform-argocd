@@ -42,11 +42,14 @@ spec:
     # only used for registry-hosted charts
     chart: {{ $chart.chart }}
     {{- end }} #nd if chart.chart
-
+{{- $theValues := deepCopy ($chart).values }}
 {{- if and (not ($chart).plugin) ($chart).values }}
     helm:
       values: |
 {{ toYaml $chart.values | indent 8 }}
+{{- if and ($chart).repo (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") }}
+
+{{- end }}
 {{- end }} #end if chart.values
 
 {{- if and ($chart).repo (eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise") }}
