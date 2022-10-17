@@ -42,27 +42,24 @@ spec:
     # only used for registry-hosted charts
     chart: {{ $chart.chart }}
     {{- end }} #nd if chart.chart
+
 {{- $theValues := dict }}
 {{- if ($chart).values }}
 {{- $theValues = deepCopy ($chart).values }}
 {{- end }}
-{{- if and (not ($chart).plugin) ($chart).values }}
-    helm:
-      values: |
-{{ toYaml $chart.values | indent 8 }}
-{{- if and ($chart).repo (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") }}
-
-{{- end }}
-{{- end }} #end if chart.values
 
 {{- if and ($chart).repo (eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise") }}
-# TODO this is super hacky, need to refactor merging top level things with chart level things - 
-# originally I dumped a lot of stuff in that is being blocked by charts with input validation
+{{- set $theValues "glooGatewayLicenseKey" $root.Values.glooGatewayLicenseKey }}
+{{- set $theValues "glooMeshLicenseKey" $root.Values.glooMeshLicenseKey }}
+{{- end }} # end if chart has repo field
+
+{{- if and (not ($chart).plugin) $theValues }}
     helm:
       values: |
-        glooGatewayLicenseKey: {{ $root.Values.glooGatewayLicenseKey }}
-        glooMeshLicenseKey: {{ $root.Values.glooMeshLicenseKey }}
-{{- end }} # end if chart has repo field
+{{ toYaml $theValues | indent 8 }}
+{{- end }} #end if chart.values
+
+
 
   destination:
     server: https://kubernetes.default.svc
