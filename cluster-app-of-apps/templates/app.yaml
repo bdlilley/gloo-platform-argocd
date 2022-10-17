@@ -44,6 +44,8 @@ spec:
 {{ toYaml $chart.values | indent 8 }}
 {{- end }}
 {{- if ($chart).repo }}
+# TODO this is super hacky, need to refactor merging top level things with chart level things - 
+# originally I dumped a lot of stuff in that is being blocked by charts with input validation
 {{- if eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise" }}
     helm:
       values: |
