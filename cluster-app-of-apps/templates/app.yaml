@@ -41,6 +41,7 @@ spec:
     targetRevision: {{ $root.Values.gloo.version }}
     {{- end }} # end if GME chart without revision
     {{- end }} #nd if chart.chart
+{{- if not ($chart).plugin }}
     helm:
       values: |
 {{ $rootValues := deepCopy $root.Values }}
@@ -49,6 +50,7 @@ spec:
 {{ toYaml $rootValues | indent 8 }}
 {{- if ($chart).values }}
 {{ toYaml $chart.values | indent 8 }}
+{{- end }} # end if not chart.plugin
 {{- end }}
   destination:
     server: https://kubernetes.default.svc
