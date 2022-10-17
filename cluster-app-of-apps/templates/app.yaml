@@ -42,11 +42,13 @@ spec:
     helm:
       values: |
 {{ toYaml $chart.values | indent 8 }}
+{{- end }}
 {{- if ($chart).repo }}
 {{- if eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise" }}
+    helm:
+      values: |
         glooGatewayLicenseKey: {{ $root.Values.glooGatewayLicenseKey }}
         glooMeshLicenseKey: {{ $root.Values.glooMeshLicenseKey }}
-{{- end }}
 {{- end }}
 {{- end }}
   destination:
