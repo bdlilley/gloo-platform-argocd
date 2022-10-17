@@ -23,7 +23,7 @@ spec:
     {{- else }}
     {{- if and ($chart).repo (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") }}
     targetRevision: {{ $root.Values.istioVersion }}
-    {{- else if and ($chart).repo (hasPrefix $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise") }}
+    {{- else if and ($chart).repo (hasPrefix "https://storage.googleapis.com/gloo-mesh-enterprise" $chart.repo) }}
     targetRevision: {{ $root.Values.glooVersion }}
     {{- end }}
     {{- end }}
