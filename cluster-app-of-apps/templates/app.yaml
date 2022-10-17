@@ -57,7 +57,7 @@ spec:
 {{- if eq $chart.repo "https://istio-release.storage.googleapis.com/charts" }}
       name: {{ $chartName }}-{{ .Values.istio.revision }}
       labels:
-        revision: {{ .Values.istio.revision }}
+        revision: {{ $root.Values.istio.revision }}
 {{- end }} # end if chart.repo eq istio
 {{- end }}
   destination:
