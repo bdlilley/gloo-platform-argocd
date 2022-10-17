@@ -1,4 +1,4 @@
-{{ if hasPrefix "1.14" .Values.istio.version }}
+{{ if hasPrefix "1.14" .Values.revision }}
 # Copyright Istio Authors
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");

@@ -26,17 +26,10 @@ spec:
     path: cluster-app-of-apps
     helm:
       valueFiles:
-      - c-gm-single-cluster.yaml
+      - gm-single-2.1.0-rc2-istio-1.15.1.yaml
       values: |
         glooGatewayLicenseKey: "${GLOO_GATEWAY_LICENSE_KEY}"
         glooMeshLicenseKey: "${GLOO_MESH_LICENSE_KEY}"
-        istio:
-          repo: "${ISTIO_REPO}"
-          version: "${ISTIO}"
-          tag: "${ISTIO_TAG}"
-          revision: "${ISTIO_MINOR}"
-        gloo:
-          version: "${GLOO_VERSION}"
   syncPolicy:
     automated:
       prune: true

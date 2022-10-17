@@ -1,5 +1,10 @@
-glooRevision: &glooRevision
-  revision: v2.1.0-rc2
+anchors:
+  glooRevision: &glooRevision
+    revision: v2.1.0-rc2
+  istioRevision: &istioRevision
+    revision: "1.15.1"
+  istioRevisionLabel: &istioRevisionLabel
+    revision: "1-15"
 
 # charts - each key is a helm chart install
 charts:
@@ -30,8 +35,7 @@ charts:
     path: charts/bookinfo
     namespace: bookinfo
     values:
-      istio:
-        version: "1.15.1"
+      <<: *istioRevision
 
   gloo-mgmt:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
@@ -64,12 +68,12 @@ charts:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: base
     namespace: istio-system
-    revision: "1.15.1"
+    <<: *istioRevision
 
   istiod:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: istiod
-    revision: "1.15.1"
+    <<: *istioRevision
     namespace: istio-system
     syncPolicy:
       syncOptions: [] # dont create namespace
@@ -90,13 +94,13 @@ charts:
   istio-ingressgateway:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
-    revision: "1.15.1"
+    <<: *istioRevision
     values:
       # name and labels.revision are set from .Values.istio
-      name: istio-ingressgateway-1-15
+      name: istio-ingressgateway
       labels:
         istio: ingressgateway
-        revision: 1-15
+        <<: *istioRevisionLabel
       service:
         type: LoadBalancer
         ports:
