@@ -48,8 +48,6 @@ charts:
     values:
       cluster: cluster1
       relay:
-        clientTlsSecret:
-          name: gloo-mesh-agent-cluster1-tls-cert
         serverAddress: "10.0.20.10:9900"
 
   istio-lcm:
