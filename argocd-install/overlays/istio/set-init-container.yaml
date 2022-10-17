@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: custom-tools
+        image: python:3.9.15-slim-buster
+        command:
+        - "/var/run/gloo-scripts/install-meshctl.sh"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /var/run/gloo-scripts
+          name: gloo-scripts
+      volumes:
+      - configMap:
+          name: gloo-scripts
+        name: gloo-scripts
