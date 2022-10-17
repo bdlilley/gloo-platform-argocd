@@ -31,7 +31,7 @@ charts:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     namespace: gloo-mesh
-    revision: 2.1.0-rc2
+    revision: v2.1.0-rc2
 
   register-cluster:
     path: charts/register-cluster
