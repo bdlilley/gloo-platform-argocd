@@ -1,0 +1,23 @@
+{{- $root := . }}
+{{- range $name, $ws := .Values.workspaces }}
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: {{ $name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  workloadClusters:
+  - name: cluster1
+    namespaces:
+    - name: istio-ingress
+    - name: gloo-mesh-addons
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: {{ $name }}
+  namespace: {{ $ws.namespace }}
+spec:
+{{ toYaml $ws.spec | nindent 2 }}
+{{- end }}
