@@ -9,9 +9,7 @@ metadata:
 spec:
   workloadClusters:
   - name: cluster1
-    namespaces:
-    - name: istio-ingress
-    - name: gloo-mesh-addons
+    namespaces: {{ toJson $root.Values.namespaces}}
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings

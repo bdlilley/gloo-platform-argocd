@@ -109,6 +109,8 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
+      namespaces:
+      - istio-ingress
       workspaces:
         gateway:
           namespace: istio-ingress
