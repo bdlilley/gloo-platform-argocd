@@ -110,7 +110,7 @@ charts:
       syncOptions: [] # dont create namespace
     values:
       namespaces:
-      - istio-ingress
+      - name: istio-ingress
       workspaces:
         gateway:
           namespace: istio-ingress
