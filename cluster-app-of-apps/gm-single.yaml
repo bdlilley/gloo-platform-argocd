@@ -22,86 +22,86 @@ charts:
     path: charts/aws-identity-webhook
     namespace: pod-identity-webhook
     
-  # bookinfo sample apps
-  bookinfo:
-    path: charts/bookinfo
-    namespace: bookinfo
+  # # bookinfo sample apps
+  # bookinfo:
+  #   path: charts/bookinfo
+  #   namespace: bookinfo
 
-  gloo-mgmt:
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    namespace: gloo-mesh
-    # revision set by ./cluster-app-of-apps/templates/app.yaml
+  # gloo-mgmt:
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+  #   chart: gloo-mesh-enterprise
+  #   namespace: gloo-mesh
+  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
 
-  gloo-agent:
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
-    namespace: gloo-mesh
-    # revision set by ./cluster-app-of-apps/templates/app.yaml
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      cluster: cluster1
-      relay:
-        serverAddress: "10.0.20.10:9900"
+  # gloo-agent:
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+  #   chart: gloo-mesh-agent
+  #   namespace: gloo-mesh
+  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     cluster: cluster1
+  #     relay:
+  #       serverAddress: "10.0.20.10:9900"
 
-  register-cluster:
-    path: charts/register-cluster
-    namespace: gloo-mesh
-    values:
-      istio:
-        clusterName: cluster1
-    syncPolicy:
-      syncOptions: [] # dont create namespace
+  # register-cluster:
+  #   path: charts/register-cluster
+  #   namespace: gloo-mesh
+  #   values:
+  #     istio:
+  #       clusterName: cluster1
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
 
-  istio-base:
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: base
-    namespace: istio-system
-    # revision set by ./cluster-app-of-apps/templates/app.yaml
+  # istio-base:
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: base
+  #   namespace: istio-system
+  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
 
-  istiod:
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: istiod
-    # revision set by ./cluster-app-of-apps/templates/app.yaml
-    namespace: istio-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      meshConfig:
-        trustDomain: cluster1
-        accessLogFile: /dev/stdout
-        defaultConfig:
-          holdApplicationUntilProxyStarts: true
-          proxyMetadata:
-            ISTIO_META_DNS_CAPTURE: "true"
-            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-      pilot:
-        env:
-          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
-          AUTO_RELOAD_PLUGIN_CERTS: "true"
+  # istiod:
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: istiod
+  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
+  #   namespace: istio-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     meshConfig:
+  #       trustDomain: cluster1
+  #       accessLogFile: /dev/stdout
+  #       defaultConfig:
+  #         holdApplicationUntilProxyStarts: true
+  #         proxyMetadata:
+  #           ISTIO_META_DNS_CAPTURE: "true"
+  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+  #     pilot:
+  #       env:
+  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  #         AUTO_RELOAD_PLUGIN_CERTS: "true"
 
-  istio-ingressgateway:
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: gateway
-    namespace: istio-ingress
-    # revision set by ./cluster-app-of-apps/templates/app.yaml
-    values:
-      # name and labels.revision are set from .Values.istio
-      name: istio-ingressgateway
-      labels:
-        istio: ingressgateway
-      service:
-        type: LoadBalancer
-        ports:
-        # main http ingress port
-        - port: 80
-          targetPort: 8080
-          name: http2
-        # main https ingress port
-        - port: 443
-          targetPort: 8443
-          name: https
+  # istio-ingressgateway:
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: gateway
+  #   namespace: istio-ingress
+  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
+  #   values:
+  #     # name and labels.revision are set from .Values.istio
+  #     name: istio-ingressgateway
+  #     labels:
+  #       istio: ingressgateway
+  #     service:
+  #       type: LoadBalancer
+  #       ports:
+  #       # main http ingress port
+  #       - port: 80
+  #         targetPort: 8080
+  #         name: http2
+  #       # main https ingress port
+  #       - port: 443
+  #         targetPort: 8443
+  #         name: https
 
   # workspace:
   #   path: charts/workspace
