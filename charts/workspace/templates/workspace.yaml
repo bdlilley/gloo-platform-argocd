@@ -5,7 +5,7 @@ apiVersion: admin.gloo.solo.io/v2
 kind: Workspace
 metadata:
   name: {{ $name }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ $root.Release.Namespace }}
 spec:
   workloadClusters:
   - name: cluster1
