@@ -15,7 +15,7 @@ apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
 metadata:
   name: {{ $name }}
-  namespace: {{ $root.Release.Namespace }}
+  namespace: {{ $ws.namespace }}
 spec:
 {{ toYaml $ws.spec | nindent 2 }}
 {{- end }}
