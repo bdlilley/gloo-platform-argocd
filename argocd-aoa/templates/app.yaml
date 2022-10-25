@@ -68,6 +68,10 @@ spec:
     helm:
       values: |
 {{ toYaml $theValues | indent 8 }}
+{{- if and (not ($chart).plugin) ($chart).globalValues }}
+        global:
+{{ toYaml $chart.globalValues | indent 10 }}
+{{- end }}
 {{- end }} #end if chart.values
 
 
