@@ -74,6 +74,9 @@ charts:
     revision: "1.15.0"
     values:
       name: istio-ingressgateway
+      global:
+        hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+        tag: "1.15.0-solo"
       revision: "1-15"
       labels:
         istio: ingressgateway
