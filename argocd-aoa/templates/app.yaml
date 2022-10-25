@@ -56,13 +56,13 @@ spec:
 # {{- set $theValues "global" (dict "hub" $root.Values.istioRepo "tag" $root.Values.istioTag) }}
 # {{- end }} # end if chart has repo field
 
-{{- if and ($chart).repo ($chart).chart (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") (eq $chart.chart "gateway") }}
-{{- set $theValues "labels" (merge $chart.values.labels (dict "revision" $root.Values.istioVersionLabel )) }}
-{{- end }} # end if chart has repo field
+# {{- if and ($chart).repo ($chart).chart (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") (eq $chart.chart "gateway") }}
+# {{- set $theValues "labels" (merge $chart.values.labels (dict "revision" $root.Values.istioVersionLabel )) }}
+# {{- end }} # end if chart has repo field
 
-{{- if and ($chart).path (eq $chart.path "charts/bookinfo") }}
-{{- set $theValues "revision" $root.Values.istioVersion }}
-{{- end }} # end if chart has repo field
+# {{- if and ($chart).path (eq $chart.path "charts/bookinfo") }}
+# {{- set $theValues "revision" $root.Values.istioVersion }}
+# {{- end }} # end if chart has repo field
 
 {{- if and (not ($chart).plugin) $theValues }}
     helm:
