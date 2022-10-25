@@ -99,27 +99,27 @@ charts:
           targetPort: 8443
           name: https
 
-  # gloo-mesh-enterprise:
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-  #   chart: gloo-mesh-enterprise
-  #   revision: v2.1.0-rc3
-  #   namespace: gloo-mesh
-  #   globalValues:
-  #     cluster: mgmt
-  #   values:
-  #     # assumes license was created by some other process (see README.md)
-  #     licenseSecretName: gloo-mesh-license
-  #     mgmtClusterName: mgmt
-  #     glooMeshMgmtServer:
-  #       serviceType: ClusterIP
-  #     deploymentOverrides:
-  #       spec:
-  #         template:
-  #           metadata:
-  #             annotations:
-  #               sidecar.istio.io/inject: "true"
-  #             labels:
-  #               istio.io/rev: "1-15"
+  gloo-mesh-enterprise:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
+    revision: v2.1.0-rc3
+    namespace: gloo-mesh
+    globalValues:
+      cluster: mgmt
+    values:
+      # assumes license was created by some other process (see README.md)
+      licenseSecretName: gloo-mesh-license
+      mgmtClusterName: mgmt
+      glooMeshMgmtServer:
+        serviceType: ClusterIP
+      deploymentOverrides:
+        spec:
+          template:
+            metadata:
+              annotations:
+                sidecar.istio.io/inject: "true"
+              labels:
+                istio.io/rev: "1-15"
 
   # gloo-agent:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
