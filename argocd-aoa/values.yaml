@@ -1,7 +1,7 @@
 istio:
-  version: "1.15.2"
+  version: "1.15.0"
 gloo:
-  version: "2.1.0-rc2"
+  version: "2.1.0-rc3"
 
 defaults:
   syncPolicy:
