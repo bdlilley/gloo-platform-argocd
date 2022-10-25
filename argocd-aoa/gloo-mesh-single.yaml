@@ -121,23 +121,23 @@ charts:
               labels:
                 istio.io/rev: "1-15"
 
-  # gloo-agent:
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-  #   chart: gloo-mesh-agent
-  #   namespace: gloo-mesh
-  #   revision: v2.1.0-rc3
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     cluster: mgmt
-  #     glooMeshAgent:
-  #       enabled: true
-  #     relay:
-  #       serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
-  #       authority: gloo-mesh-mgmt-server.gloo-mesh
-  #       # clientTlsSecret:
-  #       #   name: gloo-mesh-agent-mgmt-tls-cert
-  #       #   namespace: gloo-mesh
+  gloo-agent:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    chart: gloo-mesh-agent
+    namespace: gloo-mesh
+    revision: v2.1.0-rc3
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      cluster: mgmt
+      glooMeshAgent:
+        enabled: true
+      relay:
+        serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
+        authority: gloo-mesh-mgmt-server.gloo-mesh
+        # clientTlsSecret:
+        #   name: gloo-mesh-agent-mgmt-tls-cert
+        #   namespace: gloo-mesh
         
   # mgmt-workspace:
   #   path: charts/ws-single-cluster
