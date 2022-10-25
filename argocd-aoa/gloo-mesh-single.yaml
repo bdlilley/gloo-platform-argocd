@@ -17,10 +17,10 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
   
-  # the aws iam for service accounts webhook
-  aws-iam:
-    path: charts/aws-identity-webhook
-    namespace: pod-identity-webhook
+  # # the aws iam for service accounts webhook
+  # aws-iam:
+  #   path: charts/aws-identity-webhook
+  #   namespace: pod-identity-webhook
     
   # # # bookinfo sample apps
   # # bookinfo:
