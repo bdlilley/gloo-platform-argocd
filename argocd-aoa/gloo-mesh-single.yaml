@@ -17,19 +17,19 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
 
-  # aws-load-balancer-controller:
-  #   repo: https://aws.github.io/eks-charts
-  #   chart: aws-load-balancer-controller
-  #   revision: "1.4.5"
-  #   namespace: kube-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     clusterName: ben
-  #     replicaCount: 1
-  #     serviceAccount:
-  #       create: false
-  #       name: aws-load-balancer-controller
+  aws-load-balancer-controller:
+    repo: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    revision: "1.4.5"
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      clusterName: ben
+      replicaCount: 1
+      serviceAccount:
+        create: false
+        name: aws-load-balancer-controller
   
   # istio-base:
   #   repo: https://istio-release.storage.googleapis.com/charts
