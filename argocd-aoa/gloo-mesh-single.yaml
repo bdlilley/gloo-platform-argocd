@@ -30,6 +30,11 @@ charts:
       serviceAccount:
         create: false
         name: aws-load-balancer-controller
+  
+  gloo-mesh-enterprise:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    revision: v2.1.0-rc3
+    namespace: gloo-mesh
 
   # # the aws iam for service accounts webhook for non-eks
   # aws-iam:
