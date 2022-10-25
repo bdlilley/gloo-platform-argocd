@@ -1,0 +1,58 @@
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: mgmt
+  namespace: gloo-mesh
+spec:
+  workloadClusters:
+  - name: 'mgmt'
+    namespaces:
+    - name: argocd
+    - name: gloo-mesh
+    - name: istio-system
+    - name: bookinfo
+    - name: httpbin
+  - name: '*'
+    namespaces:
+    - name: istio-gateways
+    - name: gloo-mesh-addons
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: mgmt
+  namespace: gloo-mesh
+#   namespace: ops-team-config
+spec:
+  exportTo:
+  - workspaces:
+    - name: "*"
+    resources:
+    - kind: SERVICE
+      namespace: gloo-mesh-addons
+    - kind: SERVICE
+      namespace: istio-gateways
+    - kind: VIRTUAL_DESTINATION
+      namespace: gloo-mesh-addons
+  importFrom:
+  - workspaces:
+    - name: '*'
+#   options:
+#     federation:                     # federate only the gloo-mesh-addons
+#       enabled: true
+#       hostSuffix: global
+#       serviceSelector:
+#       - namespace: gloo-mesh-addons
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: global
+  namespace: gloo-mesh
+spec:
+  options:
+    eastWestGateways:
+    - selector:
+        labels:
+          istio: eastwestgateway

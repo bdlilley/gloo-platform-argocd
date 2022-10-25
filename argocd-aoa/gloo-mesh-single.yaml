@@ -74,7 +74,7 @@ charts:
   istio-ingressgateway:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
-    namespace: istio-ingress
+    namespace: istio-gateways
     revision: "1.15.0"
     values:
       revision: "1-15"
@@ -120,6 +120,11 @@ charts:
                 istio.io/rev: "1-15"
 
 
+  mgmt-workspace:
+    path: charts/ws-single-cluster
+    namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespace
 
   # # the aws iam for service accounts webhook for non-eks
   # aws-iam:
