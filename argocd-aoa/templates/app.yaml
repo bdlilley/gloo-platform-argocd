@@ -67,7 +67,8 @@ spec:
 {{- if and (not ($chart).plugin) $theValues }}
     helm:
       parameters:
-      - "--set global.tag=baz"
+      - name: global.tag
+        value: baz
       values: |
 {{ toYaml $theValues | indent 8 }}
 {{- end }} #end if chart.values
