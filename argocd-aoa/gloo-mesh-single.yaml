@@ -26,6 +26,7 @@ charts:
       syncOptions: [] # dont create namespace
     values:
       clusterName: ben
+      replicas: 1
       serviceAccount:
         create: false
         name: aws-load-balancer-controller
