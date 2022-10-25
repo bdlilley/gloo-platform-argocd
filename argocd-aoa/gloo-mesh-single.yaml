@@ -43,39 +43,39 @@ charts:
     namespace: istio-system
     revision: "1.15.0"
 
-  # istiod:
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: istiod
-  #   revision: "1.15.0"
-  #   namespace: istio-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     revision: 1-15
-  #     global:
-  #       meshID: mesh1
-  #       multiCluster:
-  #         clusterName: mgmt
-  #       network: network1
-  #       hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-  #       tag: 1.15.0-solo
-  #     meshConfig:
-  #       trustDomain: mgmt
-  #       accessLogFile: /dev/stdout
-  #       enableAutoMtls: true
-  #       defaultConfig:
-  #         envoyMetricsService:
-  #           address: gloo-mesh-agent.gloo-mesh:9977
-  #         envoyAccessLogService:
-  #           address: gloo-mesh-agent.gloo-mesh:9977
-  #         proxyMetadata:
-  #           ISTIO_META_DNS_CAPTURE: "true"
-  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-  #           GLOO_MESH_CLUSTER_NAME: mgmt
-  #     pilot:
-  #       env:
-  #         PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
-  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  istiod:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    revision: "1.15.0"
+    namespace: istio-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      revision: 1-15
+      global:
+        meshID: mesh1
+        multiCluster:
+          clusterName: mgmt
+        network: network1
+        hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+        tag: 1.15.0-solo
+      meshConfig:
+        trustDomain: mgmt
+        accessLogFile: /dev/stdout
+        enableAutoMtls: true
+        defaultConfig:
+          envoyMetricsService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          envoyAccessLogService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: "true"
+            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+            GLOO_MESH_CLUSTER_NAME: mgmt
+      pilot:
+        env:
+          PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
+          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
 
 
   # istio-ingressgateway:
