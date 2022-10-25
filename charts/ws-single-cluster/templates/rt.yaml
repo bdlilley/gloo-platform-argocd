@@ -1,3 +1,4 @@
+---
 apiVersion: networking.gloo.solo.io/v2
 kind: RouteTable
 metadata:
@@ -56,6 +57,39 @@ spec:
           namespace: gloo-mesh
         port:
           number: 8090
+  virtualGateways:
+  - cluster: mgmt
+    name: mgmt-north-south-gw-443
+    namespace: istio-gateways
+  workloadSelectors: []
+
+---
+
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: mgmt-argo-rt-443
+  namespace: argocd
+spec:
+  hosts:
+  - '*'
+  http:
+  - name: argocd
+    labels:
+      waf: "true"
+    matchers:
+    - uri:
+        prefix: /argo
+    forwardTo:
+      destinations:
+      - port:
+          number: 443
+        ref:
+          cluster: mgmt
+          name: argocd-server
+          namespace: argocd    
   virtualGateways:
   - cluster: mgmt
     name: mgmt-north-south-gw-443
