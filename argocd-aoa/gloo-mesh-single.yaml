@@ -31,11 +31,11 @@ charts:
         create: false
         name: aws-load-balancer-controller
   
-  # istio-base:
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: base
-  #   namespace: istio-system
-  #   revision: "1.15.0"
+  istio-base:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    namespace: istio-system
+    revision: "1.15.0"
 
   # istiod-15-0:
   #   repo: https://istio-release.storage.googleapis.com/charts
