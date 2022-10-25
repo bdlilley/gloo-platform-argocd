@@ -47,23 +47,6 @@ spec:
 {{- $theValues = deepCopy ($chart).values }}
 {{- end }}
 
-{{- if and ($chart).repo (eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise") }}
-{{- set $theValues "glooGatewayLicenseKey" $root.Values.glooGatewayLicenseKey }}
-{{- set $theValues "glooMeshLicenseKey" $root.Values.glooMeshLicenseKey }}
-{{- end }} # end if chart has repo field
-
-# {{- if and ($chart).repo ($chart).chart (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") (or (eq $chart.chart "gateway") (eq $chart.chart "istiod") ) }}
-# {{- set $theValues "global" (dict "hub" $root.Values.istioRepo "tag" $root.Values.istioTag) }}
-# {{- end }} # end if chart has repo field
-
-# {{- if and ($chart).repo ($chart).chart (eq $chart.repo "https://istio-release.storage.googleapis.com/charts") (eq $chart.chart "gateway") }}
-# {{- set $theValues "labels" (merge $chart.values.labels (dict "revision" $root.Values.istioVersionLabel )) }}
-# {{- end }} # end if chart has repo field
-
-# {{- if and ($chart).path (eq $chart.path "charts/bookinfo") }}
-# {{- set $theValues "revision" $root.Values.istioVersion }}
-# {{- end }} # end if chart has repo field
-
 {{- if and (not ($chart).plugin) $theValues }}
     helm:
       values: |
@@ -73,8 +56,6 @@ spec:
 {{ toYaml $chart.globalValues | indent 10 }}
 {{- end }}
 {{- end }} #end if chart.values
-
-
 
   destination:
     server: https://kubernetes.default.svc

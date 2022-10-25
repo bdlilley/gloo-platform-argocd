@@ -107,6 +107,8 @@ charts:
     globalValues:
       cluster: mgmt
     values:
+      # assumes license was created by some other process (see README.md)
+      licenseSecretName: gloo-mesh-license
       mgmtClusterName: mgmt
       glooMeshMgmtServer:
         serviceType: ClusterIP
