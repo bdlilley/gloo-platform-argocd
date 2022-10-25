@@ -37,6 +37,12 @@ charts:
     revision: v2.1.0-rc3
     namespace: gloo-mesh
 
+  istio-base:
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    namespace: istio-system
+    revision: "1.15.0"
+
   # # the aws iam for service accounts webhook for non-eks
   # aws-iam:
   #   path: charts/aws-identity-webhook
@@ -74,11 +80,7 @@ charts:
   #   syncPolicy:
   #     syncOptions: [] # dont create namespace
 
-  # istio-base:
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: base
-  #   namespace: istio-system
-  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
+
 
   # istiod:
   #   repo: https://istio-release.storage.googleapis.com/charts
