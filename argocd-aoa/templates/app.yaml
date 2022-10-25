@@ -67,7 +67,7 @@ spec:
 {{- if and (not ($chart).plugin) $theValues }}
     helm:
       parameters:
-      - name: global.tag
+      - name: global.asdf
         value: baz
       values: |
 {{ toYaml $theValues | indent 8 }}
