@@ -47,10 +47,6 @@ spec:
 {{- $theValues = deepCopy ($chart).values }}
 {{- end }}
 
-{{- if ($root.Values).global }}
-{{- set $theValues "global" $root.Values.global }}
-{{- end }}
-
 {{- if and ($chart).repo (eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise") }}
 {{- set $theValues "glooGatewayLicenseKey" $root.Values.glooGatewayLicenseKey }}
 {{- set $theValues "glooMeshLicenseKey" $root.Values.glooMeshLicenseKey }}
