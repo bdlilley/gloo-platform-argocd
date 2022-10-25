@@ -12,11 +12,10 @@ metadata:
 spec:
   project: default
   source:
-    {{- if ($chart).repo }}
-    repoURL: {{ $chart.repo }}
-    {{- else }}
-    repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
+    {{- if not ($chart).repo }}
+    {{- $chart = (merge $chart (dict "repo" "https://github.com/bdlilley/gloo-platform-argocd")) }}
     {{- end }}
+    repoURL: {{  $chart.repo }}
     {{- if ($chart).revision }}
     # branch for git-hosted, chart version for helm registry-hosted
     targetRevision: {{ $chart.revision }}
@@ -43,9 +42,13 @@ spec:
     chart: {{ $chart.chart }}
     {{- end }} #nd if chart.chart
 
-{{- $theValues := dict }}
+{{- $theValues := dict}}
 {{- if ($chart).values }}
 {{- $theValues = deepCopy ($chart).values }}
+{{- end }}
+
+{{- if ($root.Values).global }}
+{{- set $theValues "global" $root.Values.global }}
 {{- end }}
 
 {{- if and ($chart).repo (eq $chart.repo "https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise") }}
