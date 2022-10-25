@@ -139,9 +139,9 @@ charts:
         #   name: gloo-mesh-agent-mgmt-tls-cert
         #   namespace: gloo-mesh
         
-  # mgmt-workspace:
-  #   path: charts/ws-single-cluster
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  mgmt-workspace:
+    path: charts/ws-single-cluster
+    namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespace
 
