@@ -137,7 +137,6 @@ charts:
         #   name: gloo-mesh-agent-mgmt-tls-cert
         #   namespace: gloo-mesh
         
-
   mgmt-workspace:
     path: charts/ws-single-cluster
     namespace: gloo-mesh
@@ -149,55 +148,3 @@ charts:
   #   path: charts/aws-identity-webhook
   #   namespace: pod-identity-webhook
     
-  # # # bookinfo sample apps
-  # # bookinfo:
-  # #   path: charts/bookinfo
-  # #   namespace: bookinfo
-
-  # gloo-mgmt:
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-  #   chart: gloo-mesh-enterprise
-  #   namespace: gloo-mesh
-  #   # revision set by ./cluster-app-of-apps/templates/app.yaml
-
-
-  # register-cluster:
-  #   path: charts/register-cluster
-  #   namespace: gloo-mesh
-  #   values:
-  #     istio:
-  #       clusterName: cluster1
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-
-
-
-
-  # workspace:
-  #   path: charts/workspace
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     namespaces:
-  #     - name: istio-ingress
-  #     workspaces:
-  #       gateway:
-  #         namespace: istio-ingress
-  #         spec:
-  #           importFrom:
-  #           - workspaces:
-  #             - selector:
-  #                 allow_ingress: "true"
-  #             resources:
-  #             - kind: SERVICE
-  #             - kind: ALL
-  #               labels:
-  #                 expose: "true"
-  #           exportTo:
-  #           - workspaces:
-  #             - selector:
-  #                 allow_ingress: "true"
-  #             resources:
-  #             - kind: SERVICE
-
