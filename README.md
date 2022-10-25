@@ -15,6 +15,16 @@ argocd admin dashboard &
 open http://localhost:8080
 ```
 
+# create eks service accounts
+
+eksctl create iamserviceaccount \
+--cluster="ben" \
+--namespace=kube-system \
+--name=aws-load-balancer-controller \
+--attach-policy-arn=arn:aws:iam::931713665590:policy/AWSLoadBalancerControllerIAMPolicy \
+--override-existing-serviceaccounts \
+--approve
+
 # create gloo license secret
 
 ```bash
