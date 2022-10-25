@@ -25,6 +25,8 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
+      region: us-east-2
+      vpcId: vpc-06f6918cdeebe6eac
       clusterName: ben
       replicaCount: 1
       serviceAccount:
