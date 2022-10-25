@@ -33,6 +33,7 @@ charts:
   
   gloo-mesh-enterprise:
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
     revision: v2.1.0-rc3
     namespace: gloo-mesh
 
