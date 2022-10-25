@@ -67,35 +67,35 @@ charts:
             ISTIO_META_DNS_AUTO_ALLOCATE: "true"
 
 
-  istio-ingressgateway:
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: gateway
-    namespace: istio-ingress
-    revision: "1.15.0"
-    values:
-      name: istio-ingressgateway
-      global:
-        hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-        tag: "1.15.0-solo"
-      revision: "1-15"
-      labels:
-        istio: ingressgateway
-        istio.io/rev: 1-15
-      service:
-        type: LoadBalancer
-        annotations:
-          service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-          service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
-          service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-        ports:
-        # main http ingress port
-        - port: 80
-          targetPort: 80
-          name: http2
-        # main https ingress port
-        - port: 443
-          targetPort: 8443
-          name: https
+  # istio-ingressgateway:
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: gateway
+  #   namespace: istio-ingress
+  #   revision: "1.15.0"
+  #   values:
+  #     name: istio-ingressgateway
+  #     # global:
+  #     #   hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+  #     #   tag: "1.15.0-solo"
+  #     revision: "1-15"
+  #     labels:
+  #       istio: ingressgateway
+  #       istio.io/rev: 1-15
+  #     service:
+  #       type: LoadBalancer
+  #       annotations:
+  #         service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+  #         service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+  #         service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+  #       ports:
+  #       # main http ingress port
+  #       - port: 80
+  #         targetPort: 80
+  #         name: http2
+  #       # main https ingress port
+  #       - port: 443
+  #         targetPort: 8443
+  #         name: https
 
   # # the aws iam for service accounts webhook for non-eks
   # aws-iam:
