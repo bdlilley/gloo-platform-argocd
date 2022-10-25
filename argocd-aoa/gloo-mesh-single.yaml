@@ -43,27 +43,26 @@ charts:
     namespace: istio-system
     revision: "1.15.0"
 
-  istiod:
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: istiod
-    revision: "1.15.0"
-    namespace: istio-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-
-      meshConfig:
-        trustDomain: mgmt
-        accessLogFile: /dev/stdout
-        defaultConfig:
-          holdApplicationUntilProxyStarts: true
-          proxyMetadata:
-            ISTIO_META_DNS_CAPTURE: "true"
-            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-      pilot:
-        env:
-          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
-          AUTO_RELOAD_PLUGIN_CERTS: "true"
+  # istiod:
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: istiod
+  #   revision: "1.15.0"
+  #   namespace: istio-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     meshConfig:
+  #       trustDomain: mgmt
+  #       accessLogFile: /dev/stdout
+  #       defaultConfig:
+  #         holdApplicationUntilProxyStarts: true
+  #         proxyMetadata:
+  #           ISTIO_META_DNS_CAPTURE: "true"
+  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+  #     pilot:
+  #       env:
+  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  #         AUTO_RELOAD_PLUGIN_CERTS: "true"
 
 
   # # the aws iam for service accounts webhook for non-eks
