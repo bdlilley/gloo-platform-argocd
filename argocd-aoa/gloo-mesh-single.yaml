@@ -17,15 +17,15 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
   
-  # the aws iam for service accounts webhook
-  aws-iam:
-    path: charts/aws-identity-webhook
-    namespace: pod-identity-webhook
+  # # the aws iam for service accounts webhook
+  # aws-iam:
+  #   path: charts/aws-identity-webhook
+  #   namespace: pod-identity-webhook
     
-  # # bookinfo sample apps
-  # bookinfo:
-  #   path: charts/bookinfo
-  #   namespace: bookinfo
+  # # # bookinfo sample apps
+  # # bookinfo:
+  # #   path: charts/bookinfo
+  # #   namespace: bookinfo
 
   # gloo-mgmt:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
