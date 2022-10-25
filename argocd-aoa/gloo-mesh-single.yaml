@@ -106,7 +106,7 @@ charts:
     namespace: gloo-mesh
     globalValues:
       cluster: mgmt
-    values: |
+    values:
       mgmtClusterName: mgmt
       glooMeshMgmtServer:
         serviceType: ClusterIP
