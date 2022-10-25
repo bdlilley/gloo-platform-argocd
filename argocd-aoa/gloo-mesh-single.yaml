@@ -16,8 +16,20 @@ charts:
     namespace: kube-system
     syncPolicy:
       syncOptions: [] # dont create namespace
-  
-  # # the aws iam for service accounts webhook
+
+  aws-load-balancer-controller:
+    repo: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      serviceAccount:
+        clusterName: ben
+        create: false
+        name: aws-load-balancer-controller
+
+  # # the aws iam for service accounts webhook for non-eks
   # aws-iam:
   #   path: charts/aws-identity-webhook
   #   namespace: pod-identity-webhook
