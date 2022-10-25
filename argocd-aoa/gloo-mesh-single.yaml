@@ -52,7 +52,7 @@ charts:
       syncOptions: [] # dont create namespace
     values:
       revision: 1-15
-      global:
+      "global":
         meshID: mesh1
         multiCluster:
           clusterName: mgmt
