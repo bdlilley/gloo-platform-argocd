@@ -17,21 +17,19 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
 
-  # aws-load-balancer-controller:
-  #   repo: https://aws.github.io/eks-charts
-  #   chart: aws-load-balancer-controller
-  #   revision: "1.4.5"
-  #   namespace: kube-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     region: us-east-2
-  #     vpcId: vpc-06f6918cdeebe6eac
-  #     clusterName: ben
-  #     replicaCount: 1
-  #     serviceAccount:
-  #       create: false
-  #       name: aws-load-balancer-controller
+  aws-load-balancer-controller:
+    repo: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    revision: "1.4.5"
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      clusterName: ben
+      replicaCount: 1
+      serviceAccount:
+        create: false
+        name: aws-load-balancer-controller
   
   # gloo-mesh-enterprise:
   #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
