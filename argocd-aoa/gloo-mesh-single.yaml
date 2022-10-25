@@ -77,10 +77,6 @@ charts:
     namespace: istio-ingress
     revision: "1.15.0"
     values:
-      # name: istio-ingressgateway
-      # global:
-      #   hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-      #   tag: "1.15.0-solo"
       revision: "1-15"
       labels:
         istio: ingressgateway
@@ -103,11 +99,25 @@ charts:
           targetPort: 8443
           name: https
 
-  # gloo-mesh-enterprise:
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-  #   chart: gloo-mesh-enterprise
-  #   revision: v2.1.0-rc3
-  #   namespace: gloo-mesh
+  gloo-mesh-enterprise:
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
+    revision: v2.1.0-rc3
+    namespace: gloo-mesh
+    globalValues:
+      cluster: mgmt
+    values: |
+      mgmtClusterName: mgmt
+      glooMeshMgmtServer:
+        serviceType: ClusterIP
+      deploymentOverrides:
+        spec:
+          template:
+            metadata:
+              annotations:
+                sidecar.istio.io/inject: "true"
+              labels:
+                istio.io/rev: "1-15"
 
 
 
