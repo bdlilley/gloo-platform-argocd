@@ -40,7 +40,7 @@ charts:
     path: kustomize/1-core/base
 
   gloo-edge:
-    repo: https://storage.googleapis.com/solo-public-helm
+    repo: https://storage.googleapis.com/gloo-ee-helm
     revision: "1.13.0-beta8"
     chart: "gloo-ee"
     namespace: "gloo-system"
