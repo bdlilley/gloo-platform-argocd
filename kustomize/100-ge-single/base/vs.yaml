@@ -1,10 +1,40 @@
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gateway
+  namespace: gloo-system
+spec:
+  secretName: gateway-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 360h0m0s # 15d
+  subject:
+    organizations:
+    - solo.io
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+  - '*'
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
 apiVersion: gateway.solo.io/v1
 kind: VirtualService
 metadata:
   name: default
   namespace: gloo-system
 spec:
+  sslConfig:
+    secretRef:
+      name: gateway-tls
+      namespace: gloo-system
   virtualHost:
     domains:
     - '*'
