@@ -6,4 +6,4 @@ metadata:
 spec:
   aws: 
     region: us-east-2
-    # roleArn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
+    roleArn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
