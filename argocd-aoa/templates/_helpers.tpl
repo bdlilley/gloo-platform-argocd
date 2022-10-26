@@ -14,3 +14,10 @@ syncOptions:
 {{- $def | nindent 4 }}
 {{- end }}
 {{- end }}
+
+{{- define "app.wave" }}
+{{- if (.).wave }}
+{{- .wave }}
+{{- else }}
+{{- "100" }}
+{{- end }}

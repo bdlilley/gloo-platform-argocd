@@ -9,6 +9,8 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ include "app.wave" $chart }}
 spec:
   project: default
   source:
@@ -59,6 +61,8 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
+    {{- if ($chart).namespace }}
     namespace: {{ $chart.namespace }}
+    {{- end }}
   syncPolicy:  {{ include "app.syncPolicy" $chart }}
 {{- end }} 

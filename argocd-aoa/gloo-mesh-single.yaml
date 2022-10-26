@@ -1,8 +1,9 @@
-# charts - each key is a helm chart install
+
 charts:
 
   # cert-manager for issuing certs
   cert-manager:
+    wave: 1
     repo: https://charts.jetstack.io
     revision: v1.9.1
     chart: cert-manager
@@ -10,26 +11,32 @@ charts:
     values:
       installCRDs: true
 
-  # a cert-manager clusterIssuer named "selfsigned"
-  selfsigned:
-    path: charts/cluster-issuer
-    namespace: kube-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
+  core:
+    wave: 10
+    path: kustomize/1-core/base
 
-  aws-load-balancer-controller:
-    repo: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    revision: "1.4.5"
-    namespace: kube-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      clusterName: ben
-      replicaCount: 1
-      serviceAccount:
-        create: false
-        name: aws-load-balancer-controller
+  # # a cert-manager clusterIssuer named "selfsigned"
+  # selfsigned:
+  #   path: charts/cluster-issuer
+  #   namespace: kube-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+
+
+
+  # aws-load-balancer-controller:
+  #   repo: https://aws.github.io/eks-charts
+  #   chart: aws-load-balancer-controller
+  #   revision: "1.4.5"
+  #   namespace: kube-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     clusterName: ben
+  #     replicaCount: 1
+  #     serviceAccount:
+  #       create: false
+  #       name: aws-load-balancer-controller
   
   # istio-base:
   #   repo: https://istio-release.storage.googleapis.com/charts

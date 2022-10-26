@@ -1,0 +1,17 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-issuer
+spec:
+  ca:
+    secretName: cert-manager-cacerts
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: relay-root-ca
+  namespace: gloo-mesh
+spec:
+  ca:
+    secretName: relay-root-ca
