@@ -8,9 +8,7 @@ spec:
   secretName: gateway-tls
   duration: 2160h0m0s # 90d
   renewBefore: 360h0m0s # 15d
-  subject:
-    organizations:
-    - solo.io
+  commonName: "gateway.solo.io"
   dnsNames:
   - '*'
   issuerRef:
