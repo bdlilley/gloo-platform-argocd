@@ -11,9 +11,9 @@ charts:
     values:
       installCRDs: true
 
-  # core:
-  #   wave: 10
-  #   path: kustomize/1-core/base
+  core:
+    wave: 10
+    path: kustomize/1-core/base
 
   # # a cert-manager clusterIssuer named "selfsigned"
   # selfsigned:
