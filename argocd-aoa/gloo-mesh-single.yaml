@@ -107,63 +107,63 @@ charts:
           targetPort: 8443
           name: https
 
-  gloo-mesh-enterprise:
-    # wave defaults to 100
-    wave: 30
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    revision: v2.1.0-rc3
-    namespace: gloo-mesh
-    globalValues:
-      cluster: mgmt
-    values:
-      # assumes license was created by some other process (see README.md)
-      licenseSecretName: gloo-mesh-license
-      mgmtClusterName: mgmt
-      glooMeshMgmtServer:
-        serviceType: ClusterIP
-        relay:
-          disableCa: true
-          disableCaCertGeneration: true
-          tlsSecret:
-            name: relay-server-tls-secret
-        ports:
-          healthcheck: 8091
-      deploymentOverrides:
-        spec:
-          template:
-            metadata:
-              annotations:
-                sidecar.istio.io/inject: "true"
-              labels:
-                istio.io/rev: "1-15"
+  # gloo-mesh-enterprise:
+  #   # wave defaults to 100
+  #   wave: 30
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+  #   chart: gloo-mesh-enterprise
+  #   revision: v2.1.0-rc3
+  #   namespace: gloo-mesh
+  #   globalValues:
+  #     cluster: mgmt
+  #   values:
+  #     # assumes license was created by some other process (see README.md)
+  #     licenseSecretName: gloo-mesh-license
+  #     mgmtClusterName: mgmt
+  #     glooMeshMgmtServer:
+  #       serviceType: ClusterIP
+  #       relay:
+  #         disableCa: true
+  #         disableCaCertGeneration: true
+  #         tlsSecret:
+  #           name: relay-server-tls-secret
+  #       ports:
+  #         healthcheck: 8091
+  #     deploymentOverrides:
+  #       spec:
+  #         template:
+  #           metadata:
+  #             annotations:
+  #               sidecar.istio.io/inject: "true"
+  #             labels:
+  #               istio.io/rev: "1-15"
 
-  gloo-agent:
-    # wave defaults to 100
-    wave: 30
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
-    namespace: gloo-mesh
-    revision: v2.1.0-rc3
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      cluster: mgmt
-      glooMeshAgent:
-        enabled: true
-      ext-auth-service:
-        enabled: false
-      rate-limiter:
-        enabled: false
-      relay:
-        serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
-        authority: gloo-mesh-mgmt-server.gloo-mesh
-        clientTlsSecret:
-          name: gloo-mesh-agent-mgmt-tls-cert
-          namespace: gloo-mesh
-        rootTlsSecret:
-          name: relay-root-tls-secret
-          namespace: gloo-mesh
+  # gloo-agent:
+  #   # wave defaults to 100
+  #   wave: 30
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+  #   chart: gloo-mesh-agent
+  #   namespace: gloo-mesh
+  #   revision: v2.1.0-rc3
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     cluster: mgmt
+  #     glooMeshAgent:
+  #       enabled: true
+  #     ext-auth-service:
+  #       enabled: false
+  #     rate-limiter:
+  #       enabled: false
+  #     relay:
+  #       serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
+  #       authority: gloo-mesh-mgmt-server.gloo-mesh
+  #       clientTlsSecret:
+  #         name: gloo-mesh-agent-mgmt-tls-cert
+  #         namespace: gloo-mesh
+  #       rootTlsSecret:
+  #         name: relay-root-tls-secret
+  #         namespace: gloo-mesh
 
   gm-single-cluster-single-ws:
     path: kustomize/10-gm-single-cluster-single-workspace/base
