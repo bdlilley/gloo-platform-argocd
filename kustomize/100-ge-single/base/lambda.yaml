@@ -1,0 +1,9 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: lambda
+  namespace: gloo-system
+spec:
+  aws: 
+    region: us-east-2
+    roleArn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
