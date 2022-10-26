@@ -9,4 +9,3 @@ resources:
 - cert-issuers.yaml
 - cert-root-ca.yaml
 - cert-gloo-mesh-agent.yaml
-- self-signed.yaml

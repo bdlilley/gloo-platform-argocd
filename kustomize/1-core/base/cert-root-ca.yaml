@@ -22,5 +22,5 @@ spec:
   isCA: true
   issuerRef:
     group: cert-manager.io
-    kind: Issuer
-    name: relay-root-ca
+    kind: ClusterIssuer
+    name: selfsigned
