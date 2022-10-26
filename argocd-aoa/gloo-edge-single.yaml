@@ -33,21 +33,21 @@ charts:
     wave: 5
     path: kustomize/1-core/base
 
-  gloo-edge:
-    repo: https://storage.googleapis.com/gloo-ee-helm
-    revision: "1.13.0-beta8"
-    chart: "gloo-ee"
-    namespace: "gloo-system"
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      prometheus:
-        enabled: false
-      observability:
-        enabled: false
-      gloo:
-        license_secret_name: gloo-edge-license
-      gloo-fed:
-        enabled: false
-        create_license_secret: false
-        license_secret_name: gloo-edge-license
+  # gloo-edge:
+  #   repo: https://storage.googleapis.com/gloo-ee-helm
+  #   revision: "1.13.0-beta8"
+  #   chart: "gloo-ee"
+  #   namespace: "gloo-system"
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     prometheus:
+  #       enabled: false
+  #     observability:
+  #       enabled: false
+  #     gloo:
+  #       license_secret_name: gloo-edge-license
+  #     gloo-fed:
+  #       enabled: false
+  #       create_license_secret: false
+  #       license_secret_name: gloo-edge-license
