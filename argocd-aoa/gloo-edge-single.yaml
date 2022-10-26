@@ -33,33 +33,33 @@ charts:
     wave: 5
     path: kustomize/1-core/base
 
-  gloo-edge:
-    repo: https://storage.googleapis.com/gloo-ee-helm
-    revision: "1.13.0-beta8"
-    chart: "gloo-ee"
-    namespace: "gloo-system"
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    globalValues:
-      extensions:
-        extAuth:
-          enabled: false
-    values:
-      prometheus:
-        enabled: false
-      observability:
-        enabled: false
-      rateLimit:
-        enabled: false
-      grafana:
-        defaultInstallationEnabled: false
-        persistence:
-          enabled: false
-      gloo:
-        license_secret_name: gloo-edge-license
-      "gloo-fed":
-        enabled: false
-        glooFedApiserver:
-          enabled: false
-        create_license_secret: false
-        license_secret_name: gloo-edge-license
+  # gloo-edge:
+  #   repo: https://storage.googleapis.com/gloo-ee-helm
+  #   revision: "1.12.31" # "1.13.0-beta8"
+  #   chart: "gloo-ee"
+  #   namespace: "gloo-system"
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   globalValues:
+  #     extensions:
+  #       extAuth:
+  #         enabled: false
+  #   values:
+  #     prometheus:
+  #       enabled: false
+  #     observability:
+  #       enabled: false
+  #     rateLimit:
+  #       enabled: false
+  #     grafana:
+  #       defaultInstallationEnabled: false
+  #       persistence:
+  #         enabled: false
+  #     gloo:
+  #       license_secret_name: gloo-edge-license
+  #     "gloo-fed":
+  #       enabled: false
+  #       glooFedApiserver:
+  #         enabled: false
+  #       create_license_secret: false
+  #       license_secret_name: gloo-edge-license
