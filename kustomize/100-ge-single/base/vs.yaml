@@ -36,7 +36,9 @@ spec:
         status: 200
         body: hello, world
     - matchers:
-      - exact: /httpbin
+      - prefix: /httpbin
+      options:
+        prefixRewrite: '/'
       routeAction:
         single:
           upstream:
