@@ -8,3 +8,5 @@ spec:
     region: us-east-2
     # only use roleArn here to assume a role from the pod's role before attempting discovery
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
+    lambdaFunctions:
+    - lambdaFunctionName: golang-echo-latest
