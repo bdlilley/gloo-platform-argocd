@@ -30,6 +30,7 @@ charts:
         persistence:
           enabled: false
       gloo:
+        create_license_secret: false
         license_secret_name: gloo-edge-license
         gatewayProxies:
           gatewayProxy:
