@@ -19,6 +19,6 @@ syncOptions:
 {{- if (.).wave }}
 {{- .wave | quote }}
 {{- else }}
-{{- "100" }}
+{{- "100" | quote }}
 {{- end }}
 {{- end }}
