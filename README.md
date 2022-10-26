@@ -48,8 +48,7 @@ kubectl create ns gloo-system
 kubectl apply -f - <<EOF
 apiVersion: v1
 data:
-  gloo-edge-license-key: $(echo -n "${LICENSE_KEY}" | base64)
-  license-key: $(echo -n "${LICENSE_KEY}" | base64)
+  license-key: $(echo -n "${GLOO_EDGE_LICENSE_KEY}" | base64)
 kind: Secret
 metadata:
   name: gloo-edge-license

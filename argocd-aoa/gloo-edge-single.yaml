@@ -12,12 +12,6 @@ charts:
     values:
       installCRDs: true
 
-  # aws-load-balancer-controller:
-  #   wave: 1
-  #   path: kustomize/5-aws-lb-controller/base
-  #   kustomize:
-      
-
   aws-load-balancer-controller:
     # wave defaults to 100
     wave: 1
@@ -47,6 +41,10 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
+      prometheus:
+        enabled: false
+      observability:
+        enabled: false
       gloo:
         license_secret_name: gloo-edge-license
       gloo-fed:
