@@ -14,35 +14,6 @@ kubectl config set-context --current --namespace=argocd
 argocd admin dashboard &
 open http://localhost:8080
 ```
-
-# create eks service accounts if required
-
-eksctl create iamserviceaccount \
---cluster="ben" \
---namespace=kube-system \
---name=aws-load-balancer-controller \
---attach-policy-arn=arn:aws:iam::931713665590:policy/AWSLoadBalancerControllerIAMPolicy \
---override-existing-serviceaccounts \
---approve
-
-eksctl create iamserviceaccount \
---cluster="ge-single" \
---namespace=gloo-system \
---name=discovery \
---attach-policy-arn=arn:aws:iam::931713665590:policy/lambda-gloo \
---role-only \
---role-name="ge-single-lambda-discovery" \
---approve
-
-eksctl create iamserviceaccount \
---cluster="ge-single" \
---namespace=gloo-system \
---name=gateway-proxy \
---attach-policy-arn=arn:aws:iam::931713665590:policy/lambda-gloo \
---role-only \
---role-name="ge-single-lambda-proxy" \
---approve
-
 # create gloo license secret
 
 _mesh_
