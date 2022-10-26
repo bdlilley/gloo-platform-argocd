@@ -45,3 +45,15 @@ spec:
           upstream:
             name: httpbin-httpbin-8000
             namespace: gloo-system
+    - matchers:
+      - prefix: /lambda
+      options:
+        prefixRewrite: '/'
+      routeAction:
+        single:
+          destinationSpec:
+            aws:
+              logicalName: golang-echo-latest
+          upstream:
+            name: lambda
+            namespace: gloo-system
