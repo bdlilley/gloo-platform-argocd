@@ -25,7 +25,7 @@ metadata:
 spec:
   sslConfig:
     secretRef:
-      name: cert-manager-cacerts
+      name: upstream-tls
       namespace: cert-manager
   virtualHost:
     domains:
