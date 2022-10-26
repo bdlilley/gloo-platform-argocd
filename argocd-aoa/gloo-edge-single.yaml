@@ -41,11 +41,11 @@ charts:
         gateway:
           proxyServiceAccount:
             extraAnnotations:
-              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:policy:role/ge-single-lambda-proxy
+              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-lambda-proxy
         discovery:
           serviceAccount:
             extraAnnotations:
-              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:policy:role/ge-single-lambda-discovery
+              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
         settings:
           aws:
             enableServiceAccountCredentials: true
