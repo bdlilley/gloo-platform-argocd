@@ -38,3 +38,14 @@ charts:
     # wave defaults to 100
     wave: 5
     path: kustomize/1-core/base
+
+  gloo-edge:
+    repo: https://storage.googleapis.com/solo-public-helm
+    revision: "1.13.0-beta8"
+    chart: "gloo-ee"
+    namespace: "gloo-system"
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      gloo:
+        license_secret_name: gloo-edge-license

@@ -27,6 +27,7 @@ eksctl create iamserviceaccount \
 
 # create gloo license secret
 
+_mesh_
 ```bash
 kubectl create ns gloo-mesh 
 kubectl apply -f - <<EOF
@@ -37,6 +38,21 @@ kind: Secret
 metadata:
   name: gloo-mesh-license
   namespace: gloo-mesh
+type: Opaque
+EOF
+```
+
+_edge_
+```bash
+kubectl create ns gloo-system 
+kubectl apply -f - <<EOF
+apiVersion: v1
+data:
+  gloo-edge-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+kind: Secret
+metadata:
+  name: gloo-edge-license
+  namespace: gloo-system
 type: Opaque
 EOF
 ```
