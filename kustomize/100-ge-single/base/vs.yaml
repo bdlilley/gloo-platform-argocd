@@ -2,22 +2,22 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: gw-tls
+  name: gw-tls2
   namespace: gloo-system
 spec:
-  secretName: gw-tls
+  secretName: gw-tls2
   duration: 2160h0m0s # 90d
   renewBefore: 360h0m0s # 15d
-  subject:
-    organizations:
-    - solo.io
+  # subject:
+  #   organizations:
+  #   - solo.io
   privateKey:
     algorithm: RSA
     encoding: PKCS1
     size: 2048
   usages:
     - server auth
-    - client auth
+    # - client auth
   dnsNames:
   - '*'
   issuerRef:
@@ -33,7 +33,7 @@ metadata:
 spec:
   sslConfig:
     secretRef:
-      name: gw-tls
+      name: gw-tls2
       namespace: gloo-system
   virtualHost:
     domains:
