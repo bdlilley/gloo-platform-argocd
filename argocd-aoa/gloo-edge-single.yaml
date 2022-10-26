@@ -49,3 +49,5 @@ charts:
     values:
       gloo:
         license_secret_name: gloo-edge-license
+      gloo-fed:
+        license_secret_name: gloo-edge-license
