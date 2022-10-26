@@ -4,8 +4,8 @@ kind: Kustomization
 
 # list of resources to be Applied
 resources:
-- ns-gloo-mesh.yaml
-- cert-gloo-mesh.yaml
+# - ns-gloo-mesh.yaml
+# - cert-gloo-mesh.yaml
 - cert-issuers.yaml
-- cert-root-ca.yaml
-- cert-gloo-mesh-agent.yaml
+# - cert-root-ca.yaml
+# - cert-gloo-mesh-agent.yaml
