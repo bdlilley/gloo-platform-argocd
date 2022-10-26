@@ -2,18 +2,18 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: gw-self-signed
+  name: gateway
   namespace: gloo-system
 spec:
   isCA: true
-  secretName: gw-self-signed
+  secretName: gateway
   duration: 2160h0m0s # 90d
   renewBefore: 360h0m0s # 15d
-  commonName: gw-self-signed
+  commonName: gateway
   dnsNames:
   - '*'
   issuerRef:
-    name: selfsigned
+    name: ca-issuer
     kind: ClusterIssuer
     group: cert-manager.io
 ---
@@ -25,7 +25,7 @@ metadata:
 spec:
   sslConfig:
     secretRef:
-      name: gw-self-signed
+      name: gateway
       namespace: gloo-system
   virtualHost:
     domains:
