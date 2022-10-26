@@ -1,8 +1,0 @@
-apiVersion: admin.gloo.solo.io/v2
-kind: KubernetesCluster
-metadata:
-  name: {{ .Values.istio.clusterName }}
-  labels:
-    env: prod
-spec:
-  clusterDomain: cluster.local
