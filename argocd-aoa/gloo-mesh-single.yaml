@@ -15,15 +15,6 @@ charts:
     wave: 10
     path: kustomize/1-core/base
 
-  # # a cert-manager clusterIssuer named "selfsigned"
-  # selfsigned:
-  #   path: charts/cluster-issuer
-  #   namespace: kube-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-
-
-
   # aws-load-balancer-controller:
   #   repo: https://aws.github.io/eks-charts
   #   chart: aws-load-balancer-controller
