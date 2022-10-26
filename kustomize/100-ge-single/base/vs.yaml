@@ -31,6 +31,11 @@ spec:
     - '*'
     routes:
     - matchers:
+      - exact: /hello
+      directResponseAction:
+        status: 200
+        body: hello, world
+    - matchers:
       - exact: /httpbin
       routeAction:
         single:
