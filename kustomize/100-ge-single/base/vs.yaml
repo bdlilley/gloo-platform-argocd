@@ -5,6 +5,7 @@ metadata:
   name: gw-self-signed
   namespace: gloo-system
 spec:
+  isCA: true
   secretName: gw-self-signed
   duration: 2160h0m0s # 90d
   renewBefore: 360h0m0s # 15d
@@ -24,7 +25,7 @@ metadata:
 spec:
   sslConfig:
     secretRef:
-      name: upstream-tls
+      name: gw-self-signed
       namespace: gloo-system
   virtualHost:
     domains:
