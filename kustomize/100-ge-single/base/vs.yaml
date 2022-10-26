@@ -47,12 +47,12 @@ spec:
             namespace: gloo-system
     - matchers:
       - prefix: /lambda
-        options:
-          timeout: 35s  # default value is 15s
-          retries:
-            retryOn: '5xx'
-            numRetries: 3
-            perTryTimeout: '10s'
+      options:
+        timeout: 35s  # default value is 15s
+        retries:
+          retryOn: '5xx'
+          numRetries: 3
+          perTryTimeout: '10s'
       routeAction:
         single:
           destinationSpec:
