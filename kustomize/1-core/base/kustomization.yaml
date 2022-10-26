@@ -8,3 +8,4 @@ resources:
 - cert-gloo-mesh.yaml
 - cert-issuers.yaml
 - cert-root-ca.yaml
+- cert-gloo-mesh-agent.yaml
