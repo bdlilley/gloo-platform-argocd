@@ -3,6 +3,7 @@ charts:
 
   # cert-manager for issuing certs
   cert-manager:
+    # wave defaults to 100
     wave: 1
     repo: https://charts.jetstack.io
     revision: v1.9.1
@@ -11,63 +12,70 @@ charts:
     values:
       installCRDs: true
 
+  aws-load-balancer-controller:
+    # wave defaults to 100
+    wave: 1
+    repo: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    revision: "1.4.5"
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      clusterName: ben
+      replicaCount: 1
+      serviceAccount:
+        create: false
+        name: aws-load-balancer-controller
+
   core:
-    wave: 10
+    # wave defaults to 100
+    wave: 5
     path: kustomize/1-core/base
 
-  # aws-load-balancer-controller:
-  #   repo: https://aws.github.io/eks-charts
-  #   chart: aws-load-balancer-controller
-  #   revision: "1.4.5"
-  #   namespace: kube-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     clusterName: ben
-  #     replicaCount: 1
-  #     serviceAccount:
-  #       create: false
-  #       name: aws-load-balancer-controller
-  
-  # istio-base:
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: base
-  #   namespace: istio-system
-  #   revision: "1.15.0"
+  istio-base:
+    # wave defaults to 100
+    wave: 10
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    namespace: istio-system
+    revision: "1.15.0"
 
-  # istiod-15-0:
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: istiod
-  #   revision: "1.15.0"
-  #   namespace: istio-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   globalValues:
-  #     meshID: mesh1
-  #     multiCluster:
-  #       clusterName: mgmt
-  #     network: network1
-  #     hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-  #     tag: 1.15.0-solo
-  #   values:
-  #     revision: 1-15
-  #     meshConfig:
-  #       trustDomain: mgmt
-  #       accessLogFile: /dev/stdout
-  #       enableAutoMtls: true
-  #       defaultConfig:
-  #         envoyMetricsService:
-  #           address: gloo-mesh-agent.gloo-mesh:9977
-  #         envoyAccessLogService:
-  #           address: gloo-mesh-agent.gloo-mesh:9977
-  #         proxyMetadata:
-  #           ISTIO_META_DNS_CAPTURE: "true"
-  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-  #           GLOO_MESH_CLUSTER_NAME: mgmt
-  #     pilot:
-  #       env:
-  #         PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
-  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  istiod-15-0:
+    # wave defaults to 100
+    wave: 10
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    revision: "1.15.0"
+    namespace: istio-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    globalValues:
+      meshID: mesh1
+      multiCluster:
+        clusterName: mgmt
+      network: network1
+      hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+      tag: 1.15.0-solo
+    values:
+      revision: 1-15
+      meshConfig:
+        trustDomain: mgmt
+        accessLogFile: /dev/stdout
+        enableAutoMtls: true
+        defaultConfig:
+          envoyMetricsService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          envoyAccessLogService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: "true"
+            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+            GLOO_MESH_CLUSTER_NAME: mgmt
+      pilot:
+        env:
+          PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
+          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
 
   # istio-ingressgateway:
   #   repo: https://istio-release.storage.googleapis.com/charts
