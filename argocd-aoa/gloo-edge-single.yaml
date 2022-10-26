@@ -45,6 +45,9 @@ charts:
         enabled: false
       observability:
         enabled: false
+      grafana:
+        persistence:
+          enabled: false
       gloo:
         license_secret_name: gloo-edge-license
       gloo-fed:
