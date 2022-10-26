@@ -50,10 +50,6 @@ charts:
               eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
         settings:
           aws:
-            # serviceAccountCredentials:s
-            #   cluster: ""
-            #   uri: ""
-            #   timeout: ""
             enableServiceAccountCredentials: true
             stsCredentialsRegion: us-east-2
       gloo-fed:
