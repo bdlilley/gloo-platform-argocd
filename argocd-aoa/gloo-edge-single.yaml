@@ -40,17 +40,24 @@ charts:
     namespace: "gloo-system"
     syncPolicy:
       syncOptions: [] # dont create namespace
+    globalValues:
+      extensions:
+        extAuth:
+          enabled: false
     values:
       prometheus:
         enabled: false
       observability:
         enabled: false
+      rateLimit:
+        enabled: false
       grafana:
+        defaultInstallationEnabled: false
         persistence:
           enabled: false
       gloo:
         license_secret_name: gloo-edge-license
-      gloo-fed:
+      "gloo-fed":
         enabled: false
         glooFedApiserver:
           enabled: false
