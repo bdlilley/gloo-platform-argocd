@@ -26,7 +26,7 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
-      clusterName: eks
+      clusterName: ge-single
       replicaCount: 1
       serviceAccount:
         create: false
