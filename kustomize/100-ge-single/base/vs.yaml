@@ -6,7 +6,7 @@ metadata:
   namespace: gloo-system
 spec:
   issuerRef:
-    name: v
+    name: selfsigned
     kind: ClusterIssuer
     group: cert-manager.io
   dnsNames:
