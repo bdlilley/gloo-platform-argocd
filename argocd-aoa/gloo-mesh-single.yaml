@@ -165,9 +165,6 @@ charts:
           name: relay-root-tls-secret
           namespace: gloo-mesh
 
-  # mgmt-workspace:
-  #   path: charts/ws-single-cluster
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  gm-single-cluster-single-ws:
+    path: kustomize/10-gm-single-cluster-single-workspace/base
 
