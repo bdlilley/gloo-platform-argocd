@@ -78,6 +78,7 @@ spec:
     path: argocd-aoa
     helm:
       valueFiles:
+      - core-infra.yaml
       - gloo-edge-single.yaml
   syncPolicy:
     automated:

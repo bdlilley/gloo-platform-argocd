@@ -6,38 +6,8 @@ charts:
   ge-single:
     path: kustomize/100-ge-single/base
 
-  # cert-manager for issuing certs
-  cert-manager:
-    # wave defaults to 100
-    wave: 1
-    repo: https://charts.jetstack.io
-    revision: v1.9.1
-    chart: cert-manager
-    namespace: cert-manager
-    values:
-      installCRDs: true
-
-  aws-load-balancer-controller:
-    wave: 1
-    repo: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    revision: "1.4.5"
-    namespace: kube-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      clusterName: ge-single
-      replicaCount: 1
-      serviceAccount:
-        create: false
-        name: aws-load-balancer-controller
-
-  core:
-    wave: 5
-    path: kustomize/1-core/base
-
   gloo-edge:
-    wave: 10
+    wave: 20
     repo: https://storage.googleapis.com/gloo-ee-helm
     revision: "1.12.31" # "1.13.0-beta8"
     chart: "gloo-ee"

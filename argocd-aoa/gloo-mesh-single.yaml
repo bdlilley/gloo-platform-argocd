@@ -1,41 +1,9 @@
 
 charts:
 
-  # cert-manager for issuing certs
-  cert-manager:
-    # wave defaults to 100
-    wave: 1
-    repo: https://charts.jetstack.io
-    revision: v1.9.1
-    chart: cert-manager
-    namespace: cert-manager
-    values:
-      installCRDs: true
-
-  aws-load-balancer-controller:
-    # wave defaults to 100
-    wave: 1
-    repo: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    revision: "1.4.5"
-    namespace: kube-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      clusterName: ben
-      replicaCount: 1
-      serviceAccount:
-        create: false
-        name: aws-load-balancer-controller
-
-  core:
-    # wave defaults to 100
-    wave: 5
-    path: kustomize/1-core/base
-
   istio-base:
     # wave defaults to 100
-    wave: 10
+    wave: 20
     repo: https://istio-release.storage.googleapis.com/charts
     chart: base
     namespace: istio-system
@@ -43,7 +11,7 @@ charts:
 
   istiod-15-0:
     # wave defaults to 100
-    wave: 10
+    wave: 20
     repo: https://istio-release.storage.googleapis.com/charts
     chart: istiod
     revision: "1.15.0"
@@ -79,7 +47,7 @@ charts:
 
   istio-ingressgateway:
     # wave defaults to 100
-    wave: 20
+    wave: 30
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
     namespace: istio-gateways
@@ -109,7 +77,7 @@ charts:
 
   gloo-mesh-enterprise:
     # wave defaults to 100
-    wave: 30
+    wave: 40
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
     chart: gloo-mesh-enterprise
     revision: v2.1.0-rc3
@@ -140,7 +108,7 @@ charts:
 
   gloo-agent:
     # wave defaults to 100
-    wave: 30
+    wave: 40
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     chart: gloo-mesh-agent
     namespace: gloo-mesh

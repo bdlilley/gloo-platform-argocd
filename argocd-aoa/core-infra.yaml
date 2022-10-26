@@ -1,0 +1,32 @@
+charts:
+
+  # cert-manager for issuing certs
+  cert-manager:
+    # wave defaults to 100
+    wave: 1
+    repo: https://charts.jetstack.io
+    revision: v1.9.1
+    chart: cert-manager
+    namespace: cert-manager
+    values:
+      installCRDs: true
+
+  aws-load-balancer-controller:
+    wave: 1
+    repo: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    revision: "1.4.5"
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      # cluster name sucks ... this is how the lb controller knows which nodes to create target group bindings for
+      clusterName: ge-single
+      replicaCount: 1
+      serviceAccount:
+        create: false
+        name: aws-load-balancer-controller
+
+  core:
+    wave: 10
+    path: kustomize/1-core/base
