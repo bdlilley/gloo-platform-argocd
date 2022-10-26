@@ -12,23 +12,23 @@ charts:
     values:
       installCRDs: true
 
-  aws-load-balancer-controller:
-    # wave defaults to 100
-    wave: 1
-    repo: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    revision: "1.4.5"
-    namespace: kube-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      clusterName: ge-single
-      replicaCount: 1
-      serviceAccount:
-        create: false
-        name: aws-load-balancer-controller
+  # aws-load-balancer-controller:
+  #   # wave defaults to 100
+  #   wave: 1
+  #   repo: https://aws.github.io/eks-charts
+  #   chart: aws-load-balancer-controller
+  #   revision: "1.4.5"
+  #   namespace: kube-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     clusterName: ge-single
+  #     replicaCount: 1
+  #     serviceAccount:
+  #       create: false
+  #       name: aws-load-balancer-controller
 
-  core:
-    # wave defaults to 100
-    wave: 5
-    path: kustomize/1-core/base
+  # core:
+  #   # wave defaults to 100
+  #   wave: 5
+  #   path: kustomize/1-core/base
