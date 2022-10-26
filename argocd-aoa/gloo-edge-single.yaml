@@ -18,12 +18,13 @@ charts:
       extensions:
         extAuth:
           enabled: false
+        rateLimit:
+          enabled: false
     values:
+      create_license_secret: false
       prometheus:
         enabled: false
       observability:
-        enabled: false
-      rateLimit:
         enabled: false
       grafana:
         defaultInstallationEnabled: false
@@ -49,7 +50,7 @@ charts:
               eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-lambda-discovery
         settings:
           aws:
-            # serviceAccountCredentials:
+            # serviceAccountCredentials:s
             #   cluster: ""
             #   uri: ""
             #   timeout: ""
