@@ -37,11 +37,8 @@ spec:
         body: hello, world
     - matchers:
       - exact: /httpbin
-      directResponseAction:
-        status: 200
-        body: hello, world
-      # routeAction:
-      #   single:
-      #     upstream:
-      #       name: httpbin-httpbin-8000
-      #       namespace: gloo-system
+      routeAction:
+        single:
+          upstream:
+            name: httpbin-httpbin-8000
+            namespace: gloo-system
