@@ -51,6 +51,8 @@ charts:
       gloo:
         license_secret_name: gloo-edge-license
       gloo-fed:
-        # enabled: false
+        enabled: false
+        glooFedApiserver:
+          enabled: false
         create_license_secret: false
         license_secret_name: gloo-edge-license
