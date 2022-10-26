@@ -23,10 +23,10 @@ metadata:
   name: sample
   namespace: gloo-system
 spec:
-  sslConfig:
-    secretRef:
-      name: upstream-tls
-      namespace: cert-manager
+  # sslConfig:
+  #   secretRef:
+  #     name: upstream-tls
+  #     namespace: cert-manager
   virtualHost:
     domains:
     - '*'
