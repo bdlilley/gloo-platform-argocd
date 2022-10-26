@@ -17,7 +17,7 @@ syncOptions:
 
 {{- define "app.wave" }}
 {{- if (.).wave }}
-{{- .wave }}
+{{- .wave | quote }}
 {{- else }}
 {{- "100" }}
 {{- end }}
