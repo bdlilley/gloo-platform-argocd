@@ -2,21 +2,23 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: sample-gateway-tls
+  name: test-tls
   namespace: gloo-system
 spec:
   issuerRef:
     name: selfsigned
     kind: ClusterIssuer
     group: cert-manager.io
+  commonName: k8s-gloosyst-gatewayp-d1c525ed64-a29bd81ef3b16d96.elb.us-east-2.amazonaws.com
   dnsNames:
     - "*" 
-  secretName: sample-gateway-tls
+    - "*.k8s-gloosyst-gatewayp-d1c525ed64-a29bd81ef3b16d96.elb.us-east-2.amazonaws.com"
+  secretName: test-tls
 ---
 apiVersion: gateway.solo.io/v1
 kind: VirtualService
 metadata:
-  name: sample-gateway-tls
+  name: test-tls
   namespace: gloo-system
 spec:
   sslConfig:
