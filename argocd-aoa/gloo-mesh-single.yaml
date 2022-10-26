@@ -28,10 +28,10 @@ charts:
         create: false
         name: aws-load-balancer-controller
 
-  # core:
-  #   # wave defaults to 100
-  #   wave: 5
-  #   path: kustomize/1-core/base
+  core:
+    # wave defaults to 100
+    wave: 5
+    path: kustomize/1-core/base
 
   # istio-base:
   #   # wave defaults to 100
