@@ -34,6 +34,7 @@ charts:
     path: kustomize/1-core/base
 
   gloo-edge:
+    wave: 10
     repo: https://storage.googleapis.com/gloo-ee-helm
     revision: "1.12.31" # "1.13.0-beta8"
     chart: "gloo-ee"
@@ -70,3 +71,6 @@ charts:
           enabled: false
         create_license_secret: false
         license_secret_name: gloo-edge-license
+
+  samples:
+    path: kustomize/5-sample-apps/base
