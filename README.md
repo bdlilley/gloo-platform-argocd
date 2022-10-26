@@ -62,7 +62,7 @@ spec:
     path: argocd-aoa
     helm:
       valueFiles:
-      - gloo-mesh-single.yaml
+      - gloo-edge-single.yaml
   syncPolicy:
     automated:
       prune: true

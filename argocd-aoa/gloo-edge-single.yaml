@@ -22,7 +22,7 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
-      clusterName: ben
+      clusterName: ge-single
       replicaCount: 1
       serviceAccount:
         create: false
