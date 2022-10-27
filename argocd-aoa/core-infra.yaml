@@ -19,11 +19,9 @@ charts:
     namespace: kube-system
     syncPolicy:
       syncOptions: [] # dont create namespace
-    valueMap:
-      clusterName: solo-io.clusterName
     values:
       # cluster name sucks ... this is how the lb controller knows which nodes to create target group bindings for
-      # clusterName: ge-single
+      clusterName: ${CLUSTER_NAME}
       replicaCount: 1
       serviceAccount:
         create: false

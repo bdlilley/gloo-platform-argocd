@@ -71,8 +71,9 @@ spec:
       - core-infra.yaml
       - gloo-edge-single.yaml
       values: |
-        solo-io:
-          clusterName: ${CLUSTER_NAME}
+        global:
+          aws-load-balancer-controller:
+            clusterName: ${CLUSTER_NAME}
   syncPolicy:
     automated:
       prune: true
