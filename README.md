@@ -50,6 +50,7 @@ EOF
 
 ```bash
 
+export CLUSTER_NAME="ge-single"
 cat <<EOF | kubectl apply -f -
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -69,6 +70,9 @@ spec:
       valueFiles:
       - core-infra.yaml
       - gloo-edge-single.yaml
+      values: |
+        solo-io:
+          clusterName: ${CLUSTER_NAME}
   syncPolicy:
     automated:
       prune: true
