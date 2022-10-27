@@ -58,7 +58,9 @@ spec:
           destinationSpec:
             aws:
               logicalName: golang-echo-latest
-              requestTransformation: true
+              # this option causes headers and request info be included in body payload
+              # requestTransformation: true
+              wrapAsApiGateway: true
           upstream:
             name: lambda
             namespace: gloo-system
