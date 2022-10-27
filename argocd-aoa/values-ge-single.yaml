@@ -40,14 +40,6 @@ charts:
                 service.beta.kubernetes.io/aws-load-balancer-scheme: internal
                 service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
                 service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-        gateway:
-          proxyServiceAccount:
-            extraAnnotations:
-              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-gloo-gateway-proxy
-        discovery:
-          serviceAccount:
-            extraAnnotations:
-              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/ge-single-gloo-discovery
         settings:
           aws:
             enableServiceAccountCredentials: true
