@@ -58,6 +58,7 @@ spec:
           destinationSpec:
             aws:
               logicalName: golang-echo-latest
+              requestTransformation: true
           upstream:
             name: lambda
             namespace: gloo-system
