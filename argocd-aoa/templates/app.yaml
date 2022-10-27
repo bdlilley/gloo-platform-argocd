@@ -61,7 +61,6 @@ spec:
 {{ toYaml $chart.globalValues | indent 10 }}
 {{- end }}
 {{- end }}
-{{- end }}
 
   destination:
     server: https://kubernetes.default.svc
