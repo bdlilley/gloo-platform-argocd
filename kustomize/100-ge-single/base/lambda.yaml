@@ -7,4 +7,4 @@ spec:
   aws: 
     region: us-east-2
     # unclear how this works - it does not assume a role from the pod's role as expected
-    roleArn: arn:aws:iam::931713665590:role/ge-single-gloo-gateway-proxy
+    roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
