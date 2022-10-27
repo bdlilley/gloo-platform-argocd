@@ -43,7 +43,7 @@ charts:
         settings:
           aws:
             enableServiceAccountCredentials: true
-            
+            # stsCredentialsRegion: us-east-2
       gloo-fed:
         enabled: false
         glooFedApiserver:
