@@ -49,6 +49,7 @@ spec:
 {{- $theValues = deepCopy ($chart).values }}
 {{- end }}
 
+{{- if not ($chart).plugin  }}
     helm:
       values: |
 {{- if $theValues  }}
@@ -59,7 +60,7 @@ spec:
 {{- if ($chart).globalValues }}
 {{ toYaml $chart.globalValues | indent 10 }}
 {{- end }}
-
+{{- end }}
 
   destination:
     server: https://kubernetes.default.svc
