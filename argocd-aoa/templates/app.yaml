@@ -54,8 +54,9 @@ spec:
 {{- $theGlobalValues = deepCopy ($chart).globalValues }}
 {{- end }}
 
+# if the root chart has globals for this chart, copy them into the chart's values
 {{- if and ($root).Values.global (hasKey $root.Values.global $chartName) }}
-{{- $theGlobalValues = merge $theGlobalValues (get $root.Values.global $chartName) }}
+{{- $theValues = merge $theValues (get $root.Values.global $chartName) }}
 {{- end }}
 
 {{- if and (not ($chart).plugin) $theValues }}
