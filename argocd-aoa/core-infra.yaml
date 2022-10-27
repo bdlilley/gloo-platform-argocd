@@ -20,8 +20,7 @@ charts:
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
-      # cluster name sucks ... this is how the lb controller knows which nodes to create target group bindings for
-      clusterName: ${CLUSTER_NAME}
+      # cluster name set as a global value
       replicaCount: 1
       serviceAccount:
         create: false
