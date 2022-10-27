@@ -59,7 +59,7 @@ spec:
             aws:
               logicalName: golang-echo-latest
               # this option causes headers and request info be included in body payload
-              # requestTransformation: true
+              requestTransformation: true
               wrapAsApiGateway: true
           upstream:
             name: lambda
