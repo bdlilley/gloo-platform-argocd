@@ -49,7 +49,7 @@ spec:
 {{- $theValues = deepCopy ($chart).values }}
 {{- end }}
 
-{{- if not ($chart).plugin  }}
+{{- if and (not ($chart).plugin) $theValues }}
     helm:
       values: |
 {{- if $theValues  }}
@@ -59,6 +59,7 @@ spec:
 {{ toYaml $root.Values.global | indent 10 }}   
 {{- if ($chart).globalValues }}
 {{ toYaml $chart.globalValues | indent 10 }}
+{{- end }}
 {{- end }}
 {{- end }}
 
