@@ -68,8 +68,8 @@ spec:
     path: argocd-aoa
     helm:
       valueFiles:
-      - core-infra.yaml
-      - gloo-edge-single.yaml
+      - values-infrastructure-core.yaml
+      - values-ge-single.yaml
       values: |
         global:
           aws-load-balancer-controller:
