@@ -4,5 +4,6 @@ kind: Kustomization
 
 # list of resources to be Applied
 resources:
+- upstream-tls.yaml
 - vs.yaml
 - lambda.yaml
