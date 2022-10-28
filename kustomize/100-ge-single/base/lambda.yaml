@@ -5,5 +5,8 @@ metadata:
   namespace: gloo-system
 spec:
   aws: 
+    lambdaFunctions:
+    - lambdaFunctionName: golang-echo-latest
+      logicalName: golang-echo-latest
     region: us-east-2
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
