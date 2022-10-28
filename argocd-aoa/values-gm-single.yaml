@@ -1,6 +1,8 @@
 
 charts:
-
+  samples:
+    path: kustomize/5-sample-apps/base
+    
   istio-base:
     # wave defaults to 100
     wave: 20
