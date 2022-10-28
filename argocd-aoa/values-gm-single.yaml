@@ -134,5 +134,6 @@ charts:
         #   namespace: gloo-mesh
 
   gm-single-cluster-single-ws:
+    wave: 50
     path: kustomize/10-gm-single-cluster-single-workspace/base
 
