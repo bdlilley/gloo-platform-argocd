@@ -135,5 +135,5 @@ charts:
 
   gm-single-cluster-single-ws:
     wave: 50
-    path: kustomize/10-gm-single-cluster-single-workspace/base
+    path: kustomize/10-gm-single-cluster/base
 

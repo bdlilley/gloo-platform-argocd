@@ -95,7 +95,7 @@ EOF
 
 
 
-export CLUSTER_NAME="ben"
+export CLUSTER_NAME="gg-single"
 cat <<EOF | kubectl apply -f -
 ---
 apiVersion: argoproj.io/v1alpha1
