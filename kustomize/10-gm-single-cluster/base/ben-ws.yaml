@@ -39,7 +39,7 @@ spec:
       body: "it works"
   virtualGateways:
   - cluster: mgmt
-    name: ben-443
+    name: mgmt-north-south-gw-443
     namespace: istio-gateways
   workloadSelectors: []
 
