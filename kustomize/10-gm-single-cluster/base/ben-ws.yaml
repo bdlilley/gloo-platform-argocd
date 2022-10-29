@@ -8,15 +8,8 @@ spec:
   workloadClusters:
   - name: 'mgmt'
     namespaces:
-    - name: argocd
-    - name: gloo-mesh
-    - name: istio-system
-    - name: bookinfo
-    - name: httpbin
-  - name: '*'
-    namespaces:
-    - name: istio-gateways
-    - name: gloo-mesh-addons
+    - name: ben
+
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
