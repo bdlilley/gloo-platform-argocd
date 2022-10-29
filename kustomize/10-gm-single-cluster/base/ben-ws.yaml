@@ -33,7 +33,7 @@ spec:
     labels:
     matchers:
     - uri:
-        prefix: /
+        prefix: /benji
     directResponse:
       status: 200
       body: "it works"
