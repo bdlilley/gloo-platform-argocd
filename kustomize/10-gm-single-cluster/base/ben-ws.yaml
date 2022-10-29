@@ -17,6 +17,31 @@ spec:
       cluster: mgmt
       labels:
         istio: ingressgateway
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  labels:
+    expose: "true"
+  name: ben
+  namespace: gloo-mesh
+spec:
+  hosts:
+  - '*'
+  http:
+  - name: test
+    labels:
+    matchers:
+    - uri:
+        prefix: /
+    directResponse:
+      status: 200
+      body: "it works"
+  virtualGateways:
+  - cluster: mgmt
+    name: ben-443
+    namespace: istio-gateways
+  workloadSelectors: []
 
 # ---
 # apiVersion: admin.gloo.solo.io/v2
