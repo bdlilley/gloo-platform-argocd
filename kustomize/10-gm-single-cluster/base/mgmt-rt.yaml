@@ -8,7 +8,7 @@ metadata:
   namespace: gloo-mesh
 spec:
   hosts:
-  - 'bob'
+  - '*'
   http:
   - name: gloo-mesh-ui-main
     labels:
