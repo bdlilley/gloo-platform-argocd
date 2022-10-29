@@ -27,7 +27,7 @@ metadata:
   namespace: gloo-mesh
 spec:
   hosts:
-  - '*'
+  - 'ben'
   http:
   - name: test
     labels:
