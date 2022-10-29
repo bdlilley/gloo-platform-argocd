@@ -8,10 +8,6 @@ spec:
   workloadClusters:
   - name: 'mgmt'
     namespaces:
-    - name: argocd
-    - name: gloo-mesh
-    - name: istio-system
-    - name: bookinfo
     - name: httpbin
     - name: ben
   - name: '*'
