@@ -8,7 +8,7 @@ metadata:
   namespace: gloo-mesh
 spec:
   hosts:
-  - '*'
+  - 'bob'
   http:
   - name: gloo-mesh-ui-main
     labels:
@@ -44,14 +44,6 @@ spec:
           namespace: gloo-mesh
         port:
           number: 8090
-  - name: test
-    labels:
-    matchers:
-    - uri:
-        prefix: /benji
-    directResponse:
-      status: 200
-      body: "it works"
   - name: gmui-rewrite
     labels:
     matchers:
