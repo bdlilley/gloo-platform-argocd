@@ -15,7 +15,7 @@ apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
 metadata:
   name: ben
-  namespace: gloo-mesh
+  namespace: ben
 #   namespace: ops-team-config
 spec:
   exportTo:
