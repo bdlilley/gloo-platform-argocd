@@ -8,3 +8,4 @@ resources:
 - mgmt-rt.yaml
 - mgmt-vg.yaml
 - mgmt-ws.yaml
+- ben-ws.yaml
