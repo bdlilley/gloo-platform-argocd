@@ -133,7 +133,7 @@ charts:
     wave: 40
     repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
     path: install/helm/gloo-mesh-enterprise
-    revision: aws-lambda
+    revision: ben-aws-lambda
     # repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     # chart: gloo-mesh-agent
     # revision: v2.1.0-rc3
