@@ -80,7 +80,7 @@ charts:
   gloo-mesh-enterprise:
     # wave defaults to 100
     wave: 40
-    repo: https://github.com/solo-io/gloo-mesh-enterprise
+    repo: git@github.com:solo-io/gloo-mesh-enterprise.git
     path: install/helm/gloo-mesh-enterprise
     revision: aws-lambda
     # repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
@@ -131,7 +131,7 @@ charts:
   gloo-agent:
     # wave defaults to 100
     wave: 40
-    repo: https://github.com/solo-io/gloo-mesh-enterprise
+    repo: git@github.com:solo-io/gloo-mesh-enterprise.git
     path: install/helm/gloo-mesh-enterprise
     revision: aws-lambda
     # repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
