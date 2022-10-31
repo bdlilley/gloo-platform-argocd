@@ -80,9 +80,12 @@ charts:
   gloo-mesh-enterprise:
     # wave defaults to 100
     wave: 40
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    revision: v2.1.0-rc3
+    repo: https://github.com/solo-io/gloo-mesh-enterprise
+    path: install/helm/gloo-mesh-enterprise
+    revision: aws-lambda
+    # repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    # chart: gloo-mesh-enterprise
+    # revision: v2.1.0-rc3
     namespace: gloo-mesh
     globalValues:
       cluster: mgmt
@@ -128,10 +131,13 @@ charts:
   gloo-agent:
     # wave defaults to 100
     wave: 40
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
+    repo: https://github.com/solo-io/gloo-mesh-enterprise
+    path: install/helm/gloo-mesh-enterprise
+    revision: aws-lambda
+    # repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    # chart: gloo-mesh-agent
+    # revision: v2.1.0-rc3
     namespace: gloo-mesh
-    revision: v2.1.0-rc3
     syncPolicy:
       syncOptions: [] # dont create namespace
     values:
