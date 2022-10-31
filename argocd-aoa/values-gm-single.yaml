@@ -90,8 +90,18 @@ charts:
       # assumes license was created by some other process (see README.md)
       licenseSecretName: gloo-mesh-license
       mgmtClusterName: mgmt
+      glooMeshUi:
+        image:
+          registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+          repository: gloo-mesh-apiserver
+          tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+
       glooMeshMgmtServer:
         serviceType: ClusterIP
+        image:
+          registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+          repository: gloo-mesh-mgmt-server
+          tag: 2.1.0-beta27-38-ge9c2f5587-dirty
         # relay:
         #   disableCa: true
         #   disableCaCertGeneration: true
@@ -121,6 +131,10 @@ charts:
       cluster: mgmt
       glooMeshAgent:
         enabled: true
+        image:
+          registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+          repository: gloo-mesh-apiserver
+          tag: 2.1.0-beta27-38-ge9c2f5587-dirty
       ext-auth-service:
         enabled: false
       rate-limiter:
