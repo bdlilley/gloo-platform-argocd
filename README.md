@@ -23,6 +23,8 @@ kubectl apply -f - <<EOF
 apiVersion: v1
 data:
   gloo-gateway-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+  gloo-mesh-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+  gloo-mesh-enterprise-license-key: $(echo -n "${LICENSE_KEY}" | base64)
 kind: Secret
 metadata:
   name: gloo-mesh-license
