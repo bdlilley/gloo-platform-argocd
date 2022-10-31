@@ -95,6 +95,12 @@ charts:
           registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
           repository: gloo-mesh-apiserver
           tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+        sidecars:
+          console: 
+            image:
+              registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+              repository: gloo-mesh-apiserver
+              tag: 2.1.0-beta27-38-ge9c2f5587-dirty
 
       glooMeshMgmtServer:
         serviceType: ClusterIP
@@ -102,6 +108,7 @@ charts:
           registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
           repository: gloo-mesh-mgmt-server
           tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+      
         # relay:
         #   disableCa: true
         #   disableCaCertGeneration: true
@@ -133,7 +140,7 @@ charts:
         enabled: true
         image:
           registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-          repository: gloo-mesh-apiserver
+          repository: gloo-mesh-agent
           tag: 2.1.0-beta27-38-ge9c2f5587-dirty
       ext-auth-service:
         enabled: false
