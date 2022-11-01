@@ -39,6 +39,7 @@ charts:
               extraAnnotations:
                 service.beta.kubernetes.io/aws-load-balancer-scheme: internal
                 service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+                service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
                 service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         settings:
           aws:

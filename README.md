@@ -71,6 +71,7 @@ spec:
     helm:
       valueFiles:
       - values-infrastructure-core.yaml
+      - values-ben.yaml
       values: |
         global:
           aws-load-balancer-controller:
