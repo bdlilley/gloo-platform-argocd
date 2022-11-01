@@ -52,6 +52,41 @@ EOF
 
 ```bash
 
+export CLUSTER_NAME="ben"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/bdlilley/gloo-platform-argocd.git
+    targetRevision: main
+    path: argocd-aoa
+    helm:
+      valueFiles:
+      - values-infrastructure-core.yaml
+      values: |
+        global:
+          aws-load-balancer-controller:
+            clusterName: ${CLUSTER_NAME}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+EOF
+
+
+
+
 export CLUSTER_NAME="ge-single"
 cat <<EOF | kubectl apply -f -
 ---
