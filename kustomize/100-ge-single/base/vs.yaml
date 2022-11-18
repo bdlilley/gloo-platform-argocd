@@ -46,6 +46,25 @@ spec:
             name: httpbin-httpbin-8000
             namespace: gloo-system
     - matchers:
+      - prefix: /lambda-good
+      options:
+        timeout: 35s  # default value is 15s
+        retries:
+          retryOn: '5xx'
+          numRetries: 3
+          perTryTimeout: '10s'
+      routeAction:
+        single:
+          destinationSpec:
+            aws:
+              logicalName: golang-echo-latest
+              # this option causes headers and request info be included in body payload
+              requestTransformation: true
+              # wrapAsApiGateway: true
+          upstream:
+            name: aws-lambda
+            namespace: gloo-system
+    - matchers:
       - prefix: /lambda-bad
       options:
         timeout: 35s  # default value is 15s
