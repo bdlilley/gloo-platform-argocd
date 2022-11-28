@@ -6,49 +6,49 @@ charts:
   ge-single:
     path: kustomize/100-ge-single/base
 
-  gloo-edge:
-    wave: 20
-    repo: https://storage.googleapis.com/gloo-ee-helm
-    revision: "1.12.37" #"1.13.0-beta8"
-    chart: "gloo-ee"
-    namespace: "gloo-system"
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    globalValues:
-      extensions:
-        extAuth:
-          enabled: false
-        rateLimit:
-          enabled: false
-    values:
-      create_license_secret: false
-      prometheus:
-        enabled: false
-      observability:
-        enabled: false
-      grafana:
-        defaultInstallationEnabled: false
-        persistence:
-          enabled: false
-      gloo:
-        create_license_secret: false
-        license_secret_name: gloo-edge-license
-        gatewayProxies:
-          gatewayProxy:
-            service:
-              extraAnnotations:
-                service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-                service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
-                service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-                service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-        settings:
-          aws:
-            enableServiceAccountCredentials: true
-            # stsCredentialsRegion: us-east-2
-      gloo-fed:
-        enabled: false
-        glooFedApiserver:
-          enabled: true
-        create_license_secret: false
-        license_secret_name: gloo-edge-license
+  # gloo-edge:
+  #   wave: 20
+  #   repo: https://storage.googleapis.com/gloo-ee-helm
+  #   revision: "1.12.37" #"1.13.0-beta8"
+  #   chart: "gloo-ee"
+  #   namespace: "gloo-system"
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   globalValues:
+  #     extensions:
+  #       extAuth:
+  #         enabled: false
+  #       rateLimit:
+  #         enabled: false
+  #   values:
+  #     create_license_secret: false
+  #     prometheus:
+  #       enabled: false
+  #     observability:
+  #       enabled: false
+  #     grafana:
+  #       defaultInstallationEnabled: false
+  #       persistence:
+  #         enabled: false
+  #     gloo:
+  #       create_license_secret: false
+  #       license_secret_name: gloo-edge-license
+  #       gatewayProxies:
+  #         gatewayProxy:
+  #           service:
+  #             extraAnnotations:
+  #               service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+  #               service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+  #               service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+  #               service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+  #       settings:
+  #         aws:
+  #           enableServiceAccountCredentials: true
+  #           # stsCredentialsRegion: us-east-2
+  #     gloo-fed:
+  #       enabled: false
+  #       glooFedApiserver:
+  #         enabled: true
+  #       create_license_secret: false
+  #       license_secret_name: gloo-edge-license
 
