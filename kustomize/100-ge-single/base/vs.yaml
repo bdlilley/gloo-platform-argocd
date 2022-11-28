@@ -57,7 +57,7 @@ spec:
         single:
           destinationSpec:
             aws:
-              logicalName: golang-diag-latest
+              logicalName: golang-echo-latest
               # this option causes headers and request info be included in body payload
               requestTransformation: true
               # wrapAsApiGateway: true

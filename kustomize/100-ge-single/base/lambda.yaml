@@ -18,5 +18,7 @@ spec:
     # opt-in - we'd need to add a helm input to feature flag this behavior
     - lambdaFunctionName: golang-diag-latest
       logicalName: golang-diag-latest
+    - lambdaFunctionName: golang-echo-latest
+      logicalName: golang-echo-latest
     region: us-east-2
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
