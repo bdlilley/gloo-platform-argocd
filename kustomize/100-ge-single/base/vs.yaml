@@ -59,8 +59,8 @@ spec:
             aws:
               logicalName: golang-diag-latest
               # this option causes headers and request info be included in body payload
-              requestTransformation: true
-              # wrapAsApiGateway: true
+              # requestTransformation: true
+              wrapAsApiGateway: true
               # unwrapAsApiGateway: true
           upstream:
             name: aws-lambda
