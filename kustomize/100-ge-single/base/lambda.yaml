@@ -1,12 +1,22 @@
-# apiVersion: gloo.solo.io/v1
-# kind: Upstream
-# metadata:
-#   name: lambda
-#   namespace: gloo-system
-# spec:
-#   aws: 
-#     lambdaFunctions:
-#     - lambdaFunctionName: golang-echo-latest
-#       logicalName: golang-echo-latest
-#     region: us-east-2
-#     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: aws-lambda
+  namespace: gloo-system
+spec:
+  aws:
+    # this is "just" a:
+    # https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gloo/api/v1/options/aws/aws.proto.sk/#destinationspec
+    # defaultOptions: 
+    #   requestTransformation: true
+    #   unwrapAsFoo: true
+    secretRef:
+      name: aws-creds
+      namespace: gloo-system
+    lambdaFunctions:
+    # when there is only 1 we invoke it by default
+    # opt-in - we'd need to add a helm input to feature flag this behavior
+    - lambdaFunctionName: golang-diag-latest
+      logicalName: golang-diag-latest
+    region: us-east-2
+    roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
