@@ -32,6 +32,25 @@ spec:
     - '*'
     routes:
     - matchers:
+      - prefix: /lambda-simple
+      options:
+        timeout: 35s  # default value is 15s
+        retries:
+          retryOn: '5xx'
+          numRetries: 3
+          perTryTimeout: '10s'
+      routeAction:
+        single:
+          destinationSpec:
+            aws:
+              logicalName: golang-simple-latest
+              # transform request and headers to a generic map
+              requestTransformation: true
+          upstream:
+            name: aws-lambda
+            namespace: gloo-system
+
+    - matchers:
       - exact: /hello
       directResponseAction:
         status: 200

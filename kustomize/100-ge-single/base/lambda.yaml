@@ -16,6 +16,8 @@ spec:
     lambdaFunctions:
     # when there is only 1 we invoke it by default
     # opt-in - we'd need to add a helm input to feature flag this behavior
+    - lambdaFunctionName: golang-simple-latest
+      logicalName: golang-simple-latest
     - lambdaFunctionName: golang-diag-latest
       logicalName: golang-diag-latest
     - lambdaFunctionName: golang-echo-latest
