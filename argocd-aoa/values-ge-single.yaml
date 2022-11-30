@@ -3,8 +3,8 @@ charts:
   samples:
     path: kustomize/5-sample-apps/base
 
-  ge-single:
-    path: kustomize/100-ge-single/base
+  # ge-single:
+  #   path: kustomize/100-ge-single/base
 
   gloo-edge:
     wave: 20

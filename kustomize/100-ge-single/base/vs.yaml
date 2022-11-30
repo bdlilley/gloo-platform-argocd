@@ -49,7 +49,6 @@ spec:
           upstream:
             name: aws-lambda
             namespace: gloo-system
-
     - matchers:
       - exact: /hello
       directResponseAction:
