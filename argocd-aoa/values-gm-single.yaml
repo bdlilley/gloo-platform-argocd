@@ -78,56 +78,56 @@ charts:
   #         targetPort: 8443
   #         name: https
 
-  # gloo-mesh-enterprise:
-  #   # wave defaults to 100
-  #   wave: 40
-  #   # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
-  #   # path: install/helm/gloo-mesh-enterprise
-  #   # revision: ben-aws-lambda
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-  #   chart: gloo-mesh-enterprise
-  #   revision: v2.1.0
-  #   namespace: gloo-mesh
-  #   globalValues:
-  #     cluster: mgmt
-  #   values:
-  #     # assumes license was created by some other process (see README.md)
-  #     licenseSecretName: gloo-mesh-license
-  #     mgmtClusterName: mgmt
-  #     # glooMeshUi:
-  #     #   image:
-  #     #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-  #     #     repository: gloo-mesh-apiserver
-  #     #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
-  #     #   sidecars:
-  #     #     console: 
-  #     #       image:
-  #     #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-  #     #         repository: gloo-mesh-apiserver
-  #     #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  gloo-mesh-enterprise:
+    # wave defaults to 100
+    wave: 40
+    # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
+    # path: install/helm/gloo-mesh-enterprise
+    # revision: ben-aws-lambda
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
+    revision: v2.1.0
+    namespace: gloo-mesh
+    globalValues:
+      cluster: mgmt
+    values:
+      # assumes license was created by some other process (see README.md)
+      licenseSecretName: gloo-mesh-license
+      mgmtClusterName: mgmt
+      # glooMeshUi:
+      #   image:
+      #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+      #     repository: gloo-mesh-apiserver
+      #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+      #   sidecars:
+      #     console: 
+      #       image:
+      #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+      #         repository: gloo-mesh-apiserver
+      #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
 
-  #     glooMeshMgmtServer:
-  #       serviceType: ClusterIP
-  #       # image:
-  #       #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-  #       #   repository: gloo-mesh-mgmt-server
-  #       #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+      glooMeshMgmtServer:
+        serviceType: ClusterIP
+        # image:
+        #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+        #   repository: gloo-mesh-mgmt-server
+        #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
       
-  #       # relay:
-  #       #   disableCa: true
-  #       #   disableCaCertGeneration: true
-  #       #   tlsSecret:
-  #       #     name: relay-server-tls-secret
-  #       # ports:
-  #       #   healthcheck: 8091
-  #     deploymentOverrides:
-  #       spec:
-  #         template:
-  #           metadata:
-  #             annotations:
-  #               sidecar.istio.io/inject: "true"
-  #             labels:
-  #               istio.io/rev: "1-15"
+        # relay:
+        #   disableCa: true
+        #   disableCaCertGeneration: true
+        #   tlsSecret:
+        #     name: relay-server-tls-secret
+        # ports:
+        #   healthcheck: 8091
+      deploymentOverrides:
+        spec:
+          template:
+            metadata:
+              annotations:
+                sidecar.istio.io/inject: "true"
+              labels:
+                istio.io/rev: "1-15"
 
   # gloo-agent:
   #   # wave defaults to 100
