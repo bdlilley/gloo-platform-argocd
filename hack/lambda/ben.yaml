@@ -26,6 +26,8 @@ spec:
       logicalName: golang-simple-latest
     - lambdaFunctionName: golang-diag-latest
       logicalName: golang-diag-latest
+    - lambdaFunctionName: golang-apigw-latest
+      logicalName: golang-apigw-latest
     region: us-east-2
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
 
@@ -55,6 +57,44 @@ spec:
     - '*'
     routes:
     - matchers:
+      - prefix: /lambda-apigw
+      options:
+        timeout: 35s  # default value is 15s
+        retries:
+          retryOn: '5xx'
+          numRetries: 3
+          perTryTimeout: '10s'
+      routeAction:
+        single:
+          destinationSpec:
+            aws:
+              logicalName: golang-apigw-latest
+              wrapAsApiGateway: true
+              unwrapAsApiGateway: true
+          upstream:
+            name: aws-lambda
+            namespace: ben
+    - matchers:
+      - prefix: /lambda-diag
+      options:
+        timeout: 35s  # default value is 15s
+        retries:
+          retryOn: '5xx'
+          numRetries: 3
+          perTryTimeout: '10s'
+      routeAction:
+        single:
+          destinationSpec:
+            aws:
+              logicalName: golang-diag-latest
+              # transform request and headers to a generic map
+              requestTransformation: true
+              # wrapAsApiGateway: true
+              # unwrapAsApiGateway: true
+          upstream:
+            name: aws-lambda
+            namespace: ben
+    - matchers:
       - prefix: /
       options:
         timeout: 35s  # default value is 15s
@@ -68,7 +108,7 @@ spec:
             aws:
               logicalName: golang-simple-latest
               # transform request and headers to a generic map
-              # requestTransformation: true
+              requestTransformation: true
           upstream:
             name: aws-lambda
             namespace: ben
