@@ -68,7 +68,7 @@ spec:
             aws:
               logicalName: golang-simple-latest
               # transform request and headers to a generic map
-              requestTransformation: true
+              # requestTransformation: true
           upstream:
             name: aws-lambda
             namespace: ben
