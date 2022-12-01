@@ -57,7 +57,7 @@ spec:
     - '*'
     routes:
     - matchers:
-      - prefix: /lambda-apigw
+      - exact: /
       options:
         timeout: 35s  # default value is 15s
         retries:
@@ -87,29 +87,67 @@ spec:
           destinationSpec:
             aws:
               logicalName: golang-diag-latest
-              # transform request and headers to a generic map
-              requestTransformation: true
-              # wrapAsApiGateway: true
+              # requestTransformation: true
+              wrapAsApiGateway: true
               # unwrapAsApiGateway: true
           upstream:
             name: aws-lambda
             namespace: ben
-    - matchers:
-      - prefix: /
-      options:
-        timeout: 35s  # default value is 15s
-        retries:
-          retryOn: '5xx'
-          numRetries: 3
-          perTryTimeout: '10s'
-      routeAction:
-        single:
-          destinationSpec:
-            aws:
-              logicalName: golang-simple-latest
-              # transform request and headers to a generic map
-              requestTransformation: true
-          upstream:
-            name: aws-lambda
-            namespace: ben
+
+    # - matchers:
+    #   - prefix: /lambda-apigw
+    #   options:
+    #     timeout: 35s  # default value is 15s
+    #     retries:
+    #       retryOn: '5xx'
+    #       numRetries: 3
+    #       perTryTimeout: '10s'
+    #   routeAction:
+    #     single:
+    #       destinationSpec:
+    #         aws:
+    #           logicalName: golang-apigw-latest
+    #           wrapAsApiGateway: true
+    #           unwrapAsApiGateway: true
+    #       upstream:
+    #         name: aws-lambda
+    #         namespace: ben
+    # - matchers:
+    #   - prefix: /lambda-diag
+    #   options:
+    #     timeout: 35s  # default value is 15s
+    #     retries:
+    #       retryOn: '5xx'
+    #       numRetries: 3
+    #       perTryTimeout: '10s'
+    #   routeAction:
+    #     single:
+    #       destinationSpec:
+    #         aws:
+    #           logicalName: golang-diag-latest
+    #           # transform request and headers to a generic map
+    #           requestTransformation: true
+    #           # wrapAsApiGateway: true
+    #           # unwrapAsApiGateway: true
+    #       upstream:
+    #         name: aws-lambda
+    #         namespace: ben
+    # - matchers:
+    #   - prefix: /
+    #   options:
+    #     timeout: 35s  # default value is 15s
+    #     retries:
+    #       retryOn: '5xx'
+    #       numRetries: 3
+    #       perTryTimeout: '10s'
+    #   routeAction:
+    #     single:
+    #       destinationSpec:
+    #         aws:
+    #           logicalName: golang-simple-latest
+    #           # transform request and headers to a generic map
+    #           requestTransformation: true
+    #       upstream:
+    #         name: aws-lambda
+    #         namespace: ben
     
