@@ -9,14 +9,14 @@ charts:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: base
     namespace: istio-system
-    revision: "1.15.0"
+    revision: "1.15.3"
 
   istiod-15-0:
     # wave defaults to 100
     wave: 20
     repo: https://istio-release.storage.googleapis.com/charts
     chart: istiod
-    revision: "1.15.0"
+    revision: "1.15.3"
     namespace: istio-system
     syncPolicy:
       syncOptions: [] # dont create namespace
@@ -26,7 +26,7 @@ charts:
         clusterName: mgmt
       network: network1
       hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-      tag: 1.15.0-solo
+      tag: 1.15.3-solo
     values:
       revision: 1-15
       meshConfig:
@@ -53,7 +53,7 @@ charts:
     repo: https://istio-release.storage.googleapis.com/charts
     chart: gateway
     namespace: istio-gateways
-    revision: "1.15.0"
+    revision: "1.15.3"
     values:
       revision: "1-15"
       labels:
@@ -78,100 +78,100 @@ charts:
           targetPort: 8443
           name: https
 
-  gloo-mesh-enterprise:
-    # wave defaults to 100
-    wave: 40
-    # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
-    # path: install/helm/gloo-mesh-enterprise
-    # revision: ben-aws-lambda
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    revision: v2.1.0
-    namespace: gloo-mesh
-    globalValues:
-      cluster: mgmt
-    values:
-      # assumes license was created by some other process (see README.md)
-      licenseSecretName: gloo-mesh-license
-      mgmtClusterName: mgmt
-      # glooMeshUi:
-      #   image:
-      #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-      #     repository: gloo-mesh-apiserver
-      #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
-      #   sidecars:
-      #     console: 
-      #       image:
-      #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-      #         repository: gloo-mesh-apiserver
-      #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  # gloo-mesh-enterprise:
+  #   # wave defaults to 100
+  #   wave: 40
+  #   # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
+  #   # path: install/helm/gloo-mesh-enterprise
+  #   # revision: ben-aws-lambda
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+  #   chart: gloo-mesh-enterprise
+  #   revision: v2.1.0
+  #   namespace: gloo-mesh
+  #   globalValues:
+  #     cluster: mgmt
+  #   values:
+  #     # assumes license was created by some other process (see README.md)
+  #     licenseSecretName: gloo-mesh-license
+  #     mgmtClusterName: mgmt
+  #     # glooMeshUi:
+  #     #   image:
+  #     #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #     #     repository: gloo-mesh-apiserver
+  #     #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     #   sidecars:
+  #     #     console: 
+  #     #       image:
+  #     #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #     #         repository: gloo-mesh-apiserver
+  #     #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
 
-      glooMeshMgmtServer:
-        serviceType: ClusterIP
-        # image:
-        #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-        #   repository: gloo-mesh-mgmt-server
-        #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     glooMeshMgmtServer:
+  #       serviceType: ClusterIP
+  #       # image:
+  #       #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #       #   repository: gloo-mesh-mgmt-server
+  #       #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
       
-        # relay:
-        #   disableCa: true
-        #   disableCaCertGeneration: true
-        #   tlsSecret:
-        #     name: relay-server-tls-secret
-        # ports:
-        #   healthcheck: 8091
-      deploymentOverrides:
-        spec:
-          template:
-            metadata:
-              annotations:
-                sidecar.istio.io/inject: "true"
-              labels:
-                istio.io/rev: "1-15"
+  #       # relay:
+  #       #   disableCa: true
+  #       #   disableCaCertGeneration: true
+  #       #   tlsSecret:
+  #       #     name: relay-server-tls-secret
+  #       # ports:
+  #       #   healthcheck: 8091
+  #     deploymentOverrides:
+  #       spec:
+  #         template:
+  #           metadata:
+  #             annotations:
+  #               sidecar.istio.io/inject: "true"
+  #             labels:
+  #               istio.io/rev: "1-15"
 
-  gloo-agent:
-    # wave defaults to 100
-    wave: 40
-    # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
-    # path: install/helm/gloo-mesh-enterprise
-    # revision: ben-aws-lambda
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
-    revision: v2.1.0
-    namespace: gloo-mesh
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      cluster: mgmt
-      glooMeshAgent:
-        enabled: true
-        image:
-          pullPolicy: IfNotPresent
-          registry: gcr.io/gloo-mesh
-          repository: gloo-mesh-agent
-          tag: 2.1.0
-        # image:
-        #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-        #   repository: gloo-mesh-agent
-        #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
-      ext-auth-service:
-        enabled: false
-      rate-limiter:
-        enabled: false
+  # gloo-agent:
+  #   # wave defaults to 100
+  #   wave: 40
+  #   # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
+  #   # path: install/helm/gloo-mesh-enterprise
+  #   # revision: ben-aws-lambda
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+  #   chart: gloo-mesh-agent
+  #   revision: v2.1.0
+  #   namespace: gloo-mesh
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     cluster: mgmt
+  #     glooMeshAgent:
+  #       enabled: true
+  #       image:
+  #         pullPolicy: IfNotPresent
+  #         registry: gcr.io/gloo-mesh
+  #         repository: gloo-mesh-agent
+  #         tag: 2.1.0
+  #       # image:
+  #       #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #       #   repository: gloo-mesh-agent
+  #       #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     ext-auth-service:
+  #       enabled: false
+  #     rate-limiter:
+  #       enabled: false
 
-      relay:
-        authority: gloo-mesh-mgmt-server.gloo-mesh
-        clientTlsSecret:
-          name: relay-client-tls-secret
-        rootTlsSecret:
-          name: relay-root-tls-secret
-        serverAddress: gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900
-        tokenSecret:
-          key: token
-          name: relay-identity-token-secret
-          namespace: gloo-mesh
+  #     relay:
+  #       authority: gloo-mesh-mgmt-server.gloo-mesh
+  #       clientTlsSecret:
+  #         name: relay-client-tls-secret
+  #       rootTlsSecret:
+  #         name: relay-root-tls-secret
+  #       serverAddress: gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900
+  #       tokenSecret:
+  #         key: token
+  #         name: relay-identity-token-secret
+  #         namespace: gloo-mesh
           
-  gm-single-cluster-single-ws:
-    wave: 50
-    path: kustomize/10-gm-single-cluster/base
+  # gm-single-cluster-single-ws:
+  #   wave: 50
+  #   path: kustomize/10-gm-single-cluster/base
 
