@@ -3,15 +3,15 @@ charts:
   samples:
     path: kustomize/5-sample-apps/base
     
-  # istio-base:
-  #   # wave defaults to 100
-  #   wave: 20
-  #   repo: https://istio-release.storage.googleapis.com/charts
-  #   chart: base
-  #   namespace: istio-system
-  #   revision: "1.15.3"
+  istio-base:
+    # wave defaults to 100
+    wave: 20
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    namespace: istio-system
+    revision: "1.15.3"
 
-  # istiod-15-0:
+  # istiod-15-3:
   #   # wave defaults to 100
   #   wave: 20
   #   repo: https://istio-release.storage.googleapis.com/charts
