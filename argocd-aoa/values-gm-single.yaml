@@ -3,80 +3,80 @@ charts:
   samples:
     path: kustomize/5-sample-apps/base
     
-  istio-base:
-    # wave defaults to 100
-    wave: 20
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: base
-    namespace: istio-system
-    revision: "1.15.3"
+  # istio-base:
+  #   # wave defaults to 100
+  #   wave: 20
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: base
+  #   namespace: istio-system
+  #   revision: "1.15.3"
 
-  istiod-15-0:
-    # wave defaults to 100
-    wave: 20
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: istiod
-    revision: "1.15.3"
-    namespace: istio-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    globalValues:
-      meshID: mesh1
-      multiCluster:
-        clusterName: mgmt
-      network: network1
-      hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-      tag: 1.15.3-solo
-    values:
-      revision: 1-15
-      meshConfig:
-        trustDomain: mgmt
-        accessLogFile: /dev/stdout
-        enableAutoMtls: true
-        defaultConfig:
-          envoyMetricsService:
-            address: gloo-mesh-agent.gloo-mesh:9977
-          envoyAccessLogService:
-            address: gloo-mesh-agent.gloo-mesh:9977
-          proxyMetadata:
-            ISTIO_META_DNS_CAPTURE: "true"
-            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-            GLOO_MESH_CLUSTER_NAME: mgmt
-      pilot:
-        env:
-          PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
-          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  # istiod-15-0:
+  #   # wave defaults to 100
+  #   wave: 20
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: istiod
+  #   revision: "1.15.3"
+  #   namespace: istio-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   globalValues:
+  #     meshID: mesh1
+  #     multiCluster:
+  #       clusterName: mgmt
+  #     network: network1
+  #     hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+  #     tag: 1.15.3-solo
+  #   values:
+  #     revision: 1-15
+  #     meshConfig:
+  #       trustDomain: mgmt
+  #       accessLogFile: /dev/stdout
+  #       enableAutoMtls: true
+  #       defaultConfig:
+  #         envoyMetricsService:
+  #           address: gloo-mesh-agent.gloo-mesh:9977
+  #         envoyAccessLogService:
+  #           address: gloo-mesh-agent.gloo-mesh:9977
+  #         proxyMetadata:
+  #           ISTIO_META_DNS_CAPTURE: "true"
+  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+  #           GLOO_MESH_CLUSTER_NAME: mgmt
+  #     pilot:
+  #       env:
+  #         PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
+  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
 
-  istio-ingressgateway:
-    # wave defaults to 100
-    wave: 30
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: gateway
-    namespace: istio-gateways
-    revision: "1.15.3"
-    values:
-      revision: "1-15"
-      labels:
-        istio: ingressgateway
-        istio.io/rev: 1-15
-      annotations:
-        proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
-      service:
-        type: LoadBalancer
-        annotations:
-          service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-          service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
-          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-          service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-        ports:
-        # main http ingress port
-        - port: 80
-          targetPort: 80
-          name: http2
-        # main https ingress port
-        - port: 443
-          targetPort: 8443
-          name: https
+  # istio-ingressgateway:
+  #   # wave defaults to 100
+  #   wave: 30
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: gateway
+  #   namespace: istio-gateways
+  #   revision: "1.15.3"
+  #   values:
+  #     revision: "1-15"
+  #     labels:
+  #       istio: ingressgateway
+  #       istio.io/rev: 1-15
+  #     annotations:
+  #       proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+  #     service:
+  #       type: LoadBalancer
+  #       annotations:
+  #         service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+  #         service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+  #         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+  #         service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+  #       ports:
+  #       # main http ingress port
+  #       - port: 80
+  #         targetPort: 80
+  #         name: http2
+  #       # main https ingress port
+  #       - port: 443
+  #         targetPort: 8443
+  #         name: https
 
   # gloo-mesh-enterprise:
   #   # wave defaults to 100
