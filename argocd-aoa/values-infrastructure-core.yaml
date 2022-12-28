@@ -39,6 +39,8 @@ charts:
     values:
       domainFilters:
       - awscloud.solo.io
+      crd:
+        create: true
       sources:
       - crd
       aws:
