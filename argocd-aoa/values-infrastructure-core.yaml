@@ -45,6 +45,7 @@ charts:
       - crd
       aws:
         zoneType: private
+      txtPrefix: extdns.
       serviceAccount:
         create: false
         name: external-dns

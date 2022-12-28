@@ -123,7 +123,6 @@ spec:
             clusterName: ${CLUSTER_NAME}
           external-dns:
             txtOwnerId: ${PRIVATE_HZ_ID}
-            txtPrefix: ${CLUSTER_NAME}
           gloo-edge:
             gloo:
               gateway:
