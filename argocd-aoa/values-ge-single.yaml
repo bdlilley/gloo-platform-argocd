@@ -9,7 +9,7 @@ charts:
   gloo-edge:
     wave: 20
     repo: https://storage.googleapis.com/gloo-ee-helm
-    revision: "1.12.37" #"1.13.0-beta8"
+    revision: "1.12.42" #"1.13.0-beta8"
     chart: "gloo-ee"
     namespace: "gloo-system"
     syncPolicy:
