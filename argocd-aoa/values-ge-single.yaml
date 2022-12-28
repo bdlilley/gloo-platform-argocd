@@ -43,6 +43,7 @@ charts:
                 service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         settings:
           aws:
+            fallbackToFirstFunction: true
             enableServiceAccountCredentials: true
             # stsCredentialsRegion: us-east-2
       gloo-fed:
