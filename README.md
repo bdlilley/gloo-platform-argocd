@@ -50,6 +50,12 @@ EOF
 
 # create an argocd app of apps stack based on use case
 
+First set HZ ID to be used by external-dns; this depends on your account and setup - look at https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones# in console.
+
+```bash
+export PRIVATE_HZ_ID="Z08503781ORNZIT2J3JF7"
+```
+
 ```bash
 
 export CLUSTER_NAME="ben"
@@ -76,6 +82,9 @@ spec:
         global:
           aws-load-balancer-controller:
             clusterName: ${CLUSTER_NAME}
+          external-dns:
+            txtOwnerId: ${PRIVATE_HZ_ID}
+            txtPrefix: ${CLUSTER_NAME}
   syncPolicy:
     automated:
       prune: true
@@ -112,6 +121,9 @@ spec:
         global:
           aws-load-balancer-controller:
             clusterName: ${CLUSTER_NAME}
+          external-dns:
+            txtOwnerId: ${PRIVATE_HZ_ID}
+            txtPrefix: ${CLUSTER_NAME}
           gloo-edge:
             gloo:
               gateway:
@@ -157,6 +169,9 @@ spec:
         global:
           aws-load-balancer-controller:
             clusterName: ${CLUSTER_NAME}
+          external-dns:
+            txtOwnerId: ${PRIVATE_HZ_ID}
+            txtPrefix: ${CLUSTER_NAME}
           gloo-mesh:
             gloo:
               gateway:

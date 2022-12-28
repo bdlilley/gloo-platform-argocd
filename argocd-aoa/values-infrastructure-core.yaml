@@ -26,6 +26,25 @@ charts:
         create: false
         name: aws-load-balancer-controller
 
+  # external-dns to automate route53 records
+  external-dns:
+    # wave defaults to 100
+    wave: 1
+    repo: https://charts.bitnami.com/bitnami
+    revision: "6.12.2"
+    chart: external-dns
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      domainFilters:
+      - awscloud.solo.io
+      aws:
+        zoneType: private
+      serviceAccount:
+        create: false
+        name: external-dns
+          
   core:
     wave: 10
     path: kustomize/1-core/base

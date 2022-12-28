@@ -4,6 +4,10 @@ kind: Namespace
 metadata:
   name:  ben
 ---
+# in settings crd
+  # gloo:
+  #   awsOptions:
+  #     fallbackToFirstFunction: true
 apiVersion: gloo.solo.io/v1
 kind: Upstream
 metadata:
@@ -13,24 +17,17 @@ spec:
   aws:
     # this is "just" a:
     # https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gloo/api/v1/options/aws/aws.proto.sk/#destinationspec
-    # defaultOptions: 
-    #   requestTransformation: true
+    destinationOverrides: 
+      requestTransformation: true
+      responseTransformation: true
     secretRef:
       name: aws-creds
       namespace: gloo-system
     lambdaFunctions:
-    # when there is only 1 we invoke it by default
-    # opt-in - we'd need to add a helm input to feature flag this behavior
+    # for fallbackToFirstFunction only 1 function should exist in this list
+    # and it must be the first one
     - lambdaFunctionName: golang-simple-latest
       logicalName: golang-simple-latest
-    - lambdaFunctionName: golang-diag-latest
-      logicalName: golang-diag-latest
-    - lambdaFunctionName: golang-apigw-latest
-      logicalName: golang-apigw-latest
-    - lambdaFunctionName: golang-echo-latest
-      logicalName: golang-echo-latest
-    - lambdaFunctionName: golang-gloo-latest
-      logicalName: golang-gloo-latest
     region: us-east-2
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
 
@@ -108,17 +105,19 @@ spec:
         #         text: '{{body}}'
       routeAction:
         single:
-          destinationSpec:
-            aws:
-              logicalName: golang-gloo-latest
-              requestTransformation: true
-              # unwrapAsApiGateway: true
-              # responseTransformation: true
-              # wrapAsApiGateway: true
-              # unwrapAsApiGateway: true
           upstream:
             name: aws-lambda
             namespace: ben
+         # destinationSpec:
+          #   aws:
+          #     logicalName: golang-gloo-latest
+          #     requestTransformation: true
+          #     # unwrapAsApiGateway: true
+          #     # responseTransformation: true
+          #     # wrapAsApiGateway: true
+          #     # unwrapAsApiGateway: true
+
+
 
     # options:
     #   transformations:

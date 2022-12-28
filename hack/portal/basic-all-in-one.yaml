@@ -65,66 +65,109 @@ spec:
   openApi:
     content:
       inlineString: |
-        openapi: 3.0.2
-        info:
-          title: Example REST API
-          version: 1.0.0
-          description: cats example
-        paths:
-          /tracks:
-            summary: Path used to manage the list of tracks.
-            description: The REST endpoint/path used to list and create zero or more `Track` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
-            get:
-              responses:
-                '200':
-                  content:
-                    application/json:
-                      schema:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Track'
-                  description: Successful response - returns an array of `Track` entities.
-              operationId: getTracks
-              summary: List All Tracks
-              description: Gets a list of all `Track` entities.
-        components:
-          schemas:
-            Track:
-              description: ''
-              type: object
-              properties:
-                id:
-                  description: ''
-                  type: string
-                thumbnail:
-                  description: ''
-                  type: string
-                topic:
-                  description: ''
-                  type: string
-                authorId:
-                  description: ''
-                  type: string
-                title:
-                  description: ''
-                  type: string
-                description:
-                  description: ''
-                  type: string
-                numberOfViews:
-                  description: ''
-                  type: integer
-                createdAt:
-                  description: ''
-                  type: string
-                length:
-                  description: ''
-                  type: integer
-                modulesCount:
-                  description: ''
-                  type: integer
-
-
+        {
+          "openapi": "3.0.1",
+          "info": {
+            "title": "IACT-Services",
+            "description": "IACT-Services",
+            "contact": {
+              "email": "IACT-Services"
+            },
+            "version": "IACT-Services"
+          },
+          "servers": [
+            {
+              "url": "http:://api.example.com/stage1"
+            }
+          ],
+          "security": [
+            {
+              "AWSGatewayApiKey": [
+                ""
+              ]
+            }
+          ],
+          "paths": {
+            "/iact/say-hello": {
+              "get": {
+                "operationId": "sayHello",
+                "responses": {
+                  "default": {
+                    "description": "default response",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "/iact/ta-types": {
+              "get": {
+                "operationId": "taTypes",
+                "responses": {
+                  "default": {
+                    "description": "default response",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "VISA",
+                              "GES",
+                              "EBADGE",
+                              "CIV",
+                              "K90",
+                              "ESTA"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "/iact/visa-types": {
+              "get": {
+                "operationId": "visaTypes",
+                "responses": {
+                  "default": {
+                    "description": "default response",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "IV",
+                              "NIV"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "components": {
+            "securitySchemes": {
+              "AWSGatewayApiKey": {
+                "type": "apiKey",
+                "name": "x-api-key",
+                "in": "header"
+              }
+            }
+          }
+        }
       # # we use a fetchUrl here to tell the Gloo Portal
       # # to fetch the schema contents directly from the petstore service.
       # # 
@@ -166,7 +209,7 @@ spec:
           backends:
           - upstream:
               name: aws-lambda
-              namespace: gloo-system
+              namespace: ben
     # You can add arbitrary tags to an APIProduct version. 
     # Users will be able to search for APIs based on the available tags when they log into a portal application.
     tags:
@@ -181,7 +224,7 @@ spec:
   domains:
   # If you are using Gloo Edge and the Gateway is listening on a port other than 80, 
   # you need to include a domain in this format: <DOMAIN>:<PORT>.
-  - api.example.com:8080
+  - api.example.com
   displayInfo:
     description: This environment is meant for developers to deploy and test their APIs.
     displayName: Development
@@ -230,9 +273,8 @@ spec:
   staticPages: []
 
   domains:
-  # If you are using Gloo Edge and the Gateway is listening on a port other than 80, 
-  # you need to include a domain in this format: <DOMAIN>:<INGRESS_PORT> as we do below
-  - petstore.example.com:8080
+  # hacked this to NLB IP in /etc/hosts
+  - portal.example.com
 
   # This will include all API product of the environment in the portal
   publishedEnvironments:
