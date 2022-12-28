@@ -39,6 +39,8 @@ charts:
     values:
       domainFilters:
       - awscloud.solo.io
+      sources:
+      - crd
       aws:
         zoneType: private
       serviceAccount:
