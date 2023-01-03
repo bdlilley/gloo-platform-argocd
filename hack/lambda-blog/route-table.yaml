@@ -1,0 +1,81 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: aws-route
+  namespace: bookinfo
+spec:
+  hosts:
+    - 'team-a.foo.com'
+  # Selects the virtual gateway you previously created
+  virtualGateways:
+    - name: north-south-gw
+      namespace: istio-gateway-ns
+      cluster: cluster-1
+  http:
+    # Route for the main productpage app
+    - name: lambda
+      matchers:
+        - uri:
+            prefix: /lambda
+      labels:
+        route: lambda
+      forwardTo:
+        destinations:
+          - ref:
+              name: aws-provider
+              namespace: bookinfo
+              cluster: cluster-1
+            kind: CLOUD_PROVIDER
+            function:
+              logicalName: aws-dest
+              awsLambda:
+                invocationStyle: SYNC
+    # Route for the main productpage app
+    - name: ben
+      matchers:
+        - uri:
+            prefix: /ben
+      labels:
+        route: lambda
+      forwardTo:
+        # pathRewrite: /
+        destinations:
+          - ref:
+              name: aws-provider
+              namespace: bookinfo
+              cluster: cluster-1
+            kind: CLOUD_PROVIDER
+            function:
+              logicalName: aws-dest
+              # awsLambda:
+              #   invocationStyle: SYNC
+    - name: productpage
+      labels:
+        route: lambda
+      matchers:
+        - uri:
+            prefix: /productpage
+      forwardTo:
+        destinations:
+          - ref:
+              name: productpage
+              namespace: bookinfo
+              cluster: cluster-1
+            kind: SERVICE
+            port:
+              number: 9080
+#    - name: echo
+#      labels:
+#        route: lambda
+#      matchers:
+#        - uri:
+#            prefix: /echo
+#      forwardTo:
+#        destinations:
+#          - ref:
+#              name: echo
+#              namespace: default
+#              cluster: cluster-1
+#            kind: SERVICE
+#            port:
+#              number: 80

@@ -1,0 +1,16 @@
+# values used with local builds of gme repo
+
+global:
+  cluster: mgmt
+licenseSecretName: gloo-mesh-license
+mgmtClusterName: mgmt
+glooMeshMgmtServer:
+  serviceType: ClusterIP
+deploymentOverrides:
+  spec:
+    template:
+      metadata:
+        annotations:
+          sidecar.istio.io/inject: "true"
+        labels:
+          istio.io/rev: "1-15"

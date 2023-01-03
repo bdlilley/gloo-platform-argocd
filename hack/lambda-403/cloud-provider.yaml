@@ -1,0 +1,12 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: CloudProvider
+metadata:
+  name: aws-provider
+  namespace: bookinfo
+spec:
+  aws:
+    stsEndpoint: sts.amazonaws.com
+    accountId: "410461945957"
+    region: us-west-2
+    lambda:
+      invokeRoleName: gloo-mesh-e2e-role

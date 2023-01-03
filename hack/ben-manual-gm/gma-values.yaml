@@ -1,0 +1,30 @@
+# values used with local builds of gme repo
+
+cluster: mgmt
+glooMeshAgent:
+  enabled: true
+  image:
+    pullPolicy: IfNotPresent
+    registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com/gcr.io/gloo-mesh
+    repository: gloo-mesh-agent
+    tag: 2.2.0-beta1-129-gb07a82710
+  # image:
+  #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #   repository: gloo-mesh-agent
+  #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+ext-auth-service:
+  enabled: false
+rate-limiter:
+  enabled: false
+
+relay:
+  authority: gloo-mesh-mgmt-server.gloo-mesh
+  clientTlsSecret:
+    name: relay-client-tls-secret
+  rootTlsSecret:
+    name: relay-root-tls-secret
+  serverAddress: gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900
+  tokenSecret:
+    key: token
+    name: relay-identity-token-secret
+    namespace: gloo-mesh

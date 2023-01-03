@@ -1,0 +1,11 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: CloudResources
+metadata:
+  name: aws-team-a-us-west-1
+  namespace: gloo-mesh
+spec:
+  provider: aws-team-a-us-west-1
+  lambda:
+   - logicalName: golang-echo-latest
+     lambdaFunctionName: golang-echo
+     qualifier: $LATEST

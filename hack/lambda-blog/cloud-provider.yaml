@@ -1,0 +1,19 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: CloudProvider
+metadata:
+  name: aws-team-a-us-west-1
+  namespace: gloo-mesh
+spec:
+  aws:
+    stsEndpoint: sts.amazonaws.com
+    accountId: "111111111111"
+    region: us-west-1
+    lambda:
+      invokeRoleName: team-a-lambda-invoke
+      discovery:
+        enabled: true
+        roleName: team-a-lambda-discovery
+        filter:
+          name:
+            - team-a*
+          latestOnly: false

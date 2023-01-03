@@ -1,0 +1,5 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: bookinfo-settings
+  namespace: bookinfo

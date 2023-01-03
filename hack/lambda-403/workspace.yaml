@@ -1,0 +1,12 @@
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: bookinfo
+  namespace: gloo-mesh
+spec:
+  workloadClusters:
+    - name: '*'
+      namespaces:
+        - name: 'default'
+        - name: 'bookinfo'
+        - name: 'istio-gateway-ns'

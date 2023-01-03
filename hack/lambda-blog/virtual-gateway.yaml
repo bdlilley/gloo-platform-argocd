@@ -1,0 +1,28 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualGateway
+metadata:
+  name: north-south-gw
+  namespace: istio-gateways
+spec:
+  listeners:
+    - http: {}
+      port:
+        number: 80
+      allowedRouteTables:
+        - host: 'team-a.foo.com'
+          selector:
+            workspace: foo-ws
+          cloudProvider:
+            aws:
+              iamRoles: 
+                - invoke-team-a*
+              accountIds:
+                - 000000000000
+              regions:
+                - us-east-1
+              lambdaFunctions:
+                - team-a*
+  workloads:
+    - selector:
+        labels:
+          istio: ingressgateway
