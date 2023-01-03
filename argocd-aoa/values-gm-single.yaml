@@ -149,7 +149,7 @@ charts:
           pullPolicy: IfNotPresent
           registry: gcr.io/gloo-mesh
           repository: gloo-mesh-agent
-          tag: 2.1.0
+          tag: 2.2.0-rc1
         # image:
         #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
         #   repository: gloo-mesh-agent
