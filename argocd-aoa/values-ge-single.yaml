@@ -38,7 +38,11 @@ charts:
             service:
               extraAnnotations:
                 service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-                service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+                # this a bit idiotic - aws-load-balancer-type can only be nlb-ip or external
+                # nlb-ip is only for backowards compatiblity, and it forces the controler to only
+                # use IP-based TGBs; to use instance TGBs this must be "external" even though
+                # the scheme is internal to force controller to look at aws-load-balancer-nlb-target-type
+                service.beta.kubernetes.io/aws-load-balancer-type: external
                 service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
                 service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         settings:

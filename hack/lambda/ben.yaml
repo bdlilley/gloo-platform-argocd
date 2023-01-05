@@ -108,14 +108,14 @@ spec:
           upstream:
             name: aws-lambda
             namespace: ben
-         # destinationSpec:
-          #   aws:
-          #     logicalName: golang-gloo-latest
-          #     requestTransformation: true
-          #     # unwrapAsApiGateway: true
-          #     # responseTransformation: true
-          #     # wrapAsApiGateway: true
-          #     # unwrapAsApiGateway: true
+          destinationSpec:
+            aws:
+              logicalName: golang-gloo-latest
+              requestTransformation: true
+              # unwrapAsApiGateway: true
+              # responseTransformation: true
+              # wrapAsApiGateway: true
+              # unwrapAsApiGateway: true
 
 
 
