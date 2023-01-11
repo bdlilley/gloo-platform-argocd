@@ -73,6 +73,10 @@ charts:
           service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
           service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         ports:
+        # tcp port
+        - port: 8080
+          targetPort: 8080
+          name: tcp
         # main http ingress port
         - port: 80
           targetPort: 80

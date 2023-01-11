@@ -5,6 +5,9 @@ metadata:
   namespace: istio-gateways
 spec:
   listeners:
+    - tcp: {}
+      port:
+        number: 8080
     - http: {}
       port:
         number: 80
