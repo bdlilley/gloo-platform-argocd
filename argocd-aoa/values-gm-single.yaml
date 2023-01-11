@@ -74,8 +74,8 @@ charts:
           service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         ports:
         # tcp port
-        - port: 8080
-          targetPort: 8080
+        - port: 30097
+          targetPort: 30097
           protocol: TCP
           name: tcp
         # main http ingress port

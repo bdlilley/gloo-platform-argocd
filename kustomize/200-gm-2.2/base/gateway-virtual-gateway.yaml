@@ -7,7 +7,7 @@ spec:
   listeners:
     - tcp: {}
       port:
-        number: 8080
+        number: 30097
     - http: {}
       port:
         number: 80
