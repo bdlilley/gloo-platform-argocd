@@ -76,6 +76,7 @@ charts:
         # tcp port
         - port: 8080
           targetPort: 8080
+          protocol: TCP
           name: tcp
         # main http ingress port
         - port: 80
