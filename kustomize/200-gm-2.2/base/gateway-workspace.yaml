@@ -1,0 +1,24 @@
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: Workspace
+metadata:
+  name: gateway
+  namespace: gloo-mesh
+spec:
+  workloadClusters:
+    - name: '*'
+      namespaces:
+        - name: istio-gateways
+---
+apiVersion: admin.gloo.solo.io/v2
+kind: WorkspaceSettings
+metadata:
+  name: gateway
+  namespace: istio-gateways
+spec:
+  importFrom:
+  - workspaces:
+    - name: "*"
+  exportTo:
+  - workspaces:
+    - name: "*"

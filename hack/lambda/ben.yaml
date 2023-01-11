@@ -17,17 +17,17 @@ spec:
   aws:
     # this is "just" a:
     # https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gloo/api/v1/options/aws/aws.proto.sk/#destinationspec
-    destinationOverrides: 
-      requestTransformation: true
-      responseTransformation: true
+    # destinationOverrides: 
+    #   requestTransformation: true
+    #   responseTransformation: true
     secretRef:
       name: aws-creds
       namespace: gloo-system
     lambdaFunctions:
     # for fallbackToFirstFunction only 1 function should exist in this list
     # and it must be the first one
-    - lambdaFunctionName: golang-simple-latest
-      logicalName: golang-simple-latest
+    - lambdaFunctionName: gloo-platform-lambda-demo
+      logicalName: gloo-platform-lambda-demo-latest
     region: us-east-2
     roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
 
@@ -55,40 +55,43 @@ spec:
   virtualHost:
     domains:
     - '*'
-    # options:
-    #   cors:
-    #     allowCredentials: true
-    #     allowHeaders:
-    #     - origin
-    #     allowMethods:
-    #     - GET
-    #     - POST
-    #     allowOrigin:
-    #     - 'https://solo.io'
-    #     exposeHeaders:
-    #     - origin
-    #     maxAge: 1d
+
 
     routes:
-    # - matchers:
-    #   - prefix: /httpbin
-    #   options:
-    #     prefixRewrite: '/'
-    #   routeAction:
-    #     single:
-    #       upstream:
-    #         name: httpbin-httpbin-8000
-    #         namespace: gloo-system
-
+    - matchers:
+      - prefix: /httpbin
+      options:
+        prefixRewrite: '/'
+      routeAction:
+        single:
+          upstream:
+            name: httpbin-httpbin-8000
+            namespace: gloo-system
     - matchers:
       - prefix: /lambda
       options:
-        # prefixRewrite: /
         timeout: 35s  # default value is 15s
         retries:
           retryOn: '5xx'
           numRetries: 3
           perTryTimeout: '10s'
+      routeAction:
+        single:
+          upstream:
+            name: aws-lambda
+            namespace: ben
+          destinationSpec:
+            aws:
+              logicalName: gloo-platform-lambda-demo-latest
+              requestTransformation: true
+              # unwrapAsApiGateway: true
+              # responseTransformation: true
+              # wrapAsApiGateway: true
+              # unwrapAsApiGateway: true
+
+
+
+
         # transformations:
         #   requestTransformation:
         #     transformationTemplate:
@@ -103,200 +106,20 @@ spec:
         #           text: '{% if (header(":status") == "200") %}202{% else %}{{ header(":status") }}{% endif %}'
         #       body:
         #         text: '{{body}}'
-      routeAction:
-        single:
-          upstream:
-            name: aws-lambda
-            namespace: ben
-          destinationSpec:
-            aws:
-              logicalName: golang-gloo-latest
-              requestTransformation: true
-              # unwrapAsApiGateway: true
-              # responseTransformation: true
-              # wrapAsApiGateway: true
-              # unwrapAsApiGateway: true
 
 
 
-    # options:
-    #   transformations:
-    #     requestTransformation:
-    #       xsltTransformation:
-    #         xslt: |
-    #           <?xml version="1.0" encoding="UTF-8"?>
-    #             <xsl:stylesheet
-    #             xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    #             xmlns:math="http://www.w3.org/2005/xpath-functions/math"
-    #             xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    #             exclude-result-prefixes="xs math" version="3.0">
-    #               <xsl:output indent="yes" omit-xml-declaration="yes" />
-    #               <xsl:strip-space elements="*"/>
-    #               <xsl:template match="/" xmlns="http://schemas.xmlsoap.org/soap/envelope/">
-    #                 <Envelope >
-    #                   <Header/>
-    #                   <Body>
-    #                     <Query>
-    #                       <xsl:apply-templates select="json-to-xml(.)/*"/>
-    #                     </Query>
-    #                   </Body>
-    #                 </Envelope>
-    #               </xsl:template>
-    #               <xsl:template match="map" xpath-default-namespace="http://www.w3.org/2005/xpath-functions"
-    #               xmlns:web="http://www.qas.com/OnDemand-2011-03">
-    #                 <CityQuery><xsl:value-of select="string[@key='cityQuery']" /></CityQuery>
-    #               </xsl:template>
-    #             </xsl:stylesheet>
-    #         nonXmlTransform: true
-    #         setContentType: text/xml
-    #   transformations:
-    #     requestTransformation:
-    #     nonXmlTransform
-    #       transformationTemplate:
-    #         body:
-    #           text: |
-    #             {
-    #               "body": "hi",
-    #               "httpMethod": "{{ httpMethod }}",
-    #               "path": "{{ path }}"
-    #             }
-    # #         # headers:
-    # #         #   isBase64Encoded:
-    # #         #     text: "false"
-    #         # mergeExtractorsToBody: {}
-    #         extractors:
-    #           httpMethod:
-    #             header: ":method"
-    #             regex: .*
-    #           path:
-    #             header: ":path"
-    #             regex: .*
-    
-    #         # extractors:
-    #         #   # The name of this attribute determines where the value will be nested in the body (using dots)
-    #         #   ben:
-    #         #     # Name of the header to extract
-    #         #     header: 'ben'
-    #         #     # Regex to apply to it, this is needed
-    #         #     regex: '.*'
-    #   #       extractors:
-    #   #         # This extracts the 'foo' query param to an extractor named 'foo'
-    #   #         foo:
-    #   #           # The :path pseudo-header contains the URI
-    #   #           header: ':path'
-    #   #           # Use a nested capturing group to extract the query param
-    #   #           regex: '(.*foo=([^&]*).*)'
-    #   #           subgroup: 2
-    #   #         # This extracts the 'bar' query param to an extractor named 'bar'
-    #   #         bar:
-    #   #           # The :path pseudo-header contains the URI
-    #   #           header: ':path'
-    #   #           # Use a nested capturing group to extract the query param
-    #   #           regex: '(.*bar=([^&]*).*)'
-    #   #           subgroup: 2
-    #   #       # Add two new headers with the values of the 'foo' and 'bar' extractions
-    #   #       headers:
-    #   #         foo:
-    #   #           text: '{{ foo }}'
-    #   #         bar:
-    #   #           text: '{{ bar }}'
 
-
-    # # - matchers:
-    # #   - prefix: /
-    # #   options:
-    # #     cors:
-    # #       allowCredentials: true
-    # #       allowHeaders:
-    # #       - origin
-    # #       allowMethods:
-    # #       - GET
-    # #       - POST
-    # #       allowOrigin:
-    # #       - 'https://solo.io'
-    # #       exposeHeaders:
-    # #       - origin
-    # #       maxAge: 1d
-    # #   directResponseAction:
-    # #     status: 200
-    # #     body: "hi"
-
-    # - matchers:
-    #   - prefix: /lambda-diag
-    #   options:
-    #     timeout: 35s  # default value is 15s
-    #     retries:
-    #       retryOn: '5xx'
-    #       numRetries: 3
-    #       perTryTimeout: '10s'
-    #   routeAction:
-    #     single:
-    #       destinationSpec:
-    #         aws:
-    #           logicalName: golang-diag-latest
-    #           wrapAsApiGateway: true
-    #           # unwrapAsApiGateway: true
-    #           # requestTransformation: true
-    #           # unwrapAsApiGateway: true
-    #       upstream:
-    #         name: aws-lambda
-    #         namespace: ben
-
-    # - matchers:
-    #   - prefix: /lambda-apigw
-    #   options:
-    #     timeout: 35s  # default value is 15s
-    #     retries:
-    #       retryOn: '5xx'
-    #       numRetries: 3
-    #       perTryTimeout: '10s'
-    #   routeAction:
-    #     single:
-    #       destinationSpec:
-    #         aws:
-    #           logicalName: golang-apigw-latest
-    #           wrapAsApiGateway: true
-    #           unwrapAsApiGateway: true
-    #       upstream:
-    #         name: aws-lambda
-    #         namespace: ben
-
-    # - matchers:
-    #   - prefix: /lambda-diag
-    #   options:
-    #     timeout: 35s  # default value is 15s
-    #     retries:
-    #       retryOn: '5xx'
-    #       numRetries: 3
-    #       perTryTimeout: '10s'
-    #   routeAction:
-    #     single:
-    #       destinationSpec:
-    #         aws:
-    #           logicalName: golang-diag-latest
-    #           # transform request and headers to a generic map
-    #           requestTransformation: true
-    #           # wrapAsApiGateway: true
-    #           # unwrapAsApiGateway: true
-    #       upstream:
-    #         name: aws-lambda
-    #         namespace: ben
-    # - matchers:
-    #   - prefix: /
-    #   options:
-    #     timeout: 35s  # default value is 15s
-    #     retries:
-    #       retryOn: '5xx'
-    #       numRetries: 3
-    #       perTryTimeout: '10s'
-    #   routeAction:
-    #     single:
-    #       destinationSpec:
-    #         aws:
-    #           logicalName: golang-simple-latest
-    #           # transform request and headers to a generic map
-    #           requestTransformation: true
-    #       upstream:
-    #         name: aws-lambda
-    #         namespace: ben
-    
+            # options:
+    #   cors:
+    #     allowCredentials: true
+    #     allowHeaders:
+    #     - origin
+    #     allowMethods:
+    #     - GET
+    #     - POST
+    #     allowOrigin:
+    #     - 'https://solo.io'
+    #     exposeHeaders:
+    #     - origin
+    #     maxAge: 1d

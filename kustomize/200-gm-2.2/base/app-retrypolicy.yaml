@@ -1,0 +1,16 @@
+apiVersion: resilience.policy.gloo.solo.io/v2
+kind: RetryTimeoutPolicy
+metadata:
+  name: retry-lambda
+  namespace: app
+  clusterName: mgmt
+spec:
+  applyToRoutes:
+    - route:
+        labels:
+          route: lambda 
+  config:
+    retries:
+      attempts: 5 
+      perTryTimeout: 10s
+      retryOn: "5xx,unavailable,cancelled,retriable-status-codes"
