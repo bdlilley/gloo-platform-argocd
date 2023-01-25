@@ -149,7 +149,7 @@ charts:
     values:
       cluster: mgmt
       glooMeshAgent:
-        enabled: true
+        enabled: false
         # image:
         #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
         #   repository: gloo-mesh-agent

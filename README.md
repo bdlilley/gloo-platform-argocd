@@ -85,6 +85,16 @@ spec:
           external-dns:
             txtOwnerId: ${PRIVATE_HZ_ID}
             txtPrefix: ${CLUSTER_NAME}
+          gloo-mesh:
+            gloo:
+              gateway:
+                proxyServiceAccount:
+                  extraAnnotations:
+                    eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/${CLUSTER_NAME}-gloo-gateway-proxy
+              discovery:
+                serviceAccount:
+                  extraAnnotations:
+                    eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/${CLUSTER_NAME}-gloo-discovery
   syncPolicy:
     automated:
       prune: true
