@@ -58,6 +58,9 @@ spec:
 
 
     routes:
+
+
+
     - matchers:
       - prefix: /httpbin
       options:
@@ -67,6 +70,9 @@ spec:
           upstream:
             name: httpbin-httpbin-8000
             namespace: gloo-system
+
+
+
     - matchers:
       - prefix: /lambda
       options:
@@ -75,6 +81,18 @@ spec:
           retryOn: '5xx'
           numRetries: 3
           perTryTimeout: '10s'
+        cors:
+          allowCredentials: true
+          allowHeaders:
+          - origin
+          allowMethods:
+          - GET
+          - POST
+          allowOrigin:
+          - 'https://solo.io'
+          exposeHeaders:
+          - origin
+          maxAge: 1d
       routeAction:
         single:
           upstream:

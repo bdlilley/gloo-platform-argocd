@@ -25,6 +25,10 @@ charts:
       serviceAccount:
         create: false
         name: aws-load-balancer-controller
+      defaultTags:
+        create-by: "benji_lilley"
+        team: product
+        purpose: product-development
 
   # external-dns to automate route53 records
   external-dns:
