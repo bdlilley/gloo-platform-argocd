@@ -142,7 +142,7 @@ charts:
     # revision: ben-aws-lambda
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     chart: gloo-mesh-agent
-    revision: v2.1.0
+    revision: v2.2.0
     namespace: gloo-mesh
     syncPolicy:
       syncOptions: [] # dont create namespace
