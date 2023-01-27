@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- k8s-cluster.yaml
+- gateway-virtual-gateway.yaml
+- gateway-workspace.yaml
+- gateway-routetable.yaml
+- app-cloud-provider.yaml
+- app-cloud-resources.yaml
+- app-workspace.yaml
+- app-routetable.yaml
+- app-retrypolicy.yaml
