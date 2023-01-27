@@ -3,167 +3,167 @@ charts:
   # samples:
   #   path: kustomize/5-sample-apps/base
     
-  istio-base:
-    # wave defaults to 100
-    wave: 20
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: base
-    namespace: istio-system
-    revision: "1.15.3"
+  # istio-base:
+  #   # wave defaults to 100
+  #   wave: 20
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: base
+  #   namespace: istio-system
+  #   revision: "1.15.3"
 
-  istiod-15-0:
-    # wave defaults to 100
-    wave: 20
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: istiod
-    revision: "1.15.3"
-    namespace: istio-system
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    globalValues:
-      meshID: mesh1
-      multiCluster:
-        clusterName: mgmt
-      network: network1
-      hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
-      tag: 1.15.3-solo
-    values:
-      revision: 1-15
-      meshConfig:
-        trustDomain: mgmt
-        accessLogFile: /dev/stdout
-        enableAutoMtls: true
-        defaultConfig:
-          envoyMetricsService:
-            address: gloo-mesh-agent.gloo-mesh:9977
-          envoyAccessLogService:
-            address: gloo-mesh-agent.gloo-mesh:9977
-          proxyMetadata:
-            ISTIO_META_DNS_CAPTURE: "true"
-            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-            GLOO_MESH_CLUSTER_NAME: mgmt
-      pilot:
-        env:
-          PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
-          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+  # istiod-15-0:
+  #   # wave defaults to 100
+  #   wave: 20
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: istiod
+  #   revision: "1.15.3"
+  #   namespace: istio-system
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   globalValues:
+  #     meshID: mesh1
+  #     multiCluster:
+  #       clusterName: mgmt
+  #     network: network1
+  #     hub: us-docker.pkg.dev/gloo-mesh/istio-1cf99a48c9d8
+  #     tag: 1.15.3-solo
+  #   values:
+  #     revision: 1-15
+  #     meshConfig:
+  #       trustDomain: mgmt
+  #       accessLogFile: /dev/stdout
+  #       enableAutoMtls: true
+  #       defaultConfig:
+  #         envoyMetricsService:
+  #           address: gloo-mesh-agent.gloo-mesh:9977
+  #         envoyAccessLogService:
+  #           address: gloo-mesh-agent.gloo-mesh:9977
+  #         proxyMetadata:
+  #           ISTIO_META_DNS_CAPTURE: "true"
+  #           ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+  #           GLOO_MESH_CLUSTER_NAME: mgmt
+  #     pilot:
+  #       env:
+  #         PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
+  #         PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
 
-  istio-ingressgateway:
-    # wave defaults to 100
-    wave: 30
-    repo: https://istio-release.storage.googleapis.com/charts
-    chart: gateway
-    namespace: istio-gateways
-    revision: "1.15.3"
-    values:
-      revision: "1-15"
-      labels:
-        istio: ingressgateway
-        istio.io/rev: 1-15
-      annotations:
-        proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
-      service:
-        type: LoadBalancer
-        annotations:
-          service.beta.kubernetes.io/aws-load-balancer-scheme: internal
-          # this a bit idiotic - aws-load-balancer-type can only be nlb-ip or external
-          # nlb-ip is only for backowards compatiblity, and it forces the controler to only
-          # use IP-based TGBs; to use instance TGBs this must be "external" even though
-          # the scheme is internal to force controller to look at aws-load-balancer-nlb-target-type
-          service.beta.kubernetes.io/aws-load-balancer-type: external
-          service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
-          service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-        ports:
-        # main http ingress port
-        - port: 80
-          targetPort: 80
-          name: http2
-        # main https ingress port
-        - port: 443
-          targetPort: 8443
-          name: https
+  # istio-ingressgateway:
+  #   # wave defaults to 100
+  #   wave: 30
+  #   repo: https://istio-release.storage.googleapis.com/charts
+  #   chart: gateway
+  #   namespace: istio-gateways
+  #   revision: "1.15.3"
+  #   values:
+  #     revision: "1-15"
+  #     labels:
+  #       istio: ingressgateway
+  #       istio.io/rev: 1-15
+  #     annotations:
+  #       proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+  #     service:
+  #       type: LoadBalancer
+  #       annotations:
+  #         service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+  #         # this a bit idiotic - aws-load-balancer-type can only be nlb-ip or external
+  #         # nlb-ip is only for backowards compatiblity, and it forces the controler to only
+  #         # use IP-based TGBs; to use instance TGBs this must be "external" even though
+  #         # the scheme is internal to force controller to look at aws-load-balancer-nlb-target-type
+  #         service.beta.kubernetes.io/aws-load-balancer-type: external
+  #         service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: instance
+  #         service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+  #       ports:
+  #       # main http ingress port
+  #       - port: 80
+  #         targetPort: 80
+  #         name: http2
+  #       # main https ingress port
+  #       - port: 443
+  #         targetPort: 8443
+  #         name: https
 
 
-  gloo-mesh-enterprise:
-    # wave defaults to 100
-    wave: 40
-    # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
-    # path: install/helm/gloo-mesh-enterprise
-    # revision: ben-aws-lambda
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-    chart: gloo-mesh-enterprise
-    revision: v2.2.0
-    namespace: gloo-mesh
-    globalValues:
-      cluster: mgmt
-    values:
-      # assumes license was created by some other process (see README.md)
-      licenseSecretName: gloo-mesh-license
-      mgmtClusterName: mgmt
-      # glooMeshUi:
-      #   image:
-      #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-      #     repository: gloo-mesh-apiserver
-      #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
-      #   sidecars:
-      #     console: 
-      #       image:
-      #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-      #         repository: gloo-mesh-apiserver
-      #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  # gloo-mesh-enterprise:
+  #   # wave defaults to 100
+  #   wave: 40
+  #   # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
+  #   # path: install/helm/gloo-mesh-enterprise
+  #   # revision: ben-aws-lambda
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+  #   chart: gloo-mesh-enterprise
+  #   revision: v2.2.0
+  #   namespace: gloo-mesh
+  #   globalValues:
+  #     cluster: mgmt
+  #   values:
+  #     # assumes license was created by some other process (see README.md)
+  #     licenseSecretName: gloo-mesh-license
+  #     mgmtClusterName: mgmt
+  #     # glooMeshUi:
+  #     #   image:
+  #     #     registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #     #     repository: gloo-mesh-apiserver
+  #     #     tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     #   sidecars:
+  #     #     console: 
+  #     #       image:
+  #     #         registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #     #         repository: gloo-mesh-apiserver
+  #     #         tag: 2.1.0-beta27-38-ge9c2f5587-dirty
 
-      glooMeshMgmtServer:
-        serviceType: ClusterIP
-        # image:
-        #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-        #   repository: gloo-mesh-mgmt-server
-        #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     glooMeshMgmtServer:
+  #       serviceType: ClusterIP
+  #       # image:
+  #       #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #       #   repository: gloo-mesh-mgmt-server
+  #       #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
       
-        # relay:
-        #   disableCa: true
-        #   disableCaCertGeneration: true
-        #   tlsSecret:
-        #     name: relay-server-tls-secret
-        # ports:
-        #   healthcheck: 8091
-      deploymentOverrides:
-        spec:
-          template:
-            metadata:
-              annotations:
-                sidecar.istio.io/inject: "true"
-              labels:
-                istio.io/rev: "1-15"
+  #       # relay:
+  #       #   disableCa: true
+  #       #   disableCaCertGeneration: true
+  #       #   tlsSecret:
+  #       #     name: relay-server-tls-secret
+  #       # ports:
+  #       #   healthcheck: 8091
+  #     deploymentOverrides:
+  #       spec:
+  #         template:
+  #           metadata:
+  #             annotations:
+  #               sidecar.istio.io/inject: "true"
+  #             labels:
+  #               istio.io/rev: "1-15"
 
-  gloo-agent:
-    # wave defaults to 100
-    wave: 40
-    # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
-    # path: install/helm/gloo-mesh-enterprise
-    # revision: ben-aws-lambda
-    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-    chart: gloo-mesh-agent
-    revision: v2.2.0
-    namespace: gloo-mesh
-    syncPolicy:
-      syncOptions: [] # dont create namespace
-    values:
-      cluster: mgmt
-      glooMeshAgent:
-        enabled: true
-        # image:
-        #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
-        #   repository: gloo-mesh-agent
-        #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
-      ext-auth-service:
-        enabled: false
-      rate-limiter:
-        enabled: false
-      relay:
-        serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
-        authority: gloo-mesh-mgmt-server.gloo-mesh
-        # clientTlsSecret:
-        #   name: gloo-mesh-agent-mgmt-tls-cert
-        #   namespace: gloo-mesh
-        # rootTlsSecret:
-        #   name: relay-root-tls-secret
-        #   namespace: gloo-mesh
+  # gloo-agent:
+  #   # wave defaults to 100
+  #   wave: 40
+  #   # repo: git@github.com:bdlilley/gloo-mesh-enterprise.git
+  #   # path: install/helm/gloo-mesh-enterprise
+  #   # revision: ben-aws-lambda
+  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+  #   chart: gloo-mesh-agent
+  #   revision: v2.2.0
+  #   namespace: gloo-mesh
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
+  #   values:
+  #     cluster: mgmt
+  #     glooMeshAgent:
+  #       enabled: true
+  #       # image:
+  #       #   registry: 931713665590.dkr.ecr.us-east-2.amazonaws.com
+  #       #   repository: gloo-mesh-agent
+  #       #   tag: 2.1.0-beta27-38-ge9c2f5587-dirty
+  #     ext-auth-service:
+  #       enabled: false
+  #     rate-limiter:
+  #       enabled: false
+  #     relay:
+  #       serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
+  #       authority: gloo-mesh-mgmt-server.gloo-mesh
+  #       # clientTlsSecret:
+  #       #   name: gloo-mesh-agent-mgmt-tls-cert
+  #       #   namespace: gloo-mesh
+  #       # rootTlsSecret:
+  #       #   name: relay-root-tls-secret
+  #       #   namespace: gloo-mesh
