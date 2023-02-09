@@ -1,0 +1,41 @@
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: app
+  namespace: app
+spec:
+  hosts:
+    - '*'
+  virtualGateways:
+    - name: lambda-demo-north-south-gw
+      namespace: istio-gateways
+      cluster: mgmt
+  http:
+    - name: app-sanity
+      matchers:
+        - uri:
+            prefix: /app-sanity
+      labels:
+        route: app-sanity
+      directResponse:
+        status: 200
+        body: "the app is alive"
+    - name: lambda
+      labels:
+        route: lambda
+      matchers:
+        - uri:
+            prefix: /lambda
+      forwardTo:
+        destinations:
+          - ref:
+              name: aws-provider
+              namespace: app
+              cluster: mgmt
+            kind: CLOUD_PROVIDER
+            function:
+              logicalName: gloo-platform-lambda-demo-latest
+              awsLambda:
+                unwrapAsApiGateway: true
+    

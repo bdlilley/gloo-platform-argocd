@@ -1,0 +1,39 @@
+---
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: gateway
+  namespace: istio-gateways
+spec:
+  hosts:
+    - '*'
+  virtualGateways:
+    - name: lambda-demo-north-south-gw
+      namespace: istio-gateways
+      cluster: mgmt
+  http:
+    - name: httpbin
+      matchers:
+        - uri:
+            prefix: /httpbin
+      forwardTo:
+        pathRewrite: /
+        destinations:
+        - ref:
+            name: httpbin
+            namespace: httpbin
+            cluster: mgmt
+          port:
+            number: 8000
+          kind: SERVICE
+
+
+    - name: sanity
+      matchers:
+        - uri:
+            prefix: /sanity
+      labels:
+        route: sanity
+      directResponse:
+        status: 200
+        body: "it's alive"
