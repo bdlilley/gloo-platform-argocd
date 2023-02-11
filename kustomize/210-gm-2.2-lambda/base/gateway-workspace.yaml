@@ -10,6 +10,7 @@ spec:
       namespaces:
         - name: istio-gateways
         - name: httpbin
+        - name: bookinfo
 ---
 apiVersion: admin.gloo.solo.io/v2
 kind: WorkspaceSettings
