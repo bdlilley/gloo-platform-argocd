@@ -75,51 +75,51 @@ charts:
           name: https
 
 
-  # gloo-mesh-enterprise:
-  #   wave: 40
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
-  #   chart: gloo-mesh-enterprise
-  #   revision: v2.2.3
-  #   namespace: gloo-mesh
-  #   globalValues:
-  #     cluster: mgmt
-  #   values:
-  #     # assumes license was created by some other process (see README.md)
-  #     licenseSecretName: gloo-mesh-license
-  #     mgmtClusterName: mgmt
-  #     glooMeshMgmtServer:
-  #       serviceType: ClusterIP
-  #     deploymentOverrides:
-  #       spec:
-  #         template:
-  #           metadata:
-  #             annotations:
-  #               sidecar.istio.io/inject: "true"
-  #             labels:
-  #               istio.io/rev: "1-15"
+  gloo-mesh-enterprise:
+    wave: 40
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-enterprise
+    chart: gloo-mesh-enterprise
+    revision: v2.2.3
+    namespace: gloo-mesh
+    globalValues:
+      cluster: mgmt
+    values:
+      # assumes license was created by some other process (see README.md)
+      licenseSecretName: gloo-mesh-license
+      mgmtClusterName: mgmt
+      glooMeshMgmtServer:
+        serviceType: ClusterIP
+      deploymentOverrides:
+        spec:
+          template:
+            metadata:
+              annotations:
+                sidecar.istio.io/inject: "true"
+              labels:
+                istio.io/rev: "1-15"
 
-  # gloo-agent:
-  #   wave: 40
-  #   repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
-  #   chart: gloo-mesh-agent
-  #   revision: v2.2.3
-  #   namespace: gloo-mesh
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
-  #   values:
-  #     cluster: mgmt
-  #     glooMeshAgent:
-  #       enabled: true
-  #     ext-auth-service:
-  #       enabled: false
-  #     rate-limiter:
-  #       enabled: false
-  #     relay:
-  #       serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
-  #       authority: gloo-mesh-mgmt-server.gloo-mesh
+  gloo-agent:
+    wave: 40
+    repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
+    chart: gloo-mesh-agent
+    revision: v2.2.3
+    namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      cluster: mgmt
+      glooMeshAgent:
+        enabled: true
+      ext-auth-service:
+        enabled: false
+      rate-limiter:
+        enabled: false
+      relay:
+        serverAddress: "gloo-mesh-mgmt-server.gloo-mesh.svc.cluster.local:9900"
+        authority: gloo-mesh-mgmt-server.gloo-mesh
 
-  # gm-core:
-  #   path: kustomize/2-gm-core/base
+  gm-core:
+    path: kustomize/2-gm-core/base
     
-  # samples:
-  #   path: kustomize/5-sample-apps/base
+  samples:
+    path: kustomize/5-sample-apps/base
