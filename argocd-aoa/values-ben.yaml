@@ -105,7 +105,7 @@ charts:
     wave: 40
     repo: https://storage.googleapis.com/gloo-mesh-enterprise/gloo-mesh-agent
     chart: gloo-mesh-agent
-    revision: v2.2.0
+    revision: v2.2.3
     namespace: gloo-mesh
     syncPolicy:
       syncOptions: [] # dont create namespace
