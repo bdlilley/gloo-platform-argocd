@@ -1,8 +1,5 @@
 
 charts:
-  # samples:
-  #   path: kustomize/5-sample-apps/base
-    
   istio-base:
     wave: 20
     repo: https://istio-release.storage.googleapis.com/charts
@@ -124,3 +121,5 @@ charts:
   gm-core:
     path: kustomize/2-gm-core/base
     
+  samples:
+    path: kustomize/5-sample-apps/base
