@@ -14,39 +14,8 @@ kubectl config set-context --current --namespace=argocd
 argocd admin dashboard &
 open http://localhost:8080
 ```
-# create gloo license secret
 
-_mesh_
-```bash
-kubectl create ns gloo-mesh 
-kubectl apply -f - <<EOF
-apiVersion: v1
-data:
-  gloo-gateway-license-key: $(echo -n "${LICENSE_KEY}" | base64)
-  gloo-mesh-license-key: $(echo -n "${LICENSE_KEY}" | base64)
-  gloo-mesh-enterprise-license-key: $(echo -n "${LICENSE_KEY}" | base64)
-kind: Secret
-metadata:
-  name: gloo-mesh-license
-  namespace: gloo-mesh
-type: Opaque
-EOF
-```
 
-_edge_
-```bash
-kubectl create ns gloo-system 
-kubectl apply -f - <<EOF
-apiVersion: v1
-data:
-  license-key: $(echo -n "${GLOO_EDGE_LICENSE_KEY}" | base64)
-kind: Secret
-metadata:
-  name: gloo-edge-license
-  namespace: gloo-system
-type: Opaque
-EOF
-```
 
 # create an argocd app of apps stack based on use case
 
@@ -91,6 +60,8 @@ spec:
             txtPrefix: ${CLUSTER_NAME}
           external-secrets:
             serviceAccount:
+              create: true
+              name: external-secrets
               annotations:
                 eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/${CLUSTER_NAME}-gloo-secrets-sync
           gloo-mesh-enterprise:
@@ -207,4 +178,45 @@ spec:
     namespace: argocd
 EOF
 
+```
+
+
+
+---
+
+### old stuff
+
+
+# create gloo license secret
+
+_mesh_
+```bash
+kubectl create ns gloo-mesh 
+kubectl apply -f - <<EOF
+apiVersion: v1
+data:
+  gloo-gateway-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+  gloo-mesh-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+  gloo-mesh-enterprise-license-key: $(echo -n "${LICENSE_KEY}" | base64)
+kind: Secret
+metadata:
+  name: gloo-mesh-license
+  namespace: gloo-mesh
+type: Opaque
+EOF
+```
+
+_edge_
+```bash
+kubectl create ns gloo-system 
+kubectl apply -f - <<EOF
+apiVersion: v1
+data:
+  license-key: $(echo -n "${GLOO_EDGE_LICENSE_KEY}" | base64)
+kind: Secret
+metadata:
+  name: gloo-edge-license
+  namespace: gloo-system
+type: Opaque
+EOF
 ```
