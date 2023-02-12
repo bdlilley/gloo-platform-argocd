@@ -7,7 +7,7 @@ resources:
 # - ns-gloo-mesh.yaml
 # - cert-gloo-mesh.yaml
 - cert-issuers.yaml
-- gm-ns.yaml
+- namespaces.yaml
 - gm-secret.yaml
 # - aws-secrets-provider.yaml
 # - cert-root-ca.yaml
