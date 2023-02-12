@@ -52,6 +52,8 @@ charts:
   #   chart: gateway
   #   namespace: istio-gateways
   #   revision: "1.15.3"
+  #   syncPolicy:
+  #     syncOptions: [] # dont create namespace
   #   values:
   #     revision: "1-15"
   #     labels:
@@ -127,5 +129,5 @@ charts:
   # gm-core:
   #   path: kustomize/2-gm-core/base
     
-  samples:
-    path: kustomize/5-sample-apps/base
+  # samples:
+  #   path: kustomize/5-sample-apps/base
