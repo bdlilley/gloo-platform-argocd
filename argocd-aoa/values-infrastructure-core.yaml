@@ -62,6 +62,3 @@ charts:
     chart: external-secrets
     namespace: external-secrets
           
-  core:
-    wave: 10
-    path: kustomize/1-core/base

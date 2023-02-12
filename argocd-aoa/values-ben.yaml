@@ -1,5 +1,9 @@
 
 charts:
+  core:
+    wave: 10
+    path: kustomize/1-core/ben
+
   # istio-base:
   #   wave: 20
   #   repo: https://istio-release.storage.googleapis.com/charts
