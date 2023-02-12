@@ -63,21 +63,7 @@ charts:
     namespace: kube-system
     syncPolicy:
       syncOptions: [] # dont create namespace
-    values:
-      domainFilters:
-      - awscloud.solo.io
-      crd:
-        create: true
-      sources:
-      - crd
-      aws:
-        zoneType: private
-      txtPrefix: extdns.
-      serviceAccount:
-        create: false
-        name: external-dns
           
-
   core:
     wave: 10
     path: kustomize/1-core/base
