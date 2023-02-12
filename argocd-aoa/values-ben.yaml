@@ -81,6 +81,8 @@ charts:
     chart: gloo-mesh-enterprise
     revision: v2.2.3
     namespace: gloo-mesh
+    syncPolicy:
+      syncOptions: [] # dont create namespace
     globalValues:
       cluster: mgmt
     values:

@@ -54,6 +54,30 @@ charts:
         create: false
         name: external-dns
           
+  secrets-store-csi-driver:
+    # wave defaults to 100
+    wave: 1
+    repo: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
+    revision: "1.3.1"
+    chart: secrets-store-csi-driver
+    namespace: kube-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    values:
+      domainFilters:
+      - awscloud.solo.io
+      crd:
+        create: true
+      sources:
+      - crd
+      aws:
+        zoneType: private
+      txtPrefix: extdns.
+      serviceAccount:
+        create: false
+        name: external-dns
+          
+
   core:
     wave: 10
     path: kustomize/1-core/base

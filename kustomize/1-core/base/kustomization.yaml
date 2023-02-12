@@ -7,5 +7,6 @@ resources:
 # - ns-gloo-mesh.yaml
 # - cert-gloo-mesh.yaml
 - cert-issuers.yaml
+- aws-secrets-provider.yaml
 # - cert-root-ca.yaml
 # - cert-gloo-mesh-agent.yaml
