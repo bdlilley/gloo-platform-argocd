@@ -89,6 +89,10 @@ spec:
           external-dns:
             txtOwnerId: ${PRIVATE_HZ_ID}
             txtPrefix: ${CLUSTER_NAME}
+          external-secrets:
+            serviceAccount:
+              annotations:
+                eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/${CLUSTER_NAME}-gloo-secrets-sync
           gloo-mesh-enterprise:
             glooMeshMgmtServer:
               serviceAccount:

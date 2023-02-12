@@ -1,8 +1,8 @@
 
 charts:
-  core:
-    wave: 10
-    path: kustomize/1-core/overlays/ben
+  # core:
+  #   wave: 10
+  #   path: kustomize/1-core/overlays/ben
 
   # istio-base:
   #   wave: 20
