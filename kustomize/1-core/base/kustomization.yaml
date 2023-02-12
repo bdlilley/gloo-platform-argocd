@@ -9,6 +9,7 @@ resources:
 - cert-issuers.yaml
 - gm-ns.yaml
 - gm-license-sa.yaml
+- gm-secret.yaml
 # - aws-secrets-provider.yaml
 # - cert-root-ca.yaml
 # - cert-gloo-mesh-agent.yaml
