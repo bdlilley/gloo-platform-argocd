@@ -54,15 +54,13 @@ charts:
         create: false
         name: external-dns
           
-  # secrets-store-csi-driver:
-  #   # wave defaults to 100
-  #   wave: 1
-  #   repo: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
-  #   revision: "1.3.1"
-  #   chart: secrets-store-csi-driver
-  #   namespace: kube-system
-  #   syncPolicy:
-  #     syncOptions: [] # dont create namespace
+  external-secrets:
+    # wave defaults to 100
+    wave: 1
+    repo: https://charts.external-secrets.io
+    revision: "0.7.2"
+    chart: external-secrets
+    namespace: external-secrets
           
   core:
     wave: 10
