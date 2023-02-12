@@ -3,5 +3,3 @@ kind: ServiceAccount
 metadata:
   name:  gloo-secrets-sync
   namespace: gloo-mesh
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/role-name
