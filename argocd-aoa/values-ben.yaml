@@ -1,8 +1,8 @@
 
-charts:
-  core:
-    wave: 10
-    path: kustomize/1-core/base
+charts: {}
+  # core:
+  #   wave: 10
+  #   path: kustomize/1-core/base
 
   # istio-base:
   #   wave: 20
