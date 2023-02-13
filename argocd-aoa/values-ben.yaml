@@ -1,5 +1,6 @@
 
-charts: {}
+charts:
+
   # core:
   #   wave: 10
   #   path: kustomize/1-core/base
