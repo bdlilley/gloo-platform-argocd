@@ -1,4 +1,3 @@
-{{- if .Values.charts }}
 {{- $root := . }}
 {{- $syncPolicy := dict  }}
 {{- range $chartName, $chart := .Values.charts }}
@@ -82,4 +81,3 @@ spec:
     {{- end }}
   syncPolicy:  {{ include "app.syncPolicy" $chart }}
 {{- end }} 
-{{- end }}
