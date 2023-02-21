@@ -37,5 +37,6 @@ spec:
             function:
               logicalName: gloo-platform-lambda-demo-latest
               awsLambda:
-                unwrapAsApiGateway: true
+                responseTransformation:
+                  unwrapAsApiGateway: true
     
