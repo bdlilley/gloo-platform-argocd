@@ -10,3 +10,5 @@ spec:
     region: us-east-2
     lambda:
       invokeRoleName: gloo-lambda-executor
+      discovery:
+        enabled: true
