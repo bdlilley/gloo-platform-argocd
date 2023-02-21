@@ -21,21 +21,21 @@ spec:
       directResponse:
         status: 200
         body: "the app is alive"
-    - name: lambda
-      labels:
-        route: lambda
-      matchers:
-        - uri:
-            prefix: /lambda
-      forwardTo:
-        destinations:
-          - ref:
-              name: aws-provider
-              namespace: app
-              cluster: mgmt
-            kind: CLOUD_PROVIDER
-            function:
-              logicalName: gloo-platform-lambda-demo-latest
-              awsLambda:
-                responseTransformation: UNWRAP_AS_API_GATEWAY
+    # - name: lambda
+    #   labels:
+    #     route: lambda
+    #   matchers:
+    #     - uri:
+    #         prefix: /lambda
+    #   forwardTo:
+    #     destinations:
+    #       - ref:
+    #           name: aws-provider
+    #           namespace: app
+    #           cluster: mgmt
+    #         kind: CLOUD_PROVIDER
+    #         function:
+    #           logicalName: gloo-platform-lambda-demo-latest
+    #           awsLambda:
+    #             responseTransformation: UNWRAP_AS_API_GATEWAY
     

@@ -5,7 +5,7 @@ resources:
 - gateway-workspace.yaml
 - gateway-routetable.yaml
 - app-cloud-provider.yaml
-- app-cloud-resources.yaml
+# - app-cloud-resources.yaml
 - app-workspace.yaml
 - app-routetable.yaml
 - app-retrypolicy.yaml
