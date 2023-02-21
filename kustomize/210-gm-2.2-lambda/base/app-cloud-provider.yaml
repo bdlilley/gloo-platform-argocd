@@ -12,3 +12,4 @@ spec:
       invokeRoleName: gloo-lambda-executor
       discovery:
         enabled: true
+        roleName: ben-gloo-discovery
