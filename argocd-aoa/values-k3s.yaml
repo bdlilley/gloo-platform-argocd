@@ -1,4 +1,7 @@
 charts:
+  k3s-core:
+    wave: 10
+    path: kustomize/0-core-k3s/base
 
   # cert-manager for issuing certs
   cert-manager:

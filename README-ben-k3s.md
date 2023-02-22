@@ -1,5 +1,11 @@
 
-export CLUSTER_NAME="ben"
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/core-install.yaml
+# defect in argocd cli - the context ns must be argocd to use the admin dashboard command
+kubectl config set-context --current --namespace=argocd
+argocd admin dashboard &
+open http://localhost:8080
+
 cat <<EOF | kubectl apply -f -
 ---
 apiVersion: argoproj.io/v1alpha1
