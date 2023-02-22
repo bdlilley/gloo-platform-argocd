@@ -9,7 +9,43 @@ charts:
     chart: base
     namespace: istio-system
     revision: "1.16.2"
-    
+
+  istiod:
+    wave: 20
+    repo: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    revision: "1.16.2"
+    namespace: istio-system
+    syncPolicy:
+      syncOptions: [] # dont create namespace
+    globalValues:
+      meshID: mesh1
+      multiCluster:
+        clusterName: mgmt
+      network: network1
+      hub: us-docker.pkg.dev/gloo-mesh/istio-7a97385594af
+      tag: 1.16.2-solo
+    values:
+      revision: 1-16
+      meshConfig:
+        trustDomain: mgmt
+        accessLogFile: /dev/stdout
+        enableAutoMtls: true
+        defaultConfig:
+          envoyMetricsService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          envoyAccessLogService:
+            address: gloo-mesh-agent.gloo-mesh:9977
+          proxyMetadata:
+            ISTIO_META_DNS_CAPTURE: "true"
+            ISTIO_META_DNS_AUTO_ALLOCATE: "true"
+            GLOO_MESH_CLUSTER_NAME: mgmt
+      pilot:
+        env:
+          PILOT_ENABLE_K8S_SELECT_WORKLOAD_ENTRIES: "false"
+          PILOT_SKIP_VALIDATE_TRUST_DOMAIN: "true"
+
+
   # cert-manager for issuing certs
   cert-manager:
     # wave defaults to 100
