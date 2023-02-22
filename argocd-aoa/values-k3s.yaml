@@ -1,0 +1,21 @@
+charts:
+
+  # cert-manager for issuing certs
+  cert-manager:
+    # wave defaults to 100
+    wave: 1
+    repo: https://charts.jetstack.io
+    revision: v1.9.1
+    chart: cert-manager
+    namespace: cert-manager
+    values:
+      installCRDs: true
+          
+  # external-secrets:
+  #   # wave defaults to 100
+  #   wave: 1
+  #   repo: https://charts.external-secrets.io
+  #   revision: "0.7.2"
+  #   chart: external-secrets
+  #   namespace: external-secrets
+          
