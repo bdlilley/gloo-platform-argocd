@@ -32,38 +32,6 @@ spec:
     - '*'
     routes:
     - matchers:
-      - prefix: /lambda-simple
-      options:
-        timeout: 35s  # default value is 15s
-        retries:
-          retryOn: '5xx'
-          numRetries: 3
-          perTryTimeout: '10s'
-      routeAction:
-        single:
-          destinationSpec:
-            aws:
-              logicalName: golang-simple-latest
-              # transform request and headers to a generic map
-              requestTransformation: true
-          upstream:
-            name: aws-lambda
-            namespace: gloo-system
-    - matchers:
-      - exact: /hello
-      directResponseAction:
-        status: 200
-        body: hello, world
-    - matchers:
-      - prefix: /httpbin
-      options:
-        prefixRewrite: '/'
-      routeAction:
-        single:
-          upstream:
-            name: httpbin-httpbin-8000
-            namespace: gloo-system
-    - matchers:
       - prefix: /lambda
       options:
         timeout: 35s  # default value is 15s
@@ -75,14 +43,26 @@ spec:
         single:
           destinationSpec:
             aws:
-              logicalName: golang-echo-latest
-              # this option causes headers and request info be included in body payload
-              requestTransformation: true
-              # wrapAsApiGateway: true
-              # unwrapAsApiGateway: true
+              logicalName: gloo-platform-lambda-demo
+              # transform request and headers to a generic map
+              # requestTransformation: true
           upstream:
             name: aws-lambda
             namespace: gloo-system
+    - matchers:
+      - exact: /sanity
+      directResponseAction:
+        status: 200
+        body: it's alive
+    # - matchers:
+    #   - prefix: /httpbin
+    #   options:
+    #     prefixRewrite: '/'
+    #   routeAction:
+    #     single:
+    #       upstream:
+    #         name: httpbin-httpbin-8000
+    #         namespace: gloo-system
     # - matchers:
     #   - prefix: /lambda
     #   options:
@@ -99,6 +79,26 @@ spec:
     #           # this option causes headers and request info be included in body payload
     #           requestTransformation: true
     #           # wrapAsApiGateway: true
+    #           # unwrapAsApiGateway: true
     #       upstream:
-    #         name: lambda
+    #         name: aws-lambda
     #         namespace: gloo-system
+    # # - matchers:
+    # #   - prefix: /lambda
+    # #   options:
+    # #     timeout: 35s  # default value is 15s
+    # #     retries:
+    # #       retryOn: '5xx'
+    # #       numRetries: 3
+    # #       perTryTimeout: '10s'
+    # #   routeAction:
+    # #     single:
+    # #       destinationSpec:
+    # #         aws:
+    # #           logicalName: golang-echo-latest
+    # #           # this option causes headers and request info be included in body payload
+    # #           requestTransformation: true
+    # #           # wrapAsApiGateway: true
+    # #       upstream:
+    # #         name: lambda
+    # #         namespace: gloo-system

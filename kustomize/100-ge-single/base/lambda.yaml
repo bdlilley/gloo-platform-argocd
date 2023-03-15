@@ -5,22 +5,11 @@ metadata:
   namespace: gloo-system
 spec:
   aws:
-    # this is "just" a:
-    # https://docs.solo.io/gloo-edge/latest/reference/api/github.com/solo-io/gloo/projects/gloo/api/v1/options/aws/aws.proto.sk/#destinationspec
-    # defaultOptions: 
-    #   requestTransformation: true
-    #   unwrapAsFoo: true
-    secretRef:
-      name: aws-creds
-      namespace: gloo-system
     lambdaFunctions:
-    # when there is only 1 we invoke it by default
-    # opt-in - we'd need to add a helm input to feature flag this behavior
-    - lambdaFunctionName: golang-simple-latest
-      logicalName: golang-simple-latest
-    - lambdaFunctionName: golang-diag-latest
-      logicalName: golang-diag-latest
-    - lambdaFunctionName: golang-echo-latest
-      logicalName: golang-echo-latest
+    - lambdaFunctionName: gloo-platform-lambda-demo
+      logicalName: gloo-platform-lambda-demo
     region: us-east-2
-    roleArn: arn:aws:iam::931713665590:role/gloo-lambda-executor
+    # this is the role you want to assume on the other account when invoking this lambda
+    roleArn: arn:aws:iam::948753356872:role/ben-hack
+    disableRoleChaining: false
+    awsAccountId: "948753356872"
