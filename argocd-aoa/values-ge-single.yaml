@@ -31,6 +31,14 @@ charts:
         persistence:
           enabled: false
       gloo:
+        gateway:
+          proxyServiceAccount:
+            extraAnnotations:
+              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/solo-v0-ben-1region-cluster-gloo-edge-proxy
+        discovery:
+          serviceAccount:
+            extraAnnotations:
+              eks.amazonaws.com/role-arn: arn:aws:iam::931713665590:role/solo-v0-ben-1region-cluster-gloo-edge-proxy
         create_license_secret: false
         license_secret_name: gloo-edge-license
         gatewayProxies:
