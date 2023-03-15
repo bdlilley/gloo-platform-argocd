@@ -9,7 +9,7 @@ charts:
   gloo-edge:
     wave: 20
     repo: https://storage.googleapis.com/gloo-ee-helm
-    revision:  "1.12.42" #"1.13.0-beta8" "1.13.12 "
+    revision:  1.13.12 #"1.12.42" #"1.13.0-beta8" ""
     chart: "gloo-ee"
     namespace: "gloo-system"
     syncPolicy:
@@ -55,9 +55,9 @@ charts:
                 service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
         settings:
           aws:
-            fallbackToFirstFunction: true
+            # fallbackToFirstFunction: true
             enableServiceAccountCredentials: true
-            stsCredentialsRegion: us-east-2
+            # stsCredentialsRegion: us-east-2
       gloo-fed:
         enabled: false
         glooFedApiserver:
